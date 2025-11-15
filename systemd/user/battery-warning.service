@@ -1,0 +1,15 @@
+[Unit]
+Description=Battery Warning Service
+After=graphical-session.target
+PartOf=graphical-session.target
+
+[Service]
+Type=simple
+ExecStart=%h/.config/hypr/scripts/battery-warning.sh
+Restart=always
+RestartSec=60
+Environment=DISPLAY=:0
+Environment=WAYLAND_DISPLAY=wayland-1
+
+[Install]
+WantedBy=default.target

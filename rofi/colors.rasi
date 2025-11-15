@@ -1,0 +1,23 @@
+* {
+    background: #18181a;
+    foreground: #c8c8c8;
+    background-alt: #202028;
+    accent: #d0d09a;
+    accent-alt: #6e7f80;
+    border: #6c6c78;
+    warning: #eabf82;
+    error: #cd6b7a;
+    success: #86a678;
+    info: #8ba1d7;
+    selected: #3a3d42;
+    gray1: #18181a;
+    gray2: #202028;
+    gray3: #2a2a33;
+    gray4: #3a3d42;
+    gray5: #4d5056;
+    gray6: #6c6c78;
+    gray7: #9f9fa8;
+    background-dim: #141416;
+    foreground-dim: #9f9fa8;
+    background-highlight: #2a2a33;
+}

@@ -1,0 +1,3 @@
+edit = [
+	{ run = "${EDITOR} %s",     desc = "$EDITOR",      for = "unix", block = true },
+]

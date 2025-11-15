@@ -1,0 +1,31 @@
+/* Auto-generated from gruvbox-dark.conf */
+
+* {
+    /* Core colors */
+    background: #1d2021;
+    foreground: #ebdbb2;
+    background-alt: #282828;
+
+    /* Accent colors */
+    accent: #d65d0e;
+    accent-alt: #458588;
+    border: #504945;
+
+    /* Status colors */
+    warning: #d79921;
+    error: #cc241d;
+    success: #98971a;
+    info: #689d6a;
+
+    /* Selection */
+    selected: #3c3836;
+
+    /* Gray scale */
+    gray1: #1d2021;
+    gray2: #282828;
+    gray3: #3c3836;
+    gray4: #504945;
+    gray5: #665c54;
+    gray6: #7c6f64;
+    gray7: #928374;
+}

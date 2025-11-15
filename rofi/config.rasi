@@ -1,0 +1,144 @@
+/* ROFI STYLING */
+
+configuration {
+    font:				"JetBrainsMono Nerd Font Regular 14";
+    show-icons:				true;
+    icon-theme:				"";
+    display-drun:			"";
+    drun-display-format:		"{name}";
+    scroll-method:			0;
+    disable-history:			false;
+    sidebar-mode:			false;
+}
+
+@import "colors.rasi"
+prompt{
+    enabled: false;
+  }
+window {
+    background-color: @background;
+    border:           2;
+    border-color: @border;
+    padding:          40;
+}
+
+mainbox {
+    border:  0;
+    padding: 0;
+}
+
+message {
+    border:       2px 0 0;
+    border-color: @gray3;
+    padding:      1px;
+    enabled: false;
+}
+
+textbox {
+    highlight:  @accent;
+    text-color: @foreground;
+    enabled: false;
+}
+
+listview {
+    border:       0px solid 0 0;
+    padding:      2px 0 0;
+    border-color: @gray3;
+    spacing:      0px;
+    scrollbar: false;
+    lines: 7;
+}
+
+element {
+    border:  0;
+    padding: 20px;
+}
+
+element.normal.normal {
+    background-color: @background;
+    color:       @foreground;
+}
+
+element.normal.urgent {
+    background-color: @error;
+    color:       @foreground;
+}
+
+element.normal.active {
+    background-color: @accent;
+    color:       @foreground;
+}
+
+element.selected.normal {
+    background-color: @accent;
+    color:       @background;
+}
+
+element.selected.urgent {
+    background-color: @error;
+    color:       @foreground;
+}
+
+element.selected.active {
+    background-color: @accent-alt;
+    color:       @foreground;
+}
+
+element.alternate.normal {
+    background-color: @background;
+    text-color:       @foreground;
+}
+
+element.alternate.urgent {
+    background-color: @error;
+    text-color:       @foreground;
+}
+
+element.alternate.active {
+    background-color: @accent;
+    text-color:       @foreground;
+}
+
+scrollbar {
+    width:        4px;
+    border:       0;
+    handle-color: @gray5;
+    handle-width: 8px;
+    padding:      0;
+}
+
+sidebar {
+    border:       2px 0 0;
+    border-color: @gray3;
+}
+
+inputbar {
+    enabled:false;
+    spacing:    0;
+    text-color: @foreground;
+    padding:    2px;
+    children:   [ prompt, textbox-prompt-sep, entry, case-indicator ];
+}
+
+case-indicator,
+entry,
+prompt,
+button {
+    spacing:    0;
+    text-color: @foreground;
+}
+
+button.selected {
+    background-color: @accent;
+    text-color:       @foreground;
+}
+
+textbox-prompt-sep {
+  enabled:false;
+    expand:     false;
+    font:	"FontAwesome6Free 14";
+    str:        "";
+    /*margin:     0px 0.3em 0em 0em ;*/
+    margin: 5px 15px;
+    text-color: @foreground;
+}

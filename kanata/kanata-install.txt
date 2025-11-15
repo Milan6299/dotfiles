@@ -1,0 +1,41 @@
+you will need the service file to enable it via systemctl
+
+commands:
+
+kanata --cfg ~/.config/kanata/layout-name.kbd
+
+#this will show whether there are errors in the config or not but will show a message regarding uinput
+
+also uinput bullshit 
+
+# 1
+sudo groupadd uinput
+
+# 2
+sudo usermod -aG input $USER
+sudo usermod -aG uinput $USER
+
+# 3
+sudo echo 'KERNEL=="uinput", MODE="0660", GROUP="uinput", OPTIONS+="static_node=uinput"' > /etc/udev/rules.d/99-input.rules
+
+# 4
+sudo udevadm control --reload && udevadm trigger --verbose --sysname-match=uniput
+
+# 5
+sudo modprobe uinput
+
+
+#below are the list of commands that make kanata a system service and auto run on login
+
+mkdir /etc/kanata
+
+cp my-config-for-kanata.kbd /etc/kanata/kanata.kbd
+
+sudo install -m 644 kanata.service /lib/systemd/system/kanata.service
+# sudo systemctl daemon-reload # maybe this will be required when changing the service file
+
+sudo systemctl start kanata
+sudo systemctl enable kanata
+
+#to disable kanata use - sudo systemctl enable kanata
+

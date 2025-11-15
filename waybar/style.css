@@ -1,0 +1,127 @@
+/* Import auto-generated theme colors */
+@import "colors.css";
+
+* {
+    border: none;
+    border-radius: 0;
+    font-family: "JetBrains Mono Nerd Font";
+    font-weight: bold;
+    font-size: 14px;
+    min-height: 0;
+}
+
+window#waybar {
+    background: transparent;
+    color: @foreground;
+
+}
+#window {
+    background: @background;
+    color: @foreground;
+    border-radius: 8px;
+    padding: 0 12px;
+    margin: 2px 0;
+}
+
+/* Workspaces */
+#workspaces {
+margin: 0 4px;
+color: @gray7;
+}
+
+#workspaces button {
+padding: 0 4px;
+margin: 4px 2px;
+background: @gray3;
+color: @foreground;
+border-radius: 4px;
+}
+
+#workspaces button.active {
+padding: 0 15px;
+background: @accent;
+color: @background;
+}
+
+#workspaces button.urgent {
+background: @error;
+color: @background;
+}
+
+#workspaces button:hover {
+background: @gray4;
+color: @foreground;
+}
+
+/* Clock */
+#clock {
+background: @gray3;
+color: @foreground;
+padding: 0 12px;
+margin: 4px 2px;
+border-radius: 4px;
+}
+
+/* PulseAudio */
+#pulseaudio {
+background: @gray3;
+color: @info;
+padding: 0 10px;
+margin: 4px 2px;
+border-radius: 4px;
+}
+
+#pulseaudio.muted {
+color: @gray5;
+}
+
+/* Battery */
+#battery {
+background: @gray3;
+color: @magenta;
+padding: 0 10px;
+margin: 4px 2px;
+border-radius: 4px;
+}
+
+#battery.charging, #battery.plugged {
+color: @success;
+}
+
+#battery.warning:not(.charging) {
+color: @warning;
+}
+
+#battery.critical:not(.charging) {
+color: @error;
+animation: blink 2s linear infinite;
+}
+#network{
+color:@success;
+background: @gray3;
+padding: 0 8px;
+margin: 4px 2px;
+border-radius: 4px;
+}
+@keyframes blink {
+    50% { opacity: 0.5; }
+}
+
+/* Tray */
+#tray {
+background: @gray3;
+padding: 0 8px;
+margin: 4px 2px;
+border-radius: 4px;
+}
+
+/* Tooltip */
+tooltip {
+    background: @background_alt;
+    color: @foreground;
+    border: 1px solid @accent;
+    border-radius: 4px;
+}
+tooltip label {
+    color: @foreground;
+}
