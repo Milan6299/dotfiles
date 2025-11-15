@@ -75,6 +75,8 @@ plugins=(git)
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
+# Install zoxide separately (via package manager or cargo)
+eval "$(zoxide init zsh)"
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
@@ -111,6 +113,7 @@ alias tl="tmux list-sessions"
 alias ta="tmux attach-session"
 alias y="yazi"
 alias tt="taskwarrior-tui"
+alias dnd="swaync-client -d"
 
 bindkey '^P' up-line-or-history
 bindkey '^N' down-line-or-history
