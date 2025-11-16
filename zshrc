@@ -90,7 +90,6 @@ alias tn="tmux new-session -s"
 alias tl="tmux list-sessions"
 alias ta="tmux attach-session"
 alias y="yazi"
-alias tt="taskwarrior-tui"
 alias dnd="swaync-client -d"
 
 zm() {
