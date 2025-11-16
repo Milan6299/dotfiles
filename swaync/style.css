@@ -1,7 +1,7 @@
 /* Auto-generated from Vague.conf */
 * {
   all: unset;
-  font-size: 18px;
+  font-size: 16px;
   font-family: "JetBrainsMono Nerd Font";
   transition: 200ms;
 }
@@ -75,7 +75,7 @@ trough {
 .notification-content .body {
   margin-top: 5px;
   color: #c8c8c8;
-  font-size: 16px;
+  font-size: 14px;
 }
 
 .notification > *:last-child > * {
