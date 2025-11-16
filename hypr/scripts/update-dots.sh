@@ -52,3 +52,15 @@ echo -e "${GREEN}✅ Sync completed${NC}"
 echo -e "🔄 Synced: $synced_count"
 echo -e "⚠️  Missing in .config: $warning_count"
 echo -e "${BLUE}========================================${NC}"
+
+# ----------------------
+# Notifications
+# ----------------------
+
+if [ "$warning_count" -gt 0 ]; then
+  notify-send "Dotfiles Sync ⚠️" "$warning_count items exist in dotfiles but not in .config"
+elif [ "$synced_count" -gt 0 ]; then
+  notify-send "Dotfiles Sync ✅" "Synced $synced_count items successfully"
+else
+  notify-send "Dotfiles Sync ℹ️" "Nothing to sync"
+fi

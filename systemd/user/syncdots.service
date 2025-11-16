@@ -1,0 +1,6 @@
+[Unit]
+Description=Sync Dots
+
+[Service]
+Type=oneshot
+ExecStart=%h/.config/hypr/scripts/update-dots.sh
