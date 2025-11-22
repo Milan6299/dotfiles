@@ -1,0 +1,10 @@
+[Unit]
+Description=Import session environment
+Before=syncdots.service
+
+[Service]
+Type=oneshot
+ExecStart=/bin/bash -c "systemctl --user import-environment DISPLAY WAYLAND_DISPLAY XDG_RUNTIME_DIR DBUS_SESSION_BUS_ADDRESS"
+
+[Install]
+WantedBy=default.target

@@ -1,6 +1,6 @@
 [Unit]
 Description=Sync Dots
-After=graphical-session.target
+After=graphical-session.target import-env.service
 
 [Service]
 Type=oneshot
