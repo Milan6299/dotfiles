@@ -1,6 +1,6 @@
 -- since this is just an example spec, don't actually load anything here and return an empty spec
 -- stylua: ignore
-if true then return {} end
+ if true then return {} end
 
 -- every spec file under the "plugins" directory will be loaded automatically by lazy.nvim
 --
@@ -157,11 +157,14 @@ return {
     "nvim-lualine/lualine.nvim",
     event = "VeryLazy",
     opts = function(_, opts)
-      table.insert(opts.sections.lualine_x, {
-        function()
-          return "😄"
-        end,
-      })
+      -- Override separators **here**
+      opts.options.component_separators = { left = "|", right = "|" }
+      opts.options.section_separators = { left = "", right = "" }
+
+      -- Add your custom component to lualine_x
+      table.insert(opts.sections.lualine_x, function()
+        return "😄"
+      end)
     end,
   },
 
