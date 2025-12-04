@@ -1,0 +1,14 @@
+# Clipboard integration
+set selection-clipboard clipboard
+set recolor true
+set adjust-open "best"
+set guioptions none
+map j feedkeys "<C-Down>"
+map k feedkeys "<C-Up>"
+
+# Background colors
+# Use your background for the light areas, dark text for contrast
+set recolor-lightcolor "#18181a"  # maps to background
+set recolor-darkcolor  "#c8c8c8"  # maps to foreground (main text)
+
+
