@@ -4,3 +4,5 @@
 vim.keymap.set("n", "<leader>fx", function()
   vim.fn.jobstart({ "live-server", "--browser=brave" }, { detach = true })
 end, { silent = true, desc = "Open live-server in Browser" })
+
+vim.keymap.set("n", "<leader>bi", "o```{python}<CR><CR>```<Esc>k", { silent = true, desc = "Insert Python Block" })
