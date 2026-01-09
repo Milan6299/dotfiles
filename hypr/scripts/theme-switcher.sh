@@ -163,7 +163,7 @@ foreground #$foreground
 background #$background
 selection_background #$selection
 selection_foreground #$foreground
-cursor #$cursor
+cursor #$accent
 
 color0 #$black
 color8 #$bright_black

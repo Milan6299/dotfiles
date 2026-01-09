@@ -1,4 +1,5 @@
 require("config.lazy")
+require("config.browser-sync")
 
 vim.opt.termguicolors = true
 
