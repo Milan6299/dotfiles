@@ -14,7 +14,7 @@ light = ""
 cwd = { fg = "#d0d09a" }
 
 # Hovered
-hovered         = { bg = "#d0d09a", fg = "#18181a" }
+hovered         = { bg = "#d0d09a", fg = "#212121" }
 preview_hovered = { fg = "#d0d09a", underline = true }
 
 # Find
@@ -45,7 +45,7 @@ syntect_theme = ""
 
 # : Tabs {{{
 [tabs]
-active   = { bg = "#d0d09a", fg = "#18181a", bold = true }
+active   = { bg = "#d0d09a", fg = "#212121", bold = true }
 inactive = { fg = "#d0d09a", bg = "#202028" }
 
 # Separator
@@ -55,15 +55,15 @@ sep_outer = { open = "", close = "" }
 
 # : Mode {{{
 [mode]
-normal_main = { bg = "#d0d09a", fg = "#18181a", bold = true }
+normal_main = { bg = "#d0d09a", fg = "#212121", bold = true }
 normal_alt  = { fg = "#d0d09a", bg = "#202028" }
 
 # Select mode
-select_main = { bg = "#eabf82", fg = "#18181a", bold = true }
+select_main = { bg = "#eabf82", fg = "#212121", bold = true }
 select_alt  = { fg = "#eabf82", bg = "#202028" }
 
 # Unset mode
-unset_main = { bg = "#cd6b7a", fg = "#18181a", bold = true }
+unset_main = { bg = "#cd6b7a", fg = "#212121", bold = true }
 unset_alt  = { fg = "#cd6b7a", bg = "#202028" }
 # : }}}
 
@@ -103,7 +103,7 @@ border     = { fg = "#d0d09a" }
 title      = { fg = "#d0d09a", bold = true }
 body       = { fg = "#c8c8c8" }
 list       = { fg = "#c8c8c8" }
-btn_yes    = { bg = "#d0d09a", fg = "#18181a", bold = true }
+btn_yes    = { bg = "#d0d09a", fg = "#212121", bold = true }
 btn_no     = { fg = "#9f9fa8" }
 btn_labels = [ "  [Y]es  ", "  (N)o  " ]
 # : }}}
@@ -132,13 +132,13 @@ inactive = { fg = "#9f9fa8" }
 border   = { fg = "#d0d09a" }
 title    = { fg = "#d0d09a" }
 value    = { fg = "#c8c8c8" }
-selected = { bg = "#d0d09a", fg = "#18181a" }
+selected = { bg = "#d0d09a", fg = "#212121" }
 # : }}}
 
 # : Completion {{{
 [cmp]
 border   = { fg = "#d0d09a" }
-active   = { bg = "#d0d09a", fg = "#18181a" }
+active   = { bg = "#d0d09a", fg = "#212121" }
 inactive = { fg = "#c8c8c8" }
 
 # Icons
@@ -159,8 +159,8 @@ hovered = { fg = "#d0d09a", bold = true }
 on      = { fg = "#d0d09a" }
 run     = { fg = "#6e7f80" }
 desc    = { fg = "#c8c8c8" }
-hovered = { fg = "#18181a", bg = "#474a52", bold = true }
-footer  = { fg = "#18181a", bg = "#d0d09a" }
+hovered = { fg = "#212121", bg = "#474a52", bold = true }
+footer  = { fg = "#212121", bg = "#d0d09a" }
 # : }}}
 
 # : File-specific styles {{{

@@ -220,13 +220,13 @@ scrollbar trough {
 
 /* mpris */
 .widget-mpris-player {
-  background: #18181a;
+  background: #212121;
   border-radius: 12.6px;
   color: #c8c8c8;
 }
 
 .mpris-overlay {
-  background-color: #18181a;
+  background-color: #212121;
   opacity: 0.9;
   padding: 15px 10px;
 }

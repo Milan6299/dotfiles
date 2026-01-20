@@ -91,6 +91,7 @@ alias tl="tmux list-sessions"
 alias ta="tmux attach-session"
 alias y="yazi"
 alias dnd="swaync-client -d"
+alias rt="trashy"
 
 zm() {
     local dir

@@ -1,7 +1,7 @@
 -- Auto-generated from Vague.conf
 return {
     -- Base / Core tones
-    bg        = "#18181a",
+    bg        = "#212121",
     bg_alt    = "#202028",
     bg_dim    = "#141416",
     fg        = "#c8c8c8",
