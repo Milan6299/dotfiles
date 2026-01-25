@@ -1,6 +1,8 @@
 return {
   "saghen/blink.cmp",
   -- optional: provides snippets for the snippet source
+  --
+  -- disabled it as it was causing issues in jsx,tsx files
   dependencies = { "rafamadriz/friendly-snippets" },
 
   -- use a release tag to download pre-built binaries
