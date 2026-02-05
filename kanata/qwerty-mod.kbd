@@ -24,11 +24,11 @@
   lctl  lmet lalt           spc            ralt rmeta   menu  rctl             lft  down  rght
 )
 (deflayer qwerty
-  esc   f1   -    =    f4   f5   f6   f7   f8        f9   f10  f11  f12    prtsc nlck f24
-  grv   q    w    e     r    t   _    _    y         u    i    o    p     bspc  ins  home pgup
-  @escc @a   @s   @d    @f   g   _    _    h         @j   @k   @l   @;    \     del  end  pgdn
-  tab   @zun @cut @cp   @pst b   _    f2   n         m    /    _    ret
-  _     _    lsft lmet ret  _    _    @bspa @symnum   @rlt f3   _                    up
+  esc   f1   -    =    f4   f5   f6   f7     f8        f9   f10  f11  f12    prtsc nlck f24
+  grv   q    w    e     r    t   _    _      y         u    i    o    p     bspc  ins  home pgup
+  @escc @a   @s   @d    @f   g   _    _      h         @j   @k   @l   @;    \     del  end  pgdn
+  tab   @zun @cut @cp   @pst b   _    f2     n         m    /    _    ret
+  _     _    lsft lmet ret  _    _    bspc   @symnum  @brpa f3   _                    up
   lctl  lmet lalt            spc                      ralt rmeta   menu rctl       lft  down  rght
 )
 (defalias
@@ -47,25 +47,22 @@
   l (multi f24 (tap-hold $tat $hot l rsft) (macro 1000 (on-press tap-vkey relf24)) (on-release tap-vkey relf24))
   ; (multi f24 (tap-hold $tat $hot ; rmet) (macro 1000 (on-press tap-vkey relf24)) (on-release tap-vkey relf24))
   rlt (multi f24 (tap-hold $tat $hot . ralt) (macro 1000 (on-press tap-vkey relf24)) (on-release tap-vkey relf24))
-  bspa (tap-hold $tat $hot bspc (layer-toggle arrows));; symbol layer toggle
+  brpa (tap-hold $tat $hot . (layer-toggle brows));; symbol layer toggle
 )
 
 (deflayer symnum
   esc   f1   S--  S-=  f4   f5   f6   f7   f8   f9   f10  f11  f12  prtsc nlck f24
-  S-grv S-1  S-2  S-3  S-4  S-5  _    _    S-0  S-9  [    ]    S-[  S-]   ins  home pgup
+  S-grv S-1  S-2  S-3  S-4  S-5  _    _    S-0  S-9  [    ]    S-[  _     ins  home pgup
   @escc 1    2    3    4    5    _    _    6    7    8    9    0    S-\   del  end  pgdn
   tab   z    x    S-6  S-7  S-8  _    f2   '    S-'  S-/  _    ret
   _     _    lsft lmet ret  _    _    bspc S-,  S-.  f3   _                    up
   lctl  lmet lalt           spc            ralt rmeta menu rctl            lft  down  rght
 )
-(deflayer arrows
+(deflayer brows
   esc   f1   S--  S-=  f4   f5   f6   f7   f8   f9   f10  f11  f12  prtsc nlck f24
-  S-grv S-1  S-2  S-3  S-4  S-5  _    _    S-0  S-9  [    ]    S-[  S-]   ins  home pgup
-  @escc 1    2    3    4    5    _    _    lft  down up   rght    0    S-\   del  end  pgdn
+  S-grv S-1  S-[  S-]  S-4  S-[  _    _    _    _    _    _    _    _        ins  home pgup
+  @escc S-9  [    ]    S-0  S-]  _    _    lft  down up   rght    0    S-\   del  end  pgdn
   tab   z    x    S-6  S-7  S-8  _    f2   '    S-'  S-/  _    ret
   _     _    lsft lmet ret  _    _    bspc S-,  S-.  f3   _                    up
   lctl  lmet lalt           spc            ralt rmeta menu rctl            lft  down  rght
 )
-
-
-
