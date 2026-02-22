@@ -10,7 +10,7 @@
 )
 (defvar
   tat 100
-  hot 200
+  hot 140
 )
 (defvirtualkeys
   relf24 (release-key f24)

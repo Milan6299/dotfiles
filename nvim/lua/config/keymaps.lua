@@ -2,7 +2,12 @@
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
 
-vim.keymap.set("n", "<leader>bi", "o```{python}<CR><CR>```<Esc>k", { silent = true, desc = "Insert Python Block" })
+vim.keymap.set(
+  "n",
+  "<leader>bi",
+  "o```{python}<CR><CR><CR><CR>```<Esc>kk",
+  { silent = true, desc = "Insert Python Block" }
+)
 
 -- For cursor to not skip wrapped texts
 vim.keymap.set("n", "j", "gj")

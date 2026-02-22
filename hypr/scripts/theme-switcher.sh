@@ -733,41 +733,40 @@ EOF
 }
 
 generate_rmpc_theme() {
-    
+
     local theme_name=$(basename "$theme_file" .conf)
-    
-    
+
     cat << EOF
 #![enable(implicit_some)]
 #![enable(unwrap_newtypes)]
 #![enable(unwrap_variant_newtypes)]
 (
     default_album_art_path: None,
-    show_song_table_header: true,
-    draw_borders: true,
+    album_art: (
+        order: [Embedded, File],
+    ),
     format_tag_separator: " | ",
     browser_column_widths: [20, 38, 42],
+    duration_format: "%M:%S",
     background_color: Some("#$background"),
     text_color: Some("#$foreground"),
     header_background_color: Some("#$background"),
     modal_background_color: Some("#$background"),
     modal_backdrop: true,
-    preview_label_style: (fg: "#$accent", modifiers: "Bold"),
-    preview_metadata_group_style: (fg: "#$accent", modifiers: "Bold"),
+    preview_label_style: (fg: "#$accent", bg: "#$background", modifiers: "Bold"),
+    preview_metadata_group_style: (fg: "#$accent", bg: "#$background", modifiers: "Bold"),
     tab_bar: (
         enabled: true,
         active_style: (fg: "#$background", bg: "#$accent", modifiers: "Bold"),
-        inactive_style: (fg: "#$foreground_dim", bg: "#$background"),
+        inactive_style: (fg: "#$foreground_dim", bg: "#$background", modifiers: ""),
     ),
-    highlighted_item_style: (fg: "#$accent", modifiers: "Bold"),
+    highlighted_item_style: (fg: "#$accent", bg: "#$background", modifiers: "Bold"),
     current_item_style: (fg: "#$background", bg: "#$accent", modifiers: "Bold"),
-    borders_style: (fg: "#$accent"),
-    highlight_border_style: (fg: "#$accent"),
     symbols: (
-        song: "S",
-        dir: "D",
-        playlist: "P",
-        marker: "M",
+        song: "",
+        dir: "",
+        playlist: "󰐑",
+        marker: "->",
         ellipsis: "...",
         song_style: (fg: "#$accent"),
         dir_style: (fg: "#$success"),
@@ -782,7 +781,7 @@ generate_rmpc_theme() {
     ),
     progress_bar: (
         symbols: ["█", "█", "█", "█", "█"],
-        track_style: (bg: "#$background_alt"),
+        track_style: (fg: None, bg: "#$background_alt"),
         elapsed_style: (fg: "#$accent", bg: "#$background_alt"),
         thumb_style: (fg: "#$accent", bg: "#$background_alt"),
     ),
@@ -794,119 +793,100 @@ generate_rmpc_theme() {
     ),
     song_table_format: [
         (
-            prop: (kind: Property(Artist),
-                default: (kind: Text("Unknown"))
-            ),
+            prop: (kind: Property(Artist), default: (kind: Text("Unknown"))),
             width: "20%",
-            style: (fg: "#$accent_alt"),
+            style: (fg: "#$accent_alt", bg: "#$background", modifiers: ""),
         ),
         (
-            prop: (kind: Property(Title),
-                default: (kind: Text("Unknown"))
-            ),
+            prop: (kind: Property(Title), default: (kind: Text("Unknown"))),
             width: "45%",
-            style: (fg: "#$accent", modifiers: "Bold"),
+            style: (fg: "#$accent", bg: "#$background", modifiers: "Bold"),
         ),
         (
-            prop: (kind: Property(Album),
-                default: (kind: Text("Unknown Album"))
-            ),
+            prop: (kind: Property(Album), default: (kind: Text("Unknown Album"))),
             width: "20%",
-            style: (fg: "#$foreground_dim"),
+            style: (fg: "#$foreground_dim", bg: "#$background", modifiers: ""),
         ),
         (
-            prop: (kind: Property(Duration),
-                default: (kind: Text("-"))
-            ),
+            prop: (kind: Property(Duration), default: (kind: Text("-"))),
             width: "15%",
             alignment: Right,
-            style: (fg: "#$gray4"),
+            style: (fg: "#$gray4", bg: "#$background", modifiers: ""),
         ),
     ],
-    components: {},
     layout: Split(
         direction: Vertical,
         panes: [
-            (
-                pane: Pane(Header),
-                size: "2",
-            ),
-            (
-                pane: Pane(Tabs),
-                size: "3",
-            ),
-            (
-                pane: Pane(TabContent),
-                size: "100%",
-            ),
-            (
-                pane: Pane(ProgressBar),
-                size: "1",
-            ),
+            (pane: Pane(Header), size: "2"),
+            (pane: Pane(Tabs, borders: true), size: "3"),
+            (pane: Pane(QueueHeader), size: "1"),
+            (pane: Pane(TabContent), size: "100%"),
+            (pane: Pane(ProgressBar), size: "1"),
         ],
     ),
     header: (
         rows: [
             (
                 left: [
-                    (kind: Text("["), style: (fg: "#$accent", modifiers: "Bold")),
-                    (kind: Property(Status(StateV2(playing_label: "Playing", paused_label: "Paused", stopped_label: "Stopped"))), style: (fg: "#$accent", modifiers: "Bold")),
-                    (kind: Text("]"), style: (fg: "#$accent", modifiers: "Bold"))
+                    (kind: Text("["), style: (fg: "#$accent", bg: "#$background", modifiers: "Bold")),
+                    (kind: Property(Status(StateV2(playing_label: "Playing", paused_label: "Paused", stopped_label: "Stopped"))),
+                     style: (fg: "#$accent", bg: "#$background", modifiers: "Bold")),
+                    (kind: Text("]"), style: (fg: "#$accent", bg: "#$background", modifiers: "Bold"))
                 ],
                 center: [
-                    (kind: Property(Song(Title)), style: (fg: "#$accent", modifiers: "Bold"),
-                        default: (kind: Text("No Song"), style: (fg: "#$accent", modifiers: "Bold"))
-                    )
+                    (kind: Property(Song(Title)),
+                     style: (fg: "#$accent", bg: "#$background", modifiers: "Bold"),
+                     default: (kind: Text("No Song"), style: (fg: "#$accent", bg: "#$background", modifiers: "Bold")))
                 ],
                 right: [
-                    (kind: Property(Widget(ScanStatus)), style: (fg: "#$success")),
-                    (kind: Property(Widget(Volume)), style: (fg: "#$accent"))
+                    (kind: Property(Widget(ScanStatus)), style: (fg: "#$success", bg: "#$background", modifiers: "")),
+                    (kind: Property(Widget(Volume)), style: (fg: "#$accent", bg: "#$background", modifiers: "")),
                 ]
             ),
             (
                 left: [
-                    (kind: Property(Status(Elapsed)), style: (fg: "#$foreground")),
-                    (kind: Text(" / "), style: (fg: "#$gray4")),
-                    (kind: Property(Status(Duration)), style: (fg: "#$foreground")),
-                    (kind: Text(" ("), style: (fg: "#$info")),
-                    (kind: Property(Status(Bitrate)), style: (fg: "#$info")),
-                    (kind: Text(" kbps)"), style: (fg: "#$info"))
+                    (kind: Property(Status(Elapsed)), style: (fg: "#$foreground", bg: "#$background", modifiers: "")),
+                    (kind: Text(" / "), style: (fg: "#$gray4", bg: "#$background", modifiers: "")),
+                    (kind: Property(Status(Duration)), style: (fg: "#$foreground", bg: "#$background", modifiers: "")),
+                    (kind: Text(" ("), style: (fg: "#$info", bg: "#$background", modifiers: "")),
+                    (kind: Property(Status(Bitrate)), style: (fg: "#$info", bg: "#$background", modifiers: "")),
+                    (kind: Text(" kbps)"), style: (fg: "#$info", bg: "#$background", modifiers: "")),
                 ],
                 center: [
-                    (kind: Property(Song(Artist)), style: (fg: "#$info", modifiers: "Bold"),
-                        default: (kind: Text("Unknown"), style: (fg: "#$info", modifiers: "Bold"))
-                    ),
-                    (kind: Text(" - "), style: (fg: "#$gray4")),
-                    (kind: Property(Song(Album)), style: (fg: "#$info"),
-                        default: (kind: Text("Unknown Album"), style: (fg: "#$info"))
-                    )
+                    (kind: Property(Song(Artist)),
+                     style: (fg: "#$info", bg: "#$background", modifiers: "Bold"),
+                     default: (kind: Text("Unknown"), style: (fg: "#$info", bg: "#$background", modifiers: "Bold"))),
+                    (kind: Text(" - "), style: (fg: "#$gray4", bg: "#$background", modifiers: "")),
+                    (kind: Property(Song(Album)),
+                     style: (fg: "#$info", bg: "#$background", modifiers: ""),
+                     default: (kind: Text("Unknown Album"), style: (fg: "#$info", bg: "#$background", modifiers: ""))),
                 ],
                 right: [
-                    (kind: Text("[ "), style: (fg: "#$accent")),
+                    (kind: Text("[ "), style: (fg: "#$accent", bg: "#$background", modifiers: "")),
                     (kind: Property(Status(RepeatV2(
                         on_label: "", off_label: "",
-                        on_style: (fg: "#$info", modifiers: "Bold"), 
-                        off_style: (fg: "#$foreground_dim", modifiers: "Bold")
+                        on_style: (fg: "#$info", bg: "#$background", modifiers: "Bold"),
+                        off_style: (fg: "#$foreground_dim", bg: "#$background", modifiers: "Bold")
                     )))),
-                    (kind: Text(" | "), style: (fg: "#$accent")),
+                    (kind: Text(" | "), style: (fg: "#$accent", bg: "#$background", modifiers: "")),
                     (kind: Property(Status(RandomV2(
                         on_label: "", off_label: "",
-                        on_style: (fg: "#$info", modifiers: "Bold"), 
-                        off_style: (fg: "#$foreground_dim", modifiers: "Bold")
+                        on_style: (fg: "#$info", bg: "#$background", modifiers: "Bold"),
+                        off_style: (fg: "#$foreground_dim", bg: "#$background", modifiers: "Bold")
                     )))),
-                    (kind: Text(" | "), style: (fg: "#$accent")),
+                    (kind: Text(" | "), style: (fg: "#$accent", bg: "#$background", modifiers: "")),
                     (kind: Property(Status(SingleV2(
                         on_label: "󰎤", off_label: "󰎦", oneshot_label: "󰇊", off_oneshot_label: "󱅊",
-                        on_style: (fg: "#$info", modifiers: "Bold"), 
-                        off_style: (fg: "#$foreground_dim", modifiers: "Bold")
+                        on_style: (fg: "#$info", bg: "#$background", modifiers: "Bold"),
+                        off_style: (fg: "#$foreground_dim", bg: "#$background", modifiers: "Bold")
                     )))),
-                    (kind: Text(" | "), style: (fg: "#$accent")),
+                    (kind: Text(" | "), style: (fg: "#$accent", bg: "#$background", modifiers: "")),
                     (kind: Property(Status(ConsumeV2(
                         on_label: "󰮯", off_label: "󰮯", oneshot_label: "󰮯󰇊",
-                        on_style: (fg: "#$info", modifiers: "Bold"), 
-                        off_style: (fg: "#$foreground_dim", modifiers: "Bold")
+                        on_style: (fg: "#$info", bg: "#$background", modifiers: "Bold"),
+                        off_style: (fg: "#$foreground_dim", bg: "#$background", modifiers: "Bold")
                     )))),
-                    (kind: Text(" ]"), style: (fg: "#$accent")),
+                    (kind: Text(" ]"), style: (fg: "#$accent", bg: "#$background", modifiers: "")),
                 ],
             ),
         ],
@@ -914,24 +894,24 @@ generate_rmpc_theme() {
     browser_song_format: [
         (
             kind: Group([
-                (kind: Property(Track), style: (fg: "#$accent")),
-                (kind: Text(" "), style: (fg: "#$gray4")),
+                (kind: Property(Track), style: (fg: "#$accent", bg: "#$background", modifiers: "")),
+                (kind: Text(" "), style: (fg: "#$gray4", bg: "#$background", modifiers: "")),
             ])
         ),
         (
             kind: Group([
-                (kind: Property(Artist), style: (fg: "#$foreground")),
-                (kind: Text(" - "), style: (fg: "#$gray4")),
-                (kind: Property(Title), style: (fg: "#$accent", modifiers: "Bold")),
+                (kind: Property(Artist), style: (fg: "#$foreground", bg: "#$background", modifiers: "")),
+                (kind: Text(" - "), style: (fg: "#$gray4", bg: "#$background", modifiers: "")),
+                (kind: Property(Title), style: (fg: "#$accent", bg: "#$background", modifiers: "Bold")),
             ]),
-            default: (kind: Property(Filename), style: (fg: "#$foreground_dim"))
+            default: (kind: Property(Filename), style: (fg: "#$foreground_dim", bg: "#$background", modifiers: "")),
         ),
     ],
     lyrics: (
         timestamp: false,
-        current_line_style: (fg: "#$accent", modifiers: "Bold"),
-        other_lines_style: (fg: "#$foreground_dim"),
-    )
+        current_line_style: (fg: "#$accent", bg: "#$background", modifiers: "Bold"),
+        other_lines_style: (fg: "#$foreground_dim", bg: "#$background", modifiers: ""),
+    ),
 )
 EOF
 }
