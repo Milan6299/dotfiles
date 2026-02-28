@@ -10,7 +10,7 @@
 )
 (defvar
   tat 100
-  hot 140
+  hot 180
 )
 (defvirtualkeys
   relf24 (release-key f24)
@@ -32,22 +32,28 @@
   lctl  lmet lalt            spc                      ralt rmeta   menu rctl       lft  down  rght
 )
 (defalias
-  symnum (tap-hold $tat $hot , (layer-toggle symnum));; symbol layer toggle
-  cp (multi f24 (tap-hold $tat $hot c C-c) (macro 1000 (on-press tap-vkey relf24)) (on-release tap-vkey relf24))
-  pst (multi f24 (tap-hold $tat $hot v C-v) (macro 1000 (on-press tap-vkey relf24)) (on-release tap-vkey relf24))
-  zun (multi f24 (tap-hold $tat $hot z C-z) (macro 1000 (on-press tap-vkey relf24)) (on-release tap-vkey relf24))
-  cut (multi f24 (tap-hold $tat $hot x C-x) (macro 1000 (on-press tap-vkey relf24)) (on-release tap-vkey relf24))
-  escc (multi f24 (tap-hold $tat $hot esc lctl) (macro 5 (on-press tap-vkey relf24))) ;; Escape and Ctrl
-  a (multi f24 (tap-hold $tat $hot a lmet) (macro 1000 (on-press tap-vkey relf24)) (on-release tap-vkey relf24))
-  s (multi f24 (tap-hold $tat $hot s lsft) (macro 1000 (on-press tap-vkey relf24)) (on-release tap-vkey relf24))
-  d (multi f24 (tap-hold $tat $hot d lalt) (macro 1000 (on-press tap-vkey relf24)) (on-release tap-vkey relf24))
-  f (multi f24 (tap-hold $tat $hot f lctl) (macro 1000 (on-press tap-vkey relf24)) (on-release tap-vkey relf24))
-  j (multi f24 (tap-hold $tat $hot j rctl) (macro 1000 (on-press tap-vkey relf24)) (on-release tap-vkey relf24))
-  k (multi f24 (tap-hold $tat $hot k ralt) (macro 1000 (on-press tap-vkey relf24)) (on-release tap-vkey relf24))
-  l (multi f24 (tap-hold $tat $hot l rsft) (macro 1000 (on-press tap-vkey relf24)) (on-release tap-vkey relf24))
-  ; (multi f24 (tap-hold $tat $hot ; rmet) (macro 1000 (on-press tap-vkey relf24)) (on-release tap-vkey relf24))
-  rlt (multi f24 (tap-hold $tat $hot . ralt) (macro 1000 (on-press tap-vkey relf24)) (on-release tap-vkey relf24))
-  brpa (tap-hold $tat $hot . (layer-toggle brows));; symbol layer toggle
+  symnum (tap-hold $tat $hot , (layer-toggle symnum))
+  brpa (tap-hold $tat $hot . (layer-toggle brows))
+
+  cp  (tap-hold $tat $hot c C-c)
+  pst (tap-hold $tat $hot v C-v)
+  zun (tap-hold $tat $hot z C-z)
+  cut (tap-hold $tat $hot x C-x)
+
+  escc (tap-hold $tat $hot esc lctl)
+
+  a (tap-hold $tat $hot a lmet)
+  s (tap-hold $tat $hot s lsft)
+  d (tap-hold $tat $hot d lalt)
+  f (tap-hold $tat $hot f lctl)
+
+  j (tap-hold $tat $hot j rctl)
+  k (tap-hold $tat $hot k ralt)
+  l (tap-hold $tat $hot l rsft)
+  ; (tap-hold $tat $hot ; rmet)
+
+  rlt (tap-hold $tat $hot . ralt)
+
 )
 
 (deflayer symnum

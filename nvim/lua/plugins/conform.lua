@@ -5,14 +5,14 @@ return {
   cmd = "ConformInfo",
   opts = {
     formatters_by_ft = {
-      javascript = { "prettierd", "prettier" },
-      javascriptreact = { "prettierd", "prettier" },
-      typescript = { "prettierd", "prettier" },
-      typescriptreact = { "prettierd", "prettier" },
-      json = { "prettierd", "prettier" },
-      css = { "prettierd", "prettier" },
-      html = { "prettierd", "prettier" },
-      markdown = { "prettierd", "prettier" },
+      javascript = { "biome" },
+      javascriptreact = { "biome" },
+      typescript = { "biome" },
+      typescriptreact = { "biome" },
+      json = { "biome" },
+      css = { "biome" },
+      html = { "biome" },
+      markdown = { "biome" },
     },
   },
 }
