@@ -105,6 +105,52 @@ gray5=$(get_color "$selected_file" "gray5")
 gray6=$(get_color "$selected_file" "gray6")
 gray7=$(get_color "$selected_file" "gray7")
 
+generate_lazygit_theme() {
+
+  cat << EOF
+gui:
+  theme:
+    activeBorderColor:
+      - "#$accent"
+      - bold
+
+    inactiveBorderColor:
+      - "#$gray6"
+
+    searchingActiveBorderColor:
+      - "#$accent"
+      - bold
+
+    optionsTextColor:
+      - "#$accent"
+
+    selectedLineBgColor:
+      - "#$selection"
+
+    defaultFgColor:
+      - "#$foreground"
+
+    unstagedChangesColor:
+      - "#$error"
+
+    cherryPickedCommitFgColor:
+      - "#$accent"
+
+    cherryPickedCommitBgColor:
+      - "#$background_highlight"
+
+    branchColor:
+      - "#$accent_alt"
+
+    remoteBranchColor:
+      - "#$accent"
+
+    headColor:
+      - "#$error"
+      - bold
+EOF
+
+}
 
 # Generate Hyprland colors with RGBA format
 generate_hyprland_colors() {
@@ -1154,6 +1200,7 @@ apply_theme() {
     ln -sf "$theme_file" "$CURRENT_THEME"
 
     # Generate color files (REMOVED parameters since we use global variables)
+    generate_lazygit_theme > ~/.config/lazygit/config.yml
     generate_hyprland_colors > ~/.config/hypr/colors.conf
     generate_rofi_colors > ~/.config/rofi/colors.rasi
     generate_kitty_colors > ~/.config/kitty/colors.conf

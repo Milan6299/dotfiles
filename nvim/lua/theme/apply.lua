@@ -62,8 +62,8 @@ local function apply_theme()
   -- Popup menu
   vim.api.nvim_set_hl(0, "Pmenu", { fg = colors.fg, bg = colors.bg_alt })
   vim.api.nvim_set_hl(0, "PmenuSel", { fg = colors.bg, bg = colors.accent })
-  vim.api.nvim_set_hl(0, "PmenuSbar", { bg = colors.gray3 })
-  vim.api.nvim_set_hl(0, "PmenuThumb", { bg = colors.gray5 })
+  vim.api.nvim_set_hl(0, "PmenuSbar", { bg = colors.gray6 })
+  vim.api.nvim_set_hl(0, "PmenuThumb", { bg = colors.gray6 })
   vim.api.nvim_set_hl(0, "WildMenu", { fg = colors.bg, bg = colors.accent })
 
   -- Tabs
@@ -83,8 +83,8 @@ local function apply_theme()
 
   -- ============ SYNTAX HIGHLIGHTING ============
   -- Comments
-  vim.api.nvim_set_hl(0, "Comment", { fg = colors.gray7, italic = true })
-  vim.api.nvim_set_hl(0, "SpecialComment", { fg = colors.gray7, italic = true, bold = true })
+  vim.api.nvim_set_hl(0, "Comment", { fg = colors.gray6, italic = true })
+  vim.api.nvim_set_hl(0, "SpecialComment", { fg = colors.gray6, italic = true, bold = true })
 
   -- Constants
   vim.api.nvim_set_hl(0, "Constant", { fg = colors.warning })
@@ -125,7 +125,7 @@ local function apply_theme()
   vim.api.nvim_set_hl(0, "SpecialChar", { fg = colors.accent_alt })
   vim.api.nvim_set_hl(0, "Tag", { fg = colors.accent_alt })
   vim.api.nvim_set_hl(0, "Delimiter", { fg = colors.warning })
-  vim.api.nvim_set_hl(0, "SpecialComment", { fg = colors.gray7 })
+  vim.api.nvim_set_hl(0, "SpecialComment", { fg = colors.gray6 })
   vim.api.nvim_set_hl(0, "Debug", { fg = colors.error })
 
   -- ============ TREESITTER ============
@@ -153,7 +153,7 @@ local function apply_theme()
   vim.api.nvim_set_hl(0, "@conditional", { fg = colors.warning })
   vim.api.nvim_set_hl(0, "@repeat", { fg = colors.warning })
   vim.api.nvim_set_hl(0, "@label", { fg = colors.warning })
-  vim.api.nvim_set_hl(0, "@operator", { fg = colors.fg_dim })
+  vim.api.nvim_set_hl(0, "@operator", { fg = colors.gray7 })
   vim.api.nvim_set_hl(0, "@exception", { fg = colors.error })
   vim.api.nvim_set_hl(0, "@type", { fg = colors.info })
   vim.api.nvim_set_hl(0, "@type.builtin", { fg = colors.info })

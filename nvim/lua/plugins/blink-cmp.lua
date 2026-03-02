@@ -3,7 +3,7 @@ return {
   -- optional: provides snippets for the snippet source
   --
   -- disabled it as it was causing issues in jsx,tsx files
-  dependencies = { "rafamadriz/friendly-snippets" },
+  -- dependencies = { "rafamadriz/friendly-snippets" },
 
   -- use a release tag to download pre-built binaries
   version = "1.*",
@@ -36,17 +36,32 @@ return {
     -- },
 
     -- (Default) Only show the documentation popup when manually triggered
-    completion = { documentation = { auto_show = true } },
+    completion = {
+      documentation = { auto_show = true },
+      menu = {
+        draw = {
+          columns = {
+            { "kind_icon", "label", "label_description", gap = 1 },
+            { "kind", "source_name", gap = 1 },
+          },
+        },
+      },
+    },
 
     -- Default list of enabled providers defined so that you can extend it
     -- elsewhere in your config, without redefining it, due to `opts_extend`
     sources = {
-      default = { "snippets", "lsp", "path", "buffer" },
+      default = { "lsp", "snippets", "path", "buffer" },
       providers = {
-        path = { score_offset = 2 }, -- Paths will have high priority
-        lsp = { score_offset = 2 }, -- Default priority for LSP
-        snippets = { score_offset = 3 }, -- Snippets will have lower priority
-        buffer = { score_offset = -3 }, -- Buffers will have low priority
+        snippets = {
+          opts = {
+            friendly_snippets = false,
+          },
+        },
+        --   path = { score_offset = 2 }, -- Paths will have high priority
+        --   lsp = { score_offset = 2 }, -- Default priority for LSP
+        --   snippets = { score_offset = 3 }, -- Snippets will have lower priority
+        --   buffer = { score_offset = -3 }, -- Buffers will have low priority
       },
     },
     -- signature = { enabled = true },
