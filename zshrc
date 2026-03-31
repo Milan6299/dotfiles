@@ -94,6 +94,7 @@ alias ta="tmux attach-session"
 alias y="yazi"
 alias dnd="swaync-client -d"
 alias rt="trashy"
+alias pmy="python manage.py"
 
 zm() {
     local dir

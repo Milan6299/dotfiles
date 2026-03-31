@@ -1,0 +1,25 @@
+# settings
+
+(GimpGegl-gimp-colorize-config "2025-11-05 16:58:34"
+    (time 1762342114)
+    (hue 0.5)
+    (saturation 0.5)
+    (lightness 0)
+    (color
+        (color "HSL float" 12 "\0\0\0\77\0\0\0\77\0\0\0\77" 0)))
+(GimpGegl-gimp-colorize-config "2025-11-05 16:58:13"
+    (time 1762342093)
+    (hue 0.5)
+    (saturation 0.5)
+    (lightness 0)
+    (color
+        (color "HSL float" 12 "\0\0\0\77\0\0\0\77\0\0\0\77" 0)))
+(GimpGegl-gimp-colorize-config "2025-11-05 16:58:07"
+    (time 1762342087)
+    (hue 0.5)
+    (saturation 0.010666146874427795)
+    (lightness -0.81453323364257812)
+    (color
+        (color "HSV float" 12 "\0\0\0\77\355\350\254\74\224\361\277\75" 0)))
+
+# end of settings

@@ -1155,6 +1155,11 @@ rules = [
 	{ url = "*/", fg = "#$accent" }
 ]
 # : }}}
+[icon]
+prepend_conds = [
+	# This targets all directories and gives them your theme's tan color
+	{ if = "dir",  text = "", fg = "#$accent" },
+]
 EOF
 }
 

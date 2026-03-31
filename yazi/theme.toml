@@ -186,3 +186,8 @@ rules = [
 	{ url = "*/", fg = "#d0d09a" }
 ]
 # : }}}
+[icon]
+prepend_conds = [
+	# This targets all directories and gives them your theme's tan color
+	{ if = "dir",  text = "", fg = "#d0d09a" },
+]
