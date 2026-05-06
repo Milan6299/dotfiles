@@ -84,7 +84,7 @@
 (session-info "toplevel"
     (factory-entry "gimp-file-open-dialog")
     (position 0 0)
-    (size 1004 970)
+    (size 1003 970)
     (monitor 0))
 (session-info "toplevel"
     (factory-entry "gimp-toolbox-color-dialog")
@@ -97,12 +97,12 @@
 (session-info "toplevel"
     (factory-entry "gimp-file-save-dialog")
     (position 0 0)
-    (size 860 758)
+    (size 1004 970)
     (monitor 0))
 (session-info "toplevel"
     (factory-entry "gimp-file-export-dialog")
     (position 0 0)
-    (size 860 758)
+    (size 1004 970)
     (monitor 0))
 
 (hide-docks no)
