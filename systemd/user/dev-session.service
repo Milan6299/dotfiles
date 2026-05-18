@@ -1,14 +1,10 @@
 [Unit]
-Description=Start dev session (tmux + browser)
-
-After=graphical-session.target dbus.service xdg-desktop-portal.service
-Wants=graphical-session.target xdg-desktop-portal.service
+Description=Start Tmux Session
+After=graphical-session.target
 
 [Service]
-Type=simple
-ExecStart=%h/.config/hypr/scripts/sessions/dev-sessions.sh
-Environment=WAYLAND_DISPLAY=wayland-0
-Environment=XDG_CURRENT_DESKTOP=Hyprland
+Type=oneshot
+ExecStart=kitty tmux new-session -A -s main
 
 [Install]
-WantedBy=default.target
+WantedBy=graphical-session.target
