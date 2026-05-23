@@ -1,0 +1,12 @@
+[Unit]
+Description=Set Theme Wallpaper
+After=graphical-session.target
+PartOf=graphical-session.target
+
+[Service]
+Type=oneshot
+ExecStart=%h/.config/hypr/scripts/set-theme-wallpaper.sh
+RemainAfterExit=yes
+
+[Install]
+WantedBy=graphical-session.target
