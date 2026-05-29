@@ -3,8 +3,8 @@ set selection-clipboard clipboard
 set recolor true
 set adjust-open "best"
 set guioptions none
-map j feedkeys "<C-Down>"
-map k feedkeys "<C-Up>"
+map j feedkeys "<Down>"
+map k feedkeys "<Up>"
 
 # Background colors
 # Use your background for the light areas, dark text for contrast
