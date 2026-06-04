@@ -46,7 +46,7 @@ xwayland {
 $terminal = kitty
 $fileManager = thunar
 $menu = rofi -show drun -theme-str 'window {width: 30%;}'
-$browser = exec, firefox #brave
+$browser = firefox #brave
 $scripts = ~/.config/hypr/scripts
 
 #################
@@ -267,7 +267,7 @@ $mainMod = SUPER # Sets "Windows" key as main modifier
 bind = $mainMod, Space, exec, $terminal
 bind = $mainMod, Q, killactive,
 bind = SUPER SHIFT, M, exit,
-bind = $mainMod, B, $browser
+bind = $mainMod, B, exec, $browser
 bind = $mainMod, N, exec, swaync-client -t
 bind = $mainMod, E, exec, $fileManager
 bind = $mainMod, F, fullscreen
@@ -393,5 +393,7 @@ windowrule = float on, center on,match:class firefox, match:title ^(.* wants to.
 windowrule = float on, center on,match:class firefox, match:title ^(.*Save.*)$
 windowrule = float on, center on,match:class firefox, match:title ^(.*Sign.*)$
 windowrule = workspace 5, match:class dota2
+windowrule = workspace 2, match:class $browser
 windowrule = workspace 3, match:class krita
+windowrule = workspace 3, match:class blender
 windowrule = float on, center on, size 1000 800, match:class blender

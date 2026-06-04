@@ -151,22 +151,22 @@ gui:
 EOF
 
 }
-
-# Generate Hyprland colors with RGBA format
 generate_hyprland_colors() {
-    
-    
-    cat << EOF
-# Auto-generated from $(basename "$theme_file")
-# Only colors used in hyprland.conf
-\$border = $(hex_to_rgba "$border")
-\$accent = $(hex_to_rgba "$accent")
-\$accent_alt = $(hex_to_rgba "$accent_alt")
-\$gray3 = $(hex_to_rgba "$gray3")
-\$background = $(hex_to_rgba "$background")
-\$background_alt = $(hex_to_rgba "$background_alt")
-EOF
+
+cat << EOF
+-- Auto-generated from $(basename "$theme_file")
+return {
+    border = "$(hex_to_rgba "$border")",
+    accent = "$(hex_to_rgba "$accent")",
+    accent_alt = "$(hex_to_rgba "$accent_alt")",
+    gray3 = "$(hex_to_rgba "$gray3")",
+    background = "$(hex_to_rgba "$background")",
+    background_alt = "$(hex_to_rgba "$background_alt")",
 }
+EOF
+
+}
+
 
 # Generate Rofi colors (stays with hex)
 generate_rofi_colors() {
@@ -1206,7 +1206,7 @@ apply_theme() {
 
     # Generate color files (REMOVED parameters since we use global variables)
     generate_lazygit_theme > ~/.config/lazygit/config.yml
-    generate_hyprland_colors > ~/.config/hypr/colors.conf
+    generate_hyprland_colors > ~/.config/hypr/colors.lua
     generate_rofi_colors > ~/.config/rofi/colors.rasi
     generate_kitty_colors > ~/.config/kitty/colors.conf
     generate_waybar_colors > ~/.config/waybar/colors.css
