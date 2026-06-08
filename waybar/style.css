@@ -115,6 +115,13 @@ margin: 4px 2px;
 border-radius: 4px;
 }
 
+#custom-virtualkb {
+background: @gray3;
+color: @accent;
+padding: 0 10px;
+margin: 4px 2px;
+border-radius: 4px;
+}
 /* Tooltip */
 tooltip {
     background: @background_alt;

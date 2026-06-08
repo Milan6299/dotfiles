@@ -9,6 +9,7 @@
     "hyprland/workspaces",
   ],
   "modules-right": [
+    "custom/virtualkb",
     "pulseaudio",
     "network",
     "tray",
@@ -25,7 +26,7 @@
   },
   "hyprland/workspaces": {
     "format": "{icon}",
-    // "on-click": "hl.dispatch({id})",
+    "on-click": "activate",
     "format-icons": {
       //"active": "{}",
       "urgent": " ",
@@ -88,6 +89,13 @@
     "interval": 1,
     "on-click": "kitty bash -c 'wifitui --theme=$HOME/.config/wifitui/theme.toml'"
   },
+"custom/virtualkb": {
+    "format": "󰌌 ",
+    "tooltip": true,
+    "tooltip-format": "Virtual Keyboard",
+    "on-click": "python3 ~/vboard.py",
+    "on-click-right": "pkill vboard.py"
+},
   "pulseaudio": {
     "format": "{icon}  {volume}%",
     "format-bluetooth": "{volume}% {icon} {format_source}",

@@ -429,12 +429,13 @@ hl.window_rule({
 	float = true,
 	size = "1000 400",
 	move = {
-		"(window_w - 1000)*0.5",
-		"window_h - 400",
+		"500",
+		"600",
 	},
 	no_focus = true,
 	stay_focused = true,
 	no_follow_mouse = true,
+	opacity = 0.8,
 })
 
 hl.window_rule({

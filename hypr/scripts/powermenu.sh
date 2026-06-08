@@ -20,7 +20,7 @@ case "$choice" in
     "  Shutdown") systemctl poweroff ;;
     "  Reboot") systemctl reboot ;;
     "  Lock") hyprlock ;;
-    "  Logout") hyprctl dispatch exit ;;
+    "  Logout") hyprctl dispatch 'hl.dsp.exit()' ;;
     "󰤄  Suspend")
         hyprlock &
         sleep 0.5
