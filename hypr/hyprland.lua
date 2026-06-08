@@ -62,92 +62,59 @@ hl.env("HYPRCURSOR_SIZE", "24")
 hl.config({
 
 	general = {
-
 		gaps_in = 5,
 		gaps_out = 10,
-
 		border_size = 3,
-
 		col = {
-
 			active_border = border,
-
 			inactive_border = gray3,
 		},
-
 		resize_on_border = false,
-
 		allow_tearing = false,
-
 		layout = "dwindle",
 	},
 
 	decoration = {
-
 		rounding = 0,
-
 		rounding_power = 2,
-
 		active_opacity = 1,
-
 		inactive_opacity = 1,
-
 		shadow = {
-
 			enabled = false,
-
 			range = 4,
-
 			render_power = 3,
-
 			color = "rgba(1a1a1aee)",
 		},
 
 		blur = {
-
 			enabled = false,
-
 			size = 12,
-
 			passes = 3,
-
 			vibrancy = 0.5696,
-
 			noise = 0.08,
-
 			contrast = 1.5,
 		},
 	},
 
 	dwindle = {
-
 		preserve_split = true,
 	},
 
 	master = {
-
 		new_status = "master",
 	},
 
 	misc = {
-
 		background_color = border,
-
 		force_default_wallpaper = 0,
-
 		disable_hyprland_logo = true,
 	},
 
 	input = {
-
 		kb_layout = "us",
-
 		follow_mouse = 1,
-
 		sensitivity = 0,
-
 		touchpad = {
-
 			natural_scroll = false,
 		},
 	},
@@ -206,11 +173,8 @@ hl.animation({ leaf = "zoomFactor", enabled = true, speed = 7, bezier = "quick" 
 --------------------------------------------------
 
 hl.gesture({
-
 	fingers = 3,
-
 	direction = "horizontal",
-
 	action = "workspace",
 })
 
@@ -219,9 +183,7 @@ hl.gesture({
 --------------------------------------------------
 
 hl.device({
-
 	name = "epic-mouse-v1",
-
 	sensitivity = -0.5,
 })
 
@@ -258,7 +220,10 @@ hl.bind(
 	)
 )
 
-hl.bind(mainMod .. " + W", hl.dsp.exec_cmd([[kitty bash -c "wifitui --theme=$HOME/.config/wifitui/theme.toml"]]))
+hl.bind(
+	mainMod .. " + W",
+	hl.dsp.exec_cmd([[kitty --class wifitui bash -c "wifitui --theme=$HOME/.config/wifitui/theme.toml"]])
+)
 
 hl.bind(mainMod .. " + SHIFT + W", hl.dsp.exec_cmd(scripts .. "/wallpaper-menu.sh"))
 
@@ -287,6 +252,8 @@ hl.bind(
 	hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"),
 	{ locked = true, repeating = true }
 )
+
+hl.bind(mainMod .. " + SHIFT + V", hl.dsp.exec_cmd("hyprctl setprop class:^(Vboard.py)$ no_focus toggle"))
 
 hl.bind(
 	"XF86AudioMicMute",
@@ -326,7 +293,6 @@ for i = 1, 10 do
 	local key = i % 10
 
 	hl.bind(mainMod .. " + " .. key, hl.dsp.focus({ workspace = i }))
-
 	hl.bind(mainMod .. " + SHIFT + " .. key, hl.dsp.window.move({ workspace = i }))
 end
 
@@ -372,144 +338,117 @@ hl.bind(
 -- window rules
 --------------------------------------------------
 hl.window_rule({
-
 	name = "brave-auth",
-
 	match = {
-
 		class = "^(brave)$",
-
 		title = "^(.* wants to.*)$",
 	},
-
 	float = true,
-
 	center = true,
 })
 
 hl.window_rule({
-
 	name = "brave-save",
-
 	match = {
-
 		class = "^(brave)$",
-
 		title = "^(.*Save.*)$",
 	},
-
 	float = true,
-
 	center = true,
 })
 
 hl.window_rule({
-
 	name = "firefox-auth",
-
 	match = {
-
 		class = "^(firefox)$",
-
 		title = "^(.* wants to.*)$",
 	},
-
 	float = true,
-
 	center = true,
 })
 
 hl.window_rule({
-
 	name = "firefox-save",
-
 	match = {
-
 		class = "^(firefox)$",
-
 		title = "^(.*Save.*)$",
 	},
-
 	float = true,
-
 	center = true,
 })
 
 hl.window_rule({
-
 	name = "firefox-signin",
-
 	match = {
-
 		class = "^(firefox)$",
-
 		title = "^(.*Sign.*)$",
 	},
-
 	float = true,
-
 	center = true,
 })
 
 hl.window_rule({
-
-	name = "krita-workspace",
-
+	name = "wifitui",
 	match = {
+		class = "^(wifitui)$",
+	},
+	float = true,
+	center = true,
+})
 
+hl.window_rule({
+	name = "krita-workspace",
+	match = {
 		class = "^(krita)$",
 	},
-
 	workspace = "3",
 })
 
 hl.window_rule({
-
 	name = "blender-workspace",
-
 	match = {
-
 		class = "^(blender)$",
 	},
-
 	workspace = "3",
 })
 hl.window_rule({
-
 	name = "blender-float",
-
 	match = {
-
 		class = "^(blender)$",
 	},
-
 	float = true,
-
 	center = true,
-
 	size = "1000 800",
 })
 
 hl.window_rule({
-
-	name = "browser-workspace",
-
+	name = "vboard",
 	match = {
+		class = "^(Vboard.py)$",
+	},
+	float = true,
+	size = "1000 400",
+	move = {
+		"(window_w - 1000)*0.5",
+		"window_h - 400",
+	},
+	no_focus = true,
+	stay_focused = true,
+	no_follow_mouse = true,
+})
 
+hl.window_rule({
+	name = "browser-workspace",
+	match = {
 		class = "^(" .. browser .. ")$",
 	},
-
 	workspace = "2",
 })
 
 hl.window_rule({
-
 	name = "dota",
-
 	match = {
-
 		class = "^(dota2)$",
 	},
-
 	workspace = "5",
 })
