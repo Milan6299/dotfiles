@@ -72,7 +72,7 @@ border-radius: 4px;
 }
 
 #pulseaudio.muted {
-color: @gray5;
+color: @error;
 }
 
 /* Battery */
