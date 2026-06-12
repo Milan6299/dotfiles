@@ -199,6 +199,37 @@ generate_rofi_colors() {
 EOF
 }
 
+#Generate Foot Colors
+generate_foot_colors() {
+    cat << EOF
+[colors-dark]
+background=$background
+foreground=$foreground
+
+selection-background=$selection
+selection-foreground=$foreground
+
+cursor=$background $accent
+
+regular0=$black
+regular1=$red
+regular2=$green
+regular3=$yellow
+regular4=$blue
+regular5=$magenta
+regular6=$cyan
+regular7=$white
+
+bright0=$bright_black
+bright1=$bright_red
+bright2=$bright_green
+bright3=$bright_yellow
+bright4=$bright_blue
+bright5=$bright_magenta
+bright6=$bright_cyan
+bright7=$bright_white
+EOF
+}
 # Generate Kitty colors (stays with hex)
 generate_kitty_colors() {
     
@@ -1209,6 +1240,7 @@ apply_theme() {
     generate_hyprland_colors > ~/.config/hypr/colors.lua
     generate_rofi_colors > ~/.config/rofi/colors.rasi
     generate_kitty_colors > ~/.config/kitty/colors.conf
+    generate_foot_colors > ~/.config/foot/themes/colors.ini
     generate_waybar_colors > ~/.config/waybar/colors.css
     generate_swaync_css > ~/.config/swaync/style.css
     generate_nvim_colors > ~/.config/nvim/lua/colors.lua
@@ -1221,6 +1253,7 @@ apply_theme() {
     sleep 0.2
     echo "Reloading..."
     #Reload Swaync config   
+
     swaync-client -rs
 
     hyprctl reload
@@ -1228,6 +1261,9 @@ apply_theme() {
     #Custom Wallpaper setter based on theme
     $HOME/.config/hypr/scripts/set-theme-wallpaper.sh
 
+    #Reload Foot
+    pkill -USR2 foot
+    
     #Reload Kitty
     pkill -USR1 kitty
 

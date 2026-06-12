@@ -7,14 +7,13 @@ local accent_alt = colors.accent_alt
 local background = colors.background
 local background_alt = colors.background_alt
 
--- local terminal = "kitty"
-local terminal = "foot"
+local terminal = "kitty"
 local fileManager = "thunar"
 local browser = "firefox"
 
 local home = os.getenv("HOME")
 
-local scripts = home .. "/.config/hypr/scripts"
+-- local scripts = home .. "/.config/hypr/scripts"
 local screenshotlocation = home .. "/Pictures/Screenshots"
 
 local mainMod = "SUPER"
@@ -46,7 +45,7 @@ hl.on("hyprland.start", function()
 	hl.exec_cmd("wl-paste --type text --watch cliphist store")
 	hl.exec_cmd("wl-paste --type image --watch cliphist store")
 
-	hl.exec_cmd(scripts .. "/notify.sh")
+	--	hl.exec_cmd(scripts .. "/notify.sh")
 end)
 
 --------------------------------------------------
@@ -183,10 +182,10 @@ hl.gesture({
 -- device
 --------------------------------------------------
 
-hl.device({
-	name = "epic-mouse-v1",
-	sensitivity = -0.5,
-})
+-- hl.device({
+-- 	name = "epic-mouse-v1",
+-- 	sensitivity = -0.5,
+-- })
 
 --------------------------------------------------
 -- binds
@@ -196,7 +195,7 @@ hl.bind(mainMod .. " + Space", hl.dsp.exec_cmd(terminal))
 
 hl.bind(mainMod .. " + Q", hl.dsp.window.close())
 
-hl.bind(mainMod .. " + M", hl.dsp.exec_cmd(terminal .. "rmpc"))
+-- hl.bind(mainMod .. " + M", hl.dsp.exec_cmd("kitty rmpc"))
 
 hl.bind(mainMod .. " + B", hl.dsp.exec_cmd(browser))
 
@@ -212,7 +211,7 @@ hl.bind(mainMod .. " + R", hl.dsp.exec_cmd(menu))
 
 hl.bind(mainMod .. " + O", hl.dsp.layout("togglesplit"))
 
-hl.bind(mainMod .. " + P", hl.dsp.exec_cmd(scripts .. "/powermenu.sh"))
+-- hl.bind(mainMod .. " + P", hl.dsp.exec_cmd(scripts .. "/powermenu.sh"))
 
 hl.bind(
 	mainMod .. " + C",
@@ -221,37 +220,32 @@ hl.bind(
 	)
 )
 
-hl.bind(
-	mainMod .. " + W",
-	hl.dsp.exec_cmd(terminal .. ' --app-id wifitui bash -c "wifitui --theme=$HOME/.config/wifitui/theme.toml"')
-)
-
 -- hl.bind(
 -- 	mainMod .. " + W",
 -- 	hl.dsp.exec_cmd([[kitty --class wifitui bash -c "wifitui --theme=$HOME/.config/wifitui/theme.toml"]])
 -- )
 
-hl.bind(mainMod .. " + SHIFT + W", hl.dsp.exec_cmd(scripts .. "/wallpaper-menu.sh"))
+-- hl.bind(mainMod .. " + SHIFT + W", hl.dsp.exec_cmd(scripts .. "/wallpaper-menu.sh"))
 
-hl.bind(mainMod .. " + ALT + Space", hl.dsp.exec_cmd(scripts .. "/theme-switcher.sh"))
+-- hl.bind(mainMod .. " + ALT + Space", hl.dsp.exec_cmd(scripts .. "/theme-switcher.sh"))
 
 hl.bind(mainMod .. " + ALT + K", hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%+"))
 
 hl.bind(mainMod .. " + ALT + J", hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%-"))
 
-hl.bind(mainMod .. " + SHIFT + P", hl.dsp.exec_cmd("brave --app=https://open.spotify.com"))
+-- hl.bind(mainMod .. " + SHIFT + P", hl.dsp.exec_cmd("brave --app=https://open.spotify.com"))
 
-hl.bind(mainMod .. " + SHIFT + Y", hl.dsp.exec_cmd("brave --app=https://youtube.com/"))
+-- hl.bind(mainMod .. " + SHIFT + Y", hl.dsp.exec_cmd("brave --app=https://youtube.com/"))
 
-hl.bind(mainMod .. " + SHIFT + C", hl.dsp.exec_cmd("brave --app=https://web.whatsapp.com/"))
+-- hl.bind(mainMod .. " + SHIFT + C", hl.dsp.exec_cmd("brave --app=https://web.whatsapp.com/"))
 
 hl.bind("PRINT", hl.dsp.exec_cmd("hyprshot -m window -o " .. screenshotlocation))
 
 hl.bind("SHIFT + PRINT", hl.dsp.exec_cmd("hyprshot -m region -o " .. screenshotlocation))
 
-hl.bind("XF86TouchpadToggle", hl.dsp.exec_cmd(scripts .. "/toggle-touchpad.sh"))
+-- hl.bind("XF86TouchpadToggle", hl.dsp.exec_cmd(scripts .. "/toggle-touchpad.sh"))
 
-hl.bind(mainMod .. " + Y", hl.dsp.exec_cmd(terminal .. ' zsh -i -c "yazi"'))
+-- hl.bind(mainMod .. " + Y", hl.dsp.exec_cmd([[kitty zsh -i -c "yazi"]]))
 
 hl.bind(
 	"XF86AudioMute",
@@ -260,6 +254,11 @@ hl.bind(
 )
 
 -- hl.bind(mainMod .. " + SHIFT + V", hl.dsp.exec_cmd("hyprctl setprop class:^(Vboard.py)$ no_focus toggle"))
+
+--noctalia
+hl.bind(mainMod .. "+ SHIFT + Space", hl.dsp.exec_cmd(ipc .. " panel-toggle launcher"))
+hl.bind(mainMod .. "+ SHIFT + N", hl.dsp.exec_cmd(ipc .. " panel-toggle control-center"))
+hl.bind(mainMod .. "+comma", hl.dsp.exec_cmd(ipc .. " settings-toggle"))
 
 hl.bind(
 	"XF86AudioMicMute",
@@ -340,6 +339,13 @@ hl.bind(
 	{ locked = true, repeating = true }
 )
 
+-- workspace rules
+hl.workspace_rule({ workspace = "1", monitor = "DP-1", persistent = true })
+hl.workspace_rule({ workspace = "2", monitor = "DP-1", persistent = true })
+hl.workspace_rule({ workspace = "3", monitor = "DP-1", persistent = true })
+hl.workspace_rule({ workspace = "4", monitor = "DP-1", persistent = true })
+hl.workspace_rule({ workspace = "5", monitor = "DP-1", persistent = true })
+
 --------------------------------------------------
 -- window rules
 --------------------------------------------------
@@ -393,15 +399,14 @@ hl.window_rule({
 	center = true,
 })
 
-hl.window_rule({
-	name = "wifitui",
-	match = {
-		class = "^(wifitui)$",
-	},
-	float = true,
-	center = true,
-	size = "850 800",
-})
+-- hl.window_rule({
+-- 	name = "wifitui",
+-- 	match = {
+-- 		class = "^(wifitui)$",
+-- 	},
+-- 	float = true,
+-- 	center = true,
+-- })
 
 hl.window_rule({
 	name = "krita-workspace",
@@ -428,22 +433,22 @@ hl.window_rule({
 	size = "1000 800",
 })
 
-hl.window_rule({
-	name = "vboard",
-	match = {
-		class = "^(Vboard.py)$",
-	},
-	float = true,
-	size = "1000 400",
-	move = {
-		"500",
-		"600",
-	},
-	no_focus = true,
-	stay_focused = true,
-	no_follow_mouse = true,
-	opacity = 0.8,
-})
+-- hl.window_rule({
+-- 	name = "vboard",
+-- 	match = {
+-- 		class = "^(Vboard.py)$",
+-- 	},
+-- 	float = true,
+-- 	size = "1000 400",
+-- 	move = {
+-- 		"500",
+-- 		"600",
+-- 	},
+-- 	no_focus = true,
+-- 	stay_focused = true,
+-- 	no_follow_mouse = true,
+-- 	opacity = 0.8,
+-- })
 
 hl.window_rule({
 	name = "browser-workspace",

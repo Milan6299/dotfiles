@@ -4,7 +4,8 @@ After=graphical-session.target
 
 [Service]
 Type=oneshot
-ExecStart=kitty tmux new-session -A -s main
+EnvironmentFile=%h/.config/defaults.conf
+ExecStart=sh -c '$TERMINAL tmux new-session -A -s main'
 
 [Install]
 WantedBy=graphical-session.target

@@ -85,7 +85,6 @@ zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 alias ls='ls --color'
 alias c='clear'
 alias syu="sudo pacman -Syu"
-alias su="sudo pacman -S"
 alias yu="yay -Syu"
 alias v="nvim"
 alias tn="tmux new-session -s"
