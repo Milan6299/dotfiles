@@ -63,7 +63,7 @@ $scripts = ~/.config/hypr/scripts
 #exec-once = systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
 #exec-once = systemctl --user restart xdg-desktop-portal
 
-exec-once = waybar & nm-applet & blueman-applet
+#exec-once = waybar & nm-applet & blueman-applet
 exec-once = hyprpaper & swaync
 exec-once = hyprctl keyword 'device[elan1300:00-04f3:3087-touchpad]:enabled' 'true'
 #exec-once = wl-paste --watch clipman store &

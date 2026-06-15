@@ -3,9 +3,10 @@
 # Path to sound file
 SOUND="$HOME/.config/sounds/notify.wav"
 
-# Check if swaync DND is on — if available
+# Check if mako DND mode is active
 DND_ENABLED() {
-  swaync-client -D 2>/dev/null | grep -q "true"
+  # makoctl mode outputs a list of active modes. We check if "dnd" is in that list.
+  makoctl mode 2>/dev/null | grep -q "dnd"
 }
 
 # Listen to DBus notifications

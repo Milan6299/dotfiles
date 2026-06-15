@@ -1,11 +1,12 @@
 [Unit]
 Description=Start Tmux Session
+PartOf=graphical-session.target
 After=graphical-session.target
 
 [Service]
 Type=oneshot
-EnvironmentFile=%h/.config/defaults.conf
-ExecStart=sh -c '$TERMINAL tmux new-session -A -s main'
+RemainAfterExit=yes
+ExecStart=/usr/bin/tmux new-session -A -d -s main
 
 [Install]
-WantedBy=graphical-session.target
+WantedBy=default.target

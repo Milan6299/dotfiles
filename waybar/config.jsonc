@@ -87,7 +87,7 @@
     "tooltip-format-disconnected": "Disconnected",
     "max-length": 50,
     "interval": 1,
-    "on-click": "kitty bash -c 'wifitui --theme=$HOME/.config/wifitui/theme.toml'"
+    "on-click": "foot -e --app-id nmtui-go nmtui-go"
   },
 "custom/virtualkb": {
     "format": "󰌌 ",

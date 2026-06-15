@@ -11,6 +11,7 @@ local background_alt = colors.background_alt
 local terminal = "foot"
 local fileManager = "thunar"
 local browser = "firefox"
+local wifi = " nmtui-go"
 
 local home = os.getenv("HOME")
 
@@ -37,11 +38,11 @@ hl.monitor({
 
 hl.on("hyprland.start", function()
 	hl.exec_cmd("waybar")
-	hl.exec_cmd("nm-applet")
-	hl.exec_cmd("blueman-applet")
+	-- hl.exec_cmd("nm-applet")
+	-- hl.exec_cmd("blueman-applet")
 
 	hl.exec_cmd("hyprpaper")
-	hl.exec_cmd("swaync")
+	-- hl.exec_cmd("swaync")
 
 	hl.exec_cmd("wl-paste --type text --watch cliphist store")
 	hl.exec_cmd("wl-paste --type image --watch cliphist store")
@@ -196,11 +197,11 @@ hl.bind(mainMod .. " + Space", hl.dsp.exec_cmd(terminal))
 
 hl.bind(mainMod .. " + Q", hl.dsp.window.close())
 
-hl.bind(mainMod .. " + M", hl.dsp.exec_cmd(terminal .. "rmpc"))
+hl.bind(mainMod .. " + M", hl.dsp.exec_cmd(terminal .. " rmpc"))
 
 hl.bind(mainMod .. " + B", hl.dsp.exec_cmd(browser))
 
-hl.bind(mainMod .. " + N", hl.dsp.exec_cmd("swaync-client -t"))
+-- hl.bind(mainMod .. " + N", hl.dsp.exec_cmd("swaync-client -t"))
 
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
 
@@ -221,15 +222,7 @@ hl.bind(
 	)
 )
 
-hl.bind(
-	mainMod .. " + W",
-	hl.dsp.exec_cmd(terminal .. ' --app-id wifitui bash -c "wifitui --theme=$HOME/.config/wifitui/theme.toml"')
-)
-
--- hl.bind(
--- 	mainMod .. " + W",
--- 	hl.dsp.exec_cmd([[kitty --class wifitui bash -c "wifitui --theme=$HOME/.config/wifitui/theme.toml"]])
--- )
+hl.bind(mainMod .. " + W", hl.dsp.exec_cmd(terminal .. " --app-id nmtui-go" .. wifi))
 
 hl.bind(mainMod .. " + SHIFT + W", hl.dsp.exec_cmd(scripts .. "/wallpaper-menu.sh"))
 
@@ -394,13 +387,13 @@ hl.window_rule({
 })
 
 hl.window_rule({
-	name = "wifitui",
+	name = "nmtui-go",
 	match = {
-		class = "^(wifitui)$",
+		class = "^(nmtui-go)$",
 	},
 	float = true,
 	center = true,
-	size = "850 800",
+	size = "1000 800",
 })
 
 hl.window_rule({
