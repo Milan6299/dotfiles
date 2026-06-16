@@ -15,7 +15,7 @@ export XDG_MUSIC_DIR="$HOME/music"
 # if [[ -n $SSH_CONNECTION ]]; then
 #   export EDITOR='vim'
 # else
-   export EDITOR='nvim'
+export EDITOR='nvim'
 # fi
 
 # if [[ -f "/opt/homebrew/bin/brew" ]] then
@@ -82,7 +82,8 @@ zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 
 # Aliases
-alias ls='ls --color'
+alias ls='ls --color=auto'
+alias grep='grep --color=auto'
 alias c='clear'
 alias syu="sudo pacman -Syu"
 alias yu="yay -Syu"
@@ -121,3 +122,7 @@ bindkey -M menuselect 'k' vi-up-line-or-history
 # --------------------------------
 bindkey '^P' up-line-or-history
 bindkey '^N' down-line-or-history
+
+
+# Dir with 777 permissions are green
+export LS_COLORS="$LS_COLORS:ow=32"

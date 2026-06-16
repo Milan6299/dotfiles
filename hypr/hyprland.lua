@@ -201,6 +201,9 @@ hl.bind(mainMod .. " + M", hl.dsp.exec_cmd(terminal .. " rmpc"))
 
 hl.bind(mainMod .. " + B", hl.dsp.exec_cmd(browser))
 
+-- Zen Mode - Kills waybar if running; starts waybar if it is not running
+hl.bind(mainMod .. " + Z", hl.dsp.exec_raw("killall waybar || waybar"))
+
 -- hl.bind(mainMod .. " + N", hl.dsp.exec_cmd("swaync-client -t"))
 
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
