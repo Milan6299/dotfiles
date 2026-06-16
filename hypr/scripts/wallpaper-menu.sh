@@ -35,11 +35,10 @@ done <<<"$WALLPAPER_FILES"
 SELECTED=$(echo -e "$ROFI_MENU" | rofi -dmenu -p "🎨 Select Wallpaper" -show-icons -markup-rows \
   -theme-str '
     window {
-        width: 90%;
-        height: 50%;
+        width: 60%;
+        height: 40%;
         x: 5%;
         y: 5%;
-        padding: 20px;
     }
     
     mainbox {
@@ -66,7 +65,7 @@ SELECTED=$(echo -e "$ROFI_MENU" | rofi -dmenu -p "🎨 Select Wallpaper" -show-i
     }
     
     element-icon {
-        size: 250px;
+        size: 200px;
         horizontal-align: 0.5;
         vertical-align: 0.5;
         cursor: pointer;
