@@ -1,128 +1,105 @@
-#If you come from bash you might have to change your $PATH.
-export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH:$HOME/.config/hypr/scripts
+# ENVIRONMENT
+export PATH="$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH"
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_MUSIC_DIR="$HOME/music"
+export EDITOR="nvim"
+export LS_COLORS="$LS_COLORS:ow=32"
 
-## Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-
- if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
- fi
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-export EDITOR='nvim'
-# fi
-
-# if [[ -f "/opt/homebrew/bin/brew" ]] then
-#   # If you're using macOS, you'll want this enabled
-#   eval "$(/opt/homebrew/bin/brew shellenv)"
-# fi
-
-# Set the directory we want to store zinit and plugins
-ZINIT_HOME="${HOME}/.local/share/zinit/zinit.git"
-
-# Download Zinit, if it's not there yet
-if [ ! -d "$ZINIT_HOME" ]; then
-   mkdir -p "$(dirname $ZINIT_HOME)"
-   git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
-fi
-
-# Source/Load zinit
-source "${ZINIT_HOME}/zinit.zsh"
-
-# Add in Powerlevel10k
-zinit ice depth=1; zinit light romkatv/powerlevel10k
-
-# Add in zsh plugins
-zinit light zsh-users/zsh-syntax-highlighting
-zinit light zsh-users/zsh-completions
-zinit light zsh-users/zsh-autosuggestions
-zinit light Aloxaf/fzf-tab
-
-# Add in snippets
-zinit snippet OMZL::git.zsh
-zinit snippet OMZP::git
-zinit snippet OMZP::sudo
-zinit snippet OMZP::archlinux
-zinit snippet OMZP::command-not-found
-# zinit snippet OMZP::kubectl
-# zinit snippet OMZP::kubectx
-
-# Load completions
-autoload -Uz compinit && compinit
-
-zinit cdreplay -q
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-# History
+# HISTORY
 HISTSIZE=5000
-HISTFILE=~/.zsh_history
+HISTFILE="$HOME/.zsh_history"
 SAVEHIST=$HISTSIZE
-HISTDUP=erase
+
 setopt appendhistory
 setopt sharehistory
 setopt hist_ignore_space
 setopt hist_ignore_all_dups
 setopt hist_save_no_dups
-setopt hist_ignore_dups
 setopt hist_find_no_dups
 
-# Completion styling
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
-zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
-zstyle ':completion:*' menu no
-zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
-zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
+unsetopt prompt_sp
 
-# Aliases
+# COMPLETION
+autoload -Uz compinit
+
+if [[ -n ${ZDOTDIR:-$HOME}/.zcompdump(#qN.mh+24) ]]; then
+    compinit
+else
+    compinit -C
+fi
+
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+zstyle ':completion:*' list-colors ""
+zstyle ':completion:*' menu select
+
+# ZOXIDE
+eval "$(zoxide init zsh)"
+
+# FZF TAB
+source ~/.fzf-tab/fzf-tab.plugin.zsh
+
+zstyle ':fzf-tab:complete:z:*' fzf-preview 'ls --color=auto $realpath'
+zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color=auto $realpath'
+
+# GIT BRANCH IN PROMPT
+setopt prompt_subst
+
+autoload -Uz vcs_info
+
+precmd() {
+    vcs_info
+}
+
+zstyle ':vcs_info:*' enable git
+zstyle ':vcs_info:*' check-for-changes false
+zstyle ':vcs_info:git:*' formats ' %b'
+zstyle ':vcs_info:git:*' actionformats ' %b'
+
+PROMPT='%F{cyan}%c%f ${vcs_info_msg_0_:+$vcs_info_msg_0_ }%F{yellow}❯%f '
+RPROMPT=''
+
+# FZF
+eval "$(fzf --zsh)"
+
+# ALIASES
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 alias c='clear'
-alias syu="sudo pacman -Syu"
-alias yu="yay -Syu"
-alias v="nvim"
-alias tn="tmux new-session -s"
-alias tls="tmux list-sessions"
-alias ta="tmux attach-session"
-alias td="tmux detach"
-alias y="yazi"
-alias dnd="makoctl mode -t dnd"
-alias rt="trashy"
-alias pmy="python manage.py"
+alias syu='sudo pacman -Syu'
+alias yu='yay -Syu'
+alias v='nvim'
+alias tn='tmux new-session -s'
+alias tls='tmux list-sessions'
+alias ta='tmux attach-session'
+alias td='tmux detach'
+alias y='yazi'
+alias dnd='makoctl mode -t dnd'
+alias rt='trashy'
+alias pmy='python manage.py'
+alias ts='tmux-sessionizer'
+alias sys='systemctl --user'
 
+# FUNCTIONS
 zm() {
     local dir
     dir="$(zoxide query --interactive "$@")" || return
     [[ -n "$dir" ]] && cd "$dir"
 }
 
-# Shell integrations
-eval "$(fzf --zsh)"
-eval "$(zoxide init zsh)" 
-
-# Keybindings
+# KEYBINDINGS
 bindkey -v
+
 bindkey '^p' history-search-backward
 bindkey '^n' history-search-forward
-# ---- Menuselect keymap fix ----
-# Create menuselect keymap if missing
-bindkey -M menuselect >/dev/null 2>&1 || bindkey -N menuselect
-
-# Vim-style menu selection keys
-bindkey -M menuselect 'h' vi-backward-char
-bindkey -M menuselect 'j' vi-down-line-or-history
-bindkey -M menuselect 'k' vi-up-line-or-history
-# --------------------------------
 bindkey '^P' up-line-or-history
 bindkey '^N' down-line-or-history
 
+bindkey -M menuselect >/dev/null 2>&1 || bindkey -N menuselect
 
-# Dir with 777 permissions are green
-export LS_COLORS="$LS_COLORS:ow=32"
+bindkey -M menuselect 'h' vi-backward-char
+bindkey -M menuselect 'j' vi-down-line-or-history
+bindkey -M menuselect 'k' vi-up-line-or-history
+
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+

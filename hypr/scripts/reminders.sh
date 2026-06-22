@@ -1,2 +1,0 @@
-#!/bin/bash
-notify-send "💧 ପିୟ ଜଳ ୧୦ ପାଦ ଚାଲା"

@@ -12,10 +12,12 @@ local terminal = "foot"
 local fileManager = "thunar"
 local browser = "firefox"
 local wifi = " nmtui-go"
+local walldaemon = "awww-daemon"
 
 local home = os.getenv("HOME")
 
-local scripts = home .. "/.config/hypr/scripts"
+local path = home .. "/.local/bin"
+-- local scripts = home .. "~/.local/bin/"
 local screenshotlocation = home .. "/Pictures/Screenshots"
 
 local mainMod = "SUPER"
@@ -37,17 +39,17 @@ hl.monitor({
 --------------------------------------------------
 
 hl.on("hyprland.start", function()
+	hl.exec_cmd(walldaemon)
 	hl.exec_cmd("waybar")
 	-- hl.exec_cmd("nm-applet")
 	-- hl.exec_cmd("blueman-applet")
-
-	hl.exec_cmd("hyprpaper")
+	-- hl.exec_cmd("hyprpaper")
 	-- hl.exec_cmd("swaync")
 
 	hl.exec_cmd("wl-paste --type text --watch cliphist store")
 	hl.exec_cmd("wl-paste --type image --watch cliphist store")
 
-	hl.exec_cmd(scripts .. "/notify.sh")
+	hl.exec_cmd(path .. "/notify-sound")
 end)
 
 --------------------------------------------------
@@ -62,11 +64,10 @@ hl.env("HYPRCURSOR_SIZE", "24")
 --------------------------------------------------
 
 hl.config({
-
 	general = {
-		gaps_in = 5,
+		gaps_in = 2,
 		gaps_out = 10,
-		border_size = 3,
+		border_size = 0,
 		col = {
 			active_border = border,
 			inactive_border = gray3,
@@ -79,8 +80,8 @@ hl.config({
 	decoration = {
 		rounding = 0,
 		rounding_power = 2,
-		active_opacity = 1,
-		inactive_opacity = 1,
+		active_opacity = 0.97,
+		inactive_opacity = 0.9,
 		shadow = {
 			enabled = false,
 			range = 4,
@@ -204,6 +205,8 @@ hl.bind(mainMod .. " + B", hl.dsp.exec_cmd(browser))
 -- Zen Mode - Kills waybar if running; starts waybar if it is not running
 hl.bind(mainMod .. " + Z", hl.dsp.exec_raw("killall waybar || waybar"))
 
+hl.bind(mainMod .. " + T", hl.dsp.exec_cmd(terminal .. " -e ~/.local/bin/tmux-sessionizer"))
+
 -- hl.bind(mainMod .. " + N", hl.dsp.exec_cmd("swaync-client -t"))
 
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
@@ -216,7 +219,7 @@ hl.bind(mainMod .. " + R", hl.dsp.exec_cmd(menu))
 
 hl.bind(mainMod .. " + O", hl.dsp.layout("togglesplit"))
 
-hl.bind(mainMod .. " + P", hl.dsp.exec_cmd(scripts .. "/powermenu.sh"))
+hl.bind(mainMod .. " + P", hl.dsp.exec_cmd("~/.local/bin/powermenu"))
 
 hl.bind(
 	mainMod .. " + C",
@@ -227,9 +230,9 @@ hl.bind(
 
 hl.bind(mainMod .. " + W", hl.dsp.exec_cmd(terminal .. " --app-id nmtui-go" .. wifi))
 
-hl.bind(mainMod .. " + SHIFT + W", hl.dsp.exec_cmd(scripts .. "/wallpaper-menu.sh"))
+hl.bind(mainMod .. " + SHIFT + W", hl.dsp.exec_cmd(path .. "/wallpaper-menu"))
 
-hl.bind(mainMod .. " + ALT + Space", hl.dsp.exec_cmd(scripts .. "/theme-switcher.sh"))
+hl.bind(mainMod .. " + ALT + Space", hl.dsp.exec_cmd(path .. "/theme-switcher"))
 
 hl.bind(mainMod .. " + ALT + K", hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%+"))
 
@@ -245,7 +248,7 @@ hl.bind("PRINT", hl.dsp.exec_cmd("hyprshot -m window -o " .. screenshotlocation)
 
 hl.bind("SHIFT + PRINT", hl.dsp.exec_cmd("hyprshot -m region -o " .. screenshotlocation))
 
-hl.bind("XF86TouchpadToggle", hl.dsp.exec_cmd(scripts .. "/toggle-touchpad.sh"))
+hl.bind("XF86TouchpadToggle", hl.dsp.exec_cmd(path .. "/toggle-touchpad"))
 
 hl.bind(mainMod .. " + Y", hl.dsp.exec_cmd(terminal .. ' zsh -i -c "yazi"'))
 
@@ -339,6 +342,17 @@ hl.bind(
 --------------------------------------------------
 -- window rules
 --------------------------------------------------
+hl.window_rule({
+	name = "file_chooser",
+	match = {
+		class = "^(file_chooser)$",
+		title = "^(file_chooser)$",
+	},
+	float = true,
+	center = true,
+	size = "1000 800",
+})
+
 hl.window_rule({
 	name = "brave-auth",
 	match = {

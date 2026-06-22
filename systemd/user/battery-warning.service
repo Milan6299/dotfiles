@@ -5,7 +5,7 @@ PartOf=graphical-session.target
 
 [Service]
 Type=simple
-ExecStart=%h/.config/hypr/scripts/battery-warning.sh
+ExecStart=%h/.local/bin/battery-warning
 Restart=always
 RestartSec=60
 Environment=DISPLAY=:0
