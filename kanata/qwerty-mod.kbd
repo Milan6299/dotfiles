@@ -58,7 +58,7 @@
 
 (deflayer symnum
   esc   f1   S--  S-=  f4   f5   f6   f7   f8   f9   f10  f11  f12  prtsc nlck f24
-  S-grv S-1  S-2  S-3  S-4  S-5  _    _    S-0  S-9  [    ]    S-[  _     ins  home pgup
+  S-grv S-1  S-2  S-3  S-4  S-5  _    _    _    _    _    _    _    _     ins  home pgup
   @escc 1    2    3    4    5    _    _    6    7    8    9    0    S-\   del  end  pgdn
   tab   z    x    S-6  S-7  S-8  _    f2   '    S-'  S-/  _    ret
   _     _    lsft lmet ret  _    _    bspc S-,  S-.  f3   _                    up
@@ -66,9 +66,10 @@
 )
 (deflayer brows
   esc   f1   S--  S-=  f4   f5   f6   f7   f8   f9   f10  f11  f12  prtsc nlck f24
-  S-grv S-1  S-[  S-]  S-4  S-[  _    _    _    _    _    _    _    _        ins  home pgup
-  @escc S-9  [    ]    S-0  S-]  _    _    lft  down up   rght    0    S-\   del  end  pgdn
-  tab   z    x    S-6  S-7  S-8  _    f2   '    S-'  S-/  _    ret
+  S-grv _    S-[  S-]  _    _    _    _    _    _    _    _    _    _        ins  home pgup
+  @escc S-9  [    ]    S-0  _    _    _    lft  down up   rght _    S-\   del  end  pgdn
+  tab   _    _    _    _    _    _    f2   '    S-'  S-/  _    ret
   _     _    lsft lmet ret  _    _    bspc S-,  S-.  f3   _                    up
   lctl  lmet lalt           spc            ralt rmeta menu rctl            lft  down  rght
 )
+
