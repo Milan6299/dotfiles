@@ -41,6 +41,7 @@ hl.monitor({
 hl.on("hyprland.start", function()
 	hl.exec_cmd(walldaemon)
 	hl.exec_cmd("waybar")
+	hl.exec_cmd("~/.local/bin/set-theme-wallpaper")
 	-- hl.exec_cmd("nm-applet")
 	-- hl.exec_cmd("blueman-applet")
 	-- hl.exec_cmd("hyprpaper")
@@ -345,39 +346,40 @@ hl.bind(
 hl.window_rule({
 	name = "file_chooser",
 	match = {
-		class = "^(file_chooser)$",
-		title = "^(file_chooser)$",
+		class = "^file_chooser$",
+		-- title = "^(file_chooser)$",
 	},
 	float = true,
 	center = true,
-	size = "1000 800",
+	size = "1200 800",
 })
 
-hl.window_rule({
-	name = "brave-auth",
-	match = {
-		class = "^(brave)$",
-		title = "^(.* wants to.*)$",
-	},
-	float = true,
-	center = true,
-})
-
-hl.window_rule({
-	name = "brave-save",
-	match = {
-		class = "^(brave)$",
-		title = "^(.*Save.*)$",
-	},
-	float = true,
-	center = true,
-})
+-- hl.window_rule({
+-- 	name = "brave-auth",
+-- 	match = {
+-- 		class = "^(brave)$",
+-- 		title = "^(.* wants to.*)$",
+-- 	},
+-- 	float = true,
+-- 	center = true,
+-- })
+--
+-- hl.window_rule({
+-- 	name = "brave-save",
+-- 	match = {
+-- 		class = "^(brave)$",
+-- 		title = "^(.*Save.*)$",
+-- 	},
+-- 	float = true,
+-- 	center = true,
+-- })
 
 hl.window_rule({
 	name = "firefox-auth",
 	match = {
 		class = "^(firefox)$",
 		title = "^(.* wants to.*)$",
+		initial_title = "^Mozilla Firefox$",
 	},
 	float = true,
 	center = true,
@@ -388,6 +390,7 @@ hl.window_rule({
 	match = {
 		class = "^(firefox)$",
 		title = "^(.*Save.*)$",
+		initial_title = "^Mozilla Firefox$",
 	},
 	float = true,
 	center = true,

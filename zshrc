@@ -52,10 +52,10 @@ precmd() {
 
 zstyle ':vcs_info:*' enable git
 zstyle ':vcs_info:*' check-for-changes false
-zstyle ':vcs_info:git:*' formats ' %b'
-zstyle ':vcs_info:git:*' actionformats ' %b'
+zstyle ':vcs_info:git:*' formats ' %b*'
+zstyle ':vcs_info:git:*' actionformats ' %b*'
 
-PROMPT='%F{cyan}%c%f ${vcs_info_msg_0_:+$vcs_info_msg_0_ }%F{yellow}❯%f '
+PROMPT='%F{cyan}%c%f ${vcs_info_msg_0_:+$vcs_info_msg_0_}%F{yellow}❯%f '
 RPROMPT=''
 
 # FZF
@@ -78,6 +78,8 @@ alias rt='trashy'
 alias pmy='python manage.py'
 alias ts='tmux-sessionizer'
 alias sys='systemctl --user'
+alias ssh='ssh-notify'
+alias updots='~/.local/bin/update-dots'
 
 # FUNCTIONS
 zm() {
