@@ -80,6 +80,8 @@ alias ts='tmux-sessionizer'
 alias sys='systemctl --user'
 alias ssh='ssh-notify'
 alias updots='~/.local/bin/update-dots'
+alias pod='noglob pod'
+alias tk='tmux kill-session -t'
 
 # FUNCTIONS
 zm() {
@@ -104,4 +106,3 @@ bindkey -M menuselect 'k' vi-up-line-or-history
 
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-
