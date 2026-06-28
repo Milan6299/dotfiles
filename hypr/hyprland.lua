@@ -222,6 +222,10 @@ hl.bind(mainMod .. " + O", hl.dsp.layout("togglesplit"))
 
 hl.bind(mainMod .. " + P", hl.dsp.exec_cmd("~/.local/bin/powermenu"))
 
+hl.bind(mainMod .. " + G", hl.dsp.exec_cmd(terminal .. " --app-id quickedit -e ~/.local/bin/quickedit"))
+
+hl.bind(mainMod .. " + I", hl.dsp.exec_cmd(terminal .. " --app-id cheatsheet -e ~/.local/bin/chsht"))
+
 hl.bind(
 	mainMod .. " + C",
 	hl.dsp.exec_cmd(
@@ -259,6 +263,8 @@ hl.bind(
 	{ locked = true, repeating = true }
 )
 
+hl.bind(mainMod .. " + bracketleft", hl.dsp.exec_cmd("playerctl position 10-"), { locked = true, repeating = true })
+hl.bind(mainMod .. " + bracketright", hl.dsp.exec_cmd("playerctl position 10+"), { locked = true, repeating = true })
 -- hl.bind(mainMod .. " + SHIFT + V", hl.dsp.exec_cmd("hyprctl setprop class:^(Vboard.py)$ no_focus toggle"))
 
 hl.bind(
@@ -404,6 +410,26 @@ hl.window_rule({
 	},
 	float = true,
 	center = true,
+})
+
+hl.window_rule({
+	name = "cheatsheet",
+	match = {
+		class = "^(cheatsheet)$",
+	},
+	float = true,
+	center = true,
+	size = "1400 900",
+})
+
+hl.window_rule({
+	name = "quickedit",
+	match = {
+		class = "^(quickedit)$",
+	},
+	float = true,
+	center = true,
+	size = "1400 900",
 })
 
 hl.window_rule({
