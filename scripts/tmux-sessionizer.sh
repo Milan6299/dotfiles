@@ -52,6 +52,16 @@ list_workspaces() {
 #####################################
 # UI
 #####################################
+hard_coded_list() {
+  local entries=(
+    "1 work"
+    "2 study"
+    "3 music"
+    "4 phone"
+  )
+
+  printf '%s\n' "${entries[@]}"
+}
 
 build_list() {
   # running sessions from cache
@@ -74,10 +84,15 @@ build_list() {
 }
 
 prompt() {
-  build_list | fzf \
+
+  hard_coded_list | fzf \
     --border \
     --prompt="tmux > " \
     --bind 'one:accept'
+  # build_list | fzf \
+  #   --border \
+  #   --prompt="tmux > " \
+  #   --bind 'one:accept'
 }
 
 #####################################
@@ -103,7 +118,6 @@ load_workspace() {
 
   unset SESSION ROOT
 
-  # shellcheck disable=SC1090
   source "$file"
 
   [[ -n "${SESSION:-}" ]] || {

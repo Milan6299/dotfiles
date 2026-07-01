@@ -17,8 +17,8 @@ handleedge() {
 }
 
 manual=$(echo "tldr man" | tr ' ' '\n')
-lang=$(echo "lua python bash cpp c typescript javascript sql" | tr ' ' '\n')
-utils=$(echo "xargs awk grep rg sed pass gpg ripgrep" | tr ' ' '\n')
+lang=$(echo "lua python bash cpp c sql" | tr ' ' '\n')
+utils=$(echo "xargs awk grep rg sed gpg" | tr ' ' '\n')
 
 result=$(
   printf "%s\n%s\n%s" "$lang" "$utils" "$manual" |
@@ -34,7 +34,7 @@ fi
 notinlist=1
 if ! echo "$manual $lang $utils" | grep -qsw "$selected"; then
   notinlist=0
-  printf "selected: %s\n query: functions | :learn | async+function | ~query(for utils)\n" "$selected"
+  printf "selected: %s\n query: /functions | /:learn | /async+function | ~query(for utils)\n" "$selected"
 fi
 
 read -p "query: " qu

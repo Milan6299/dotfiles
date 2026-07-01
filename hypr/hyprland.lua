@@ -81,7 +81,7 @@ hl.config({
 	decoration = {
 		rounding = 0,
 		rounding_power = 2,
-		active_opacity = 0.97,
+		active_opacity = 1,
 		inactive_opacity = 0.9,
 		shadow = {
 			enabled = false,
@@ -121,6 +121,9 @@ hl.config({
 		touchpad = {
 			natural_scroll = false,
 		},
+	},
+	animations = {
+		enabled = false,
 	},
 })
 
@@ -403,10 +406,8 @@ hl.window_rule({
 })
 
 hl.window_rule({
-	name = "firefox-signin",
 	match = {
-		class = "^(firefox)$",
-		title = "^(.*Sign.*)$",
+		class = "Sign",
 	},
 	float = true,
 	center = true,

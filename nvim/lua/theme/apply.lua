@@ -181,40 +181,6 @@ local function apply_theme()
   vim.api.nvim_set_hl(0, "LspReferenceRead", { bg = colors.selection })
   vim.api.nvim_set_hl(0, "LspReferenceWrite", { bg = colors.selection })
 
-  -- ============ LUALINE ============
-  -- Configure Lualine if installed
-  local lualine_ok, lualine = pcall(require, "lualine")
-  if lualine_ok then
-    lualine.setup({
-      options = {
-        theme = {
-          normal = {
-            a = { bg = colors.accent, fg = colors.bg, gui = "bold" },
-            b = { bg = colors.bg_alt, fg = colors.fg },
-            c = { bg = colors.bg, fg = colors.fg },
-          },
-          insert = {
-            a = { bg = colors.success, fg = colors.bg, gui = "bold" },
-          },
-          visual = {
-            a = { bg = colors.warning, fg = colors.bg, gui = "bold" },
-          },
-          replace = {
-            a = { bg = colors.error, fg = colors.bg, gui = "bold" },
-          },
-          command = {
-            a = { bg = colors.info, fg = colors.bg, gui = "bold" },
-          },
-          inactive = {
-            a = { bg = colors.bg, fg = colors.gray5 },
-            b = { bg = colors.bg, fg = colors.gray5 },
-            c = { bg = colors.bg, fg = colors.gray5 },
-          },
-        },
-      },
-    })
-  end
-
   -- ============ DIFF & GIT ============
   vim.api.nvim_set_hl(0, "DiffAdd", { fg = colors.success, bg = colors.bg_alt })
   vim.api.nvim_set_hl(0, "DiffChange", { fg = colors.warning, bg = colors.bg_alt })
@@ -229,12 +195,14 @@ local function apply_theme()
   vim.api.nvim_set_hl(0, "BlinkCmpDocBorder", { bg = colors.bg_alt })
   vim.api.nvim_set_hl(0, "BlinkCmpDocSeparator", { bg = colors.bg_alt })
 
-  vim.notify("Theme applied successfully!", vim.log.levels.INFO)
+  -- vim.notify("Theme applied successfully!", vim.log.levels.INFO)
 end
 
-local function reload_colors()
-  package.loaded["colors"] = nil
-  apply_theme()
-end
+-- local function reload_colors()
+--   package.loaded["colors"] = nil
+--   apply_theme()
+-- end
 
-return { apply_theme = apply_theme, reload_colors = reload_colors }
+return {
+  apply_theme = apply_theme,
+}
