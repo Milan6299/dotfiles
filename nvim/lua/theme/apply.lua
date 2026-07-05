@@ -44,7 +44,7 @@ local function apply_theme()
   -- Selection
   vim.api.nvim_set_hl(0, "Visual", { bg = colors.selection })
   vim.api.nvim_set_hl(0, "VisualNOS", { bg = colors.selection, blend = 50 })
-  vim.api.nvim_set_hl(0, "MatchParen", { fg = colors.accent, bg = colors.bg_alt, bold = true })
+  vim.api.nvim_set_hl(0, "MatchParen", { fg = colors.accent, bg = colors.selection, bold = true })
 
   -- Search
   vim.api.nvim_set_hl(0, "Search", { fg = colors.bg, bg = colors.warning })

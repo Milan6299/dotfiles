@@ -9,7 +9,7 @@ return {
     cursor    = "#c8c8c8",
 
     -- Accent / highlights
-    accent            = "#d0d09a",
+    accent          = "#d0d09a",
     accent_alt        = "#6e7f80",
 
     -- Status / semantic

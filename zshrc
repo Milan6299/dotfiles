@@ -55,7 +55,7 @@ zstyle ':vcs_info:*' check-for-changes false
 zstyle ':vcs_info:git:*' formats ' %b*'
 zstyle ':vcs_info:git:*' actionformats ' %b*'
 
-PROMPT='%F{cyan}%c%f ${vcs_info_msg_0_:+$vcs_info_msg_0_}%F{yellow}❯%f '
+PROMPT='%F{cyan}%c%f %F{white}${vcs_info_msg_0_}%f%F{red}❯%f '
 RPROMPT=''
 
 # FZF
@@ -72,6 +72,7 @@ alias tn='tmux new-session -s'
 alias tls='tmux list-sessions'
 alias ta='tmux attach-session'
 alias td='tmux detach'
+alias tk='tmux kill-session -t'
 alias y='yazi'
 alias dnd='makoctl mode -t dnd'
 alias rt='trashy'
@@ -80,10 +81,14 @@ alias ts='tmux-sessionizer'
 alias sys='systemctl --user'
 alias ssh='ssh-notify'
 alias updots='~/.local/bin/update-dots'
-alias pod='noglob pod'
-alias tk='tmux kill-session -t'
+alias pod='noglob ~/.local/bin/pod'
+alias dwn='noglob dwn_func'
 
 # FUNCTIONS
+dwn_func() {
+    ~/.local/bin/ytdlp-download "$@" >/dev/null 2>&1 &
+    disown
+}
 zm() {
     local dir
     dir="$(zoxide query --interactive "$@")" || return

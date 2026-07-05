@@ -104,7 +104,7 @@ title      = { fg = "#d0d09a", bold = true }
 body       = { fg = "#c8c8c8" }
 list       = { fg = "#c8c8c8" }
 btn_yes    = { bg = "#d0d09a", fg = "#212121", bold = true }
-btn_no     = { fg = "#9f9fa8" }
+btn_no      = { fg = "#9f9fa8" }
 btn_labels = [ "  [Y]es  ", "  (N)o  " ]
 # : }}}
 
