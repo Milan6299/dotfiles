@@ -9,7 +9,7 @@ kanata --cfg ~/.config/kanata/layout-name.kbd
 also uinput bullshit 
 
 # 1
-sudo groupadd uinput
+sudo groupadd uinput (sudo groupadd -f uinput -> if doesnt exist)
 
 # 2
 sudo usermod -aG input $USER
@@ -17,6 +17,7 @@ sudo usermod -aG uinput $USER
 
 # 3
 sudo echo 'KERNEL=="uinput", MODE="0660", GROUP="uinput", OPTIONS+="static_node=uinput"' > /etc/udev/rules.d/99-input.rules
+(gpt recommends -> echo 'KERNEL=="uinput", MODE="0660", GROUP="uinput", OPTIONS+="static_node=uinput"' | sudo tee /etc/udev/rules.d/99-input.rules > /dev/null)
 
 # 4
 sudo udevadm control --reload && udevadm trigger --verbose --sysname-match=uniput
@@ -38,4 +39,3 @@ sudo systemctl start kanata
 sudo systemctl enable kanata
 
 #to disable kanata use - sudo systemctl enable kanata
-
