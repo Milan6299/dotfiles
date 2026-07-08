@@ -11,17 +11,9 @@ selected=$(
 
 [ -z "$selected" ] && exit
 
-# exec foot --app-id quickedit --working-directory="$selected" -e nvim
-# tmux new-window -c "$selected" "nvim"
-# code=$?
-#
-# if [ "$code" -ne 0 ]; then
-#   foot --app-id quickedit --working-directory="$selected" -e nvim
-
 if [ -n "$TMUX" ]; then
   exec tmux new-window -c "$selected" "nvim"
 else
-  # exec foot --app-id quickedit --working-directory="$selected" -e nvim
   cd "$selected"
   exec nvim
 fi

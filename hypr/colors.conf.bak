@@ -1,9 +1,0 @@
--- Auto-generated from Vague.conf
-return {
-    border = "rgba(6c6c78ff)",
-    accent = "rgba(d0d09aff)",
-    accent_alt = "rgba(6e7f80ff)",
-    gray3 = "rgba(2a2a33ff)",
-    background = "rgba(212121ff)",
-    background_alt = "rgba(202028ff)",
-}

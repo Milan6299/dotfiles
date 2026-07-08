@@ -1,6 +1,0 @@
-[Unit]
-Description=Personal Reminders
-
-[Service]
-Type=oneshot
-ExecStart=/usr/bin/notify-send "💧 ପିୟ ଜଳ! ୧୦ ପାଦ ଚାଲା"

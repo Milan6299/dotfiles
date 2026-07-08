@@ -1,14 +1,12 @@
 {
   // "margin-top": 5,
   "margin-top": 0,
-  "margin-left": 10,
-  "margin-right": 10,
+  "margin-left": 0,
+  "margin-right": 0,
   "modules-left": [
-    "hyprland/window"
+    "sway/workspaces",
   ],
-  "modules-center": [
-    "hyprland/workspaces",
-  ],
+  "modules-center": [],
   "modules-right": [
     "custom/virtualkb",
     "pulseaudio",
@@ -18,27 +16,22 @@
     // "temperature",
     "clock",
   ],
-  "hyprland/window": {
-    "format": "{}",
-    "max-length": 45,
-    "rewrite": {
-      "": ""
-    },
-    "separate-outputs": true,
+  // "hyprland/window": {
+  //   "format": "{}",
+  //   "max-length": 45,
+  //   "rewrite": {
+  //     "": ""
+  //   },
+  //   "separate-outputs": true,
+  // },
+"sway/workspaces": {
+  "format": "{icon}",
+  "on-click": "activate",
+  "format-icons": {
+    "urgent": " "
   },
-  "hyprland/workspaces": {
-    "format": "{icon}",
-    "on-click": "activate",
-    "format-icons": {
-      //"active": "{}",
-      "urgent": " ",
-    },
-    "sort-by-number": true,
-    "persistent-workspaces": {
-      "*": 5, // 5 workspaces by default on every monitor
-      "HDMI-A-1": 3 // but only three on HDMI-A-1
-    },
-  },
+  "sort-by-number": true
+},
 "clock": {
     "tooltip": false,
     "format-alt": "{:%Y-%m-%d}",
@@ -72,20 +65,20 @@
       "",
       ""
     ],
-    "interval": 5,
+    "interval": 10,
   },
   "network": {
     "format": "{ifname}",
     "format-wifi": "  {signalStrength}% ",
     "format-ethernet": "   {bandwidthDownBytes}  {bandwidthUpBytes} ",
     "format-disconnected": "Not connected",
-    "tooltip-format": "  {ifname} via {gwaddri}",
+    "tooltip-format": "  {ifname} via {gwaddr}",
     "tooltip-format-wifi": "   {essid}  {bandwidthDownBytes}  {bandwidthUpBytes} ",
     "tooltip-format-ethernet": "  {ifname} ({ipaddr}/{cidr})",
     "tooltip-format-disconnected": "Disconnected",
     "max-length": 50,
     "interval": 1,
-    "on-click": "foot -e --app-id nmtui-go nmtui-go"
+    "on-click": "foot -e --app-id nmtui-go ~/.local/bin/nmtui-go"
   },
 "custom/virtualkb": {
     "format": "󰌌 ",

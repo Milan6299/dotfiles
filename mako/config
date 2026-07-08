@@ -1,0 +1,27 @@
+max-visible=5
+sort=-time
+default-timeout=3000
+
+# Positioning
+layer=top
+anchor=top-right
+
+# Styling
+font=JetBrainsMonoNLNerdFont 16
+width=400
+height=1000
+margin=10
+padding=15,15
+border-size=2
+border-radius=0
+
+# Icons
+icons=1
+#max-icon-size=64
+
+# Styling
+include=~/.config/mako/colors
+
+[mode=dnd]
+invisible=1
+

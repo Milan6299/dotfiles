@@ -155,20 +155,6 @@ gui:
 EOF
 
 }
-generate_hyprland_colors() {
-
-  cat <<EOF
--- Auto-generated from $(basename "$theme_file")
-return {
-    border = "$(hex_to_rgba "$border")",
-    accent = "$(hex_to_rgba "$accent")",
-    accent_alt = "$(hex_to_rgba "$accent_alt")",
-    gray3 = "$(hex_to_rgba "$gray3")",
-    background = "$(hex_to_rgba "$background")",
-    background_alt = "$(hex_to_rgba "$background_alt")",
-}
-EOF
-}
 
 # Mako - Notification Daemon
 generate_mako_colors() {
@@ -255,419 +241,6 @@ bright4=$bright_blue
 bright5=$bright_magenta
 bright6=$bright_cyan
 bright7=$bright_white
-EOF
-}
-# Generate Kitty colors (stays with hex)
-generate_kitty_colors() {
-
-  cat <<EOF
-foreground #$foreground
-background #$background
-selection_background #$selection
-selection_foreground #$foreground
-cursor #$accent
-
-color0 #$black
-color8 #$bright_black
-color1 #$red
-color9 #$bright_red
-color2 #$green
-color10 #$bright_green
-color3 #$yellow
-color11 #$bright_yellow
-color4 #$blue
-color12 #$bright_blue
-color5 #$magenta
-color13 #$bright_magenta
-color6 #$cyan
-color14 #$bright_cyan
-color7 #$white
-color15 #$bright_white
-EOF
-}
-
-generate_waybar_colors() {
-
-  cat <<EOF
-/* Auto-generated from $(basename "$theme_file") */
-@define-color background #$background;
-@define-color background_alt #$background_alt;
-@define-color background_dim #$background_dim;
-@define-color foreground #$foreground;
-@define-color foreground_dim #$foreground_dim;
-@define-color cursor #$cursor;
-@define-color accent #$accent;
-@define-color accent_alt #$accent_alt;
-@define-color error #$error;
-@define-color warning #$warning;
-@define-color success #$success;
-@define-color info #$info;
-@define-color orange #$orange;
-@define-color bright_orange #$bright_orange;
-@define-color selection #$selection;
-@define-color border #$border;
-@define-color background_highlight #$background_highlight;
-@define-color overlay #$overlay;
-@define-color black #$black;
-@define-color red #$red;
-@define-color green #$green;
-@define-color yellow #$yellow;
-@define-color orange #$orange;
-@define-color blue #$blue;
-@define-color magenta #$magenta;
-@define-color cyan #$cyan;
-@define-color white #$white;
-@define-color bright_black #$bright_black;
-@define-color bright_red #$bright_red;
-@define-color bright_green #$bright_green;
-@define-color bright_yellow #$bright_yellow;
-@define-color bright_orange #$bright_orange;
-@define-color bright_blue #$bright_blue;
-@define-color bright_magenta #$bright_magenta;
-@define-color bright_cyan #$bright_cyan;
-@define-color bright_white #$bright_white;
-@define-color gray1 #$gray1;
-@define-color gray2 #$gray2;
-@define-color gray3 #$gray3;
-@define-color gray4 #$gray4;
-@define-color gray5 #$gray5;
-@define-color gray6 #$gray6;
-@define-color gray7 #$gray7;
-EOF
-}
-
-generate_swaync_css() {
-
-  cat <<EOF
-/* Auto-generated from $(basename "$theme_file") */
-* {
-  all: unset;
-  font-size: 16px;
-  font-family: "JetBrainsMono Nerd Font";
-  transition: 200ms;
-}
-
-trough highlight {
-  background: #$accent;
-}
-
-scale {
-  margin: 0 7px;
-}
-
-scale trough {
-  margin: 0rem 1rem;
-  min-height: 8px;
-  min-width: 70px;
-  border-radius: 12.6px;
-}
-
-trough slider {
-  margin: 0px;
-  border-radius: 12.6px;
-  box-shadow: 0 0 2px rgba(0, 0, 0, 0.8);
-  transition: all 0.2s ease;
-  background-color: #$accent;
-}
-
-trough slider:hover {
-  box-shadow: 0 0 2px rgba(0, 0, 0, 0.8), 0 0 8px #$accent;
-}
-
-trough {
-  background-color: #$gray3;
-}
-
-/* notifications */
-.notification-background {
-  box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.8), inset 0 0 0 1px #$border;
-  margin: 18px;
-  background: #$background_alt;
-  color: #$foreground;
-  padding: 0;
-}
-
-.notification-background .notification {
-  padding: 7px;
-}
-
-.notification-background .notification.critical {
-  box-shadow: inset 0 0 7px 0 #$error;
-}
-
-.notification .notification-content {
-  margin: 7px;
-}
-
-.notification .notification-content overlay {
-  /* icons */
-  margin: 4px;
-}
-
-.notification-content .summary {
-  color: #$accent;
-  font-weight: 700;
-}
-
-.notification-content .time {
-  color: #$foreground_dim;
-}
-
-.notification-content .body {
-  margin-top: 5px;
-  color: #$foreground;
-  font-size: 14px;
-}
-
-.notification > *:last-child > * {
-  min-height: 3.4em;
-}
-
-.notification-background .close-button {
-  margin: 7px;
-  padding: 2px;
-  border-radius: 6.3px;
-  color: #$foreground;
-  background-color: #$gray3;
-}
-
-.notification-background .close-button:hover {
-  background-color: #$accent;
-}
-
-.notification-background .close-button:active {
-  background-color: #$accent_alt;
-}
-
-.notification .notification-action {
-  border-radius: 7px;
-  color: #$foreground;
-  box-shadow: inset 0 0 0 1px #$border;
-  margin: 4px;
-  padding: 8px;
-  font-size: 0.2rem;
-}
-
-.notification .notification-action {
-  background-color: #$gray3;
-}
-
-.notification .notification-action:hover {
-  background-color: #$accent;
-}
-
-.notification .notification-action:active {
-  background-color: #$accent_alt;
-}
-
-.notification.critical progress {
-  background-color: #$error;
-}
-
-.notification.low progress,
-.notification.normal progress {
-  background-color: #$accent;
-}
-
-.notification progress,
-.notification trough,
-.notification progressbar {
-  border-radius: 12.6px;
-  padding: 3px 0;
-}
-
-/* control center */
-.control-center {
-  box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.8), inset 0 0 0 1px #$border;
-  background-color: #$background_alt;
-  color: #$foreground;
-  padding: 14px;
-}
-
-.control-center .notification-background {
-  border-radius: 7px;
-  box-shadow: inset 0 0 0 1px #$border;
-  margin: 4px 10px;
-}
-
-.control-center .notification-background .notification {
-  border-radius: 7px;
-}
-
-.control-center .notification-background .notification.low {
-  opacity: 0.8;
-}
-
-.control-center .widget-title > label {
-  color: #$foreground;
-  font-size: 1.3em;
-}
-
-.control-center .widget-title button {
-  border-radius: 7px;
-  color: #$foreground;
-  background-color: #$gray3;
-  box-shadow: inset 0 0 0 1px #$border;
-  padding: 8px;
-}
-
-.control-center .widget-title button:hover {
-  background-color: #$accent;
-}
-
-.control-center .widget-title button:active {
-  background-color: #$accent_alt;
-}
-
-.control-center .notification-group {
-  margin-top: 10px;
-}
-
-.control-center .notification-group:focus .notification-background {
-  background-color: #$background_highlight;
-}
-
-scrollbar slider {
-  margin: 3px;
-  opacity: 0.8;
-}
-
-scrollbar trough {
-  margin: 2px 0;
-}
-
-/* dnd */
-.widget-dnd {
-  margin-top: 5px;
-  border-radius: 8px;
-  font-size: 1.1rem;
-}
-
-.widget-dnd > switch {
-  font-size: initial;
-  border-radius: 8px;
-  background: #$gray3;
-  box-shadow: none;
-}
-
-.widget-dnd > switch:checked {
-  background: #$accent;
-}
-
-.widget-dnd > switch slider {
-  background: #$foreground;
-  border-radius: 8px;
-}
-
-/* mpris */
-.widget-mpris-player {
-  background: #$background;
-  border-radius: 12.6px;
-  color: #$foreground;
-}
-
-.mpris-overlay {
-  background-color: #$background;
-  opacity: 0.9;
-  padding: 15px 10px;
-}
-
-.widget-mpris-album-art {
-  -gtk-icon-size: 100px;
-  border-radius: 12.6px;
-  margin: 0 10px;
-}
-
-.widget-mpris-title {
-  font-size: 1.2rem;
-  color: #$foreground;
-}
-
-.widget-mpris-subtitle {
-  font-size: 1rem;
-  color: #$foreground_dim;
-}
-
-.widget-mpris button {
-  border-radius: 12.6px;
-  color: #$foreground;
-  margin: 0 5px;
-  padding: 2px;
-}
-
-.widget-mpris button image {
-  -gtk-icon-size: 1.8rem;
-}
-
-.widget-mpris button:hover {
-  background-color: #$accent;
-}
-
-.widget-mpris button:active {
-  background-color: #$accent_alt;
-}
-
-.widget-mpris button:disabled {
-  opacity: 0.5;
-}
-
-.widget-menubar > box > .menu-button-bar > button > label {
-  font-size: 3rem;
-  padding: 0.5rem 2rem;
-}
-
-.widget-menubar > box > .menu-button-bar > :last-child {
-  color: #$accent;
-}
-
-.power-buttons button:hover,
-.powermode-buttons button:hover,
-.screenshot-buttons button:hover {
-  background: #$accent;
-}
-
-.control-center .widget-label > label {
-  color: #$foreground;
-  font-size: 2rem;
-}
-
-.widget-buttons-grid {
-  padding-top: 1rem;
-}
-
-.widget-buttons-grid > flowbox > flowboxchild > button label {
-  font-size: 2.5rem;
-}
-
-.widget-volume {
-  padding: 1rem 0;
-}
-
-.widget-volume label {
-  color: #$foreground;
-  padding: 0 1rem;
-}
-
-.widget-volume trough highlight {
-  background: #$accent;
-}
-
-.widget-backlight trough highlight {
-  background: #$accent;
-}
-
-.widget-backlight label {
-  font-size: 1.5rem;
-  color: #$foreground;
-}
-
-.widget-backlight .KB {
-  padding-bottom: 1rem;
-}
-
-.image {
-  padding-right: 0.5rem;
-}
 EOF
 }
 
@@ -823,190 +396,6 @@ theme[upload_end]="#$bright_green"
 theme[process_start]="#$bright_green"
 theme[process_mid]="#$bright_yellow"
 theme[process_end]="#$bright_red"
-EOF
-}
-
-generate_rmpc_theme() {
-
-  local theme_name=$(basename "$theme_file" .conf)
-
-  cat <<EOF
-#![enable(implicit_some)]
-#![enable(unwrap_newtypes)]
-#![enable(unwrap_variant_newtypes)]
-(
-    default_album_art_path: None,
-    album_art: (
-        order: [Embedded, File],
-    ),
-    format_tag_separator: " | ",
-    browser_column_widths: [20, 38, 42],
-    duration_format: "%M:%S",
-    background_color: Some("#$background"),
-    text_color: Some("#$foreground"),
-    header_background_color: Some("#$background"),
-    modal_background_color: Some("#$background"),
-    modal_backdrop: true,
-    preview_label_style: (fg: "#$accent", bg: "#$background", modifiers: "Bold"),
-    preview_metadata_group_style: (fg: "#$accent", bg: "#$background", modifiers: "Bold"),
-    tab_bar: (
-        enabled: true,
-        active_style: (fg: "#$background", bg: "#$accent", modifiers: "Bold"),
-        inactive_style: (fg: "#$foreground_dim", bg: "#$background", modifiers: ""),
-    ),
-    highlighted_item_style: (fg: "#$accent", bg: "#$background", modifiers: "Bold"),
-    current_item_style: (fg: "#$background", bg: "#$accent", modifiers: "Bold"),
-    symbols: (
-        song: "",
-        dir: "",
-        playlist: "󰐑",
-        marker: "->",
-        ellipsis: "...",
-        song_style: (fg: "#$accent"),
-        dir_style: (fg: "#$success"),
-        playlist_style: (fg: "#$warning"),
-    ),
-    level_styles: (
-        info: (fg: "#$accent", bg: "#$background"),
-        warn: (fg: "#$warning", bg: "#$background"),
-        error: (fg: "#$error", bg: "#$background"),
-        debug: (fg: "#$info", bg: "#$background"),
-        trace: (fg: "#$accent_alt", bg: "#$background"),
-    ),
-    progress_bar: (
-        symbols: ["█", "█", "█", "█", "█"],
-        track_style: (fg: None, bg: "#$background_alt"),
-        elapsed_style: (fg: "#$accent", bg: "#$background_alt"),
-        thumb_style: (fg: "#$accent", bg: "#$background_alt"),
-    ),
-    scrollbar: (
-        symbols: ["│", "█", "▲", "▼"],
-        track_style: (fg: "#$gray2"),
-        ends_style: (fg: "#$accent"),
-        thumb_style: (fg: "#$accent"),
-    ),
-    song_table_format: [
-        (
-            prop: (kind: Property(Artist), default: (kind: Text("Unknown"))),
-            width: "20%",
-            style: (fg: "#$accent_alt", bg: "#$background", modifiers: ""),
-        ),
-        (
-            prop: (kind: Property(Title), default: (kind: Text("Unknown"))),
-            width: "45%",
-            style: (fg: "#$accent", bg: "#$background", modifiers: "Bold"),
-        ),
-        (
-            prop: (kind: Property(Album), default: (kind: Text("Unknown Album"))),
-            width: "20%",
-            style: (fg: "#$foreground_dim", bg: "#$background", modifiers: ""),
-        ),
-        (
-            prop: (kind: Property(Duration), default: (kind: Text("-"))),
-            width: "15%",
-            alignment: Right,
-            style: (fg: "#$gray4", bg: "#$background", modifiers: ""),
-        ),
-    ],
-    layout: Split(
-        direction: Vertical,
-        panes: [
-            (pane: Pane(Header), size: "2"),
-            (pane: Pane(Tabs, borders: true), size: "3"),
-            (pane: Pane(QueueHeader), size: "1"),
-            (pane: Pane(TabContent), size: "100%"),
-            (pane: Pane(ProgressBar), size: "1"),
-        ],
-    ),
-    header: (
-        rows: [
-            (
-                left: [
-                    (kind: Text("["), style: (fg: "#$accent", bg: "#$background", modifiers: "Bold")),
-                    (kind: Property(Status(StateV2(playing_label: "Playing", paused_label: "Paused", stopped_label: "Stopped"))),
-                     style: (fg: "#$accent", bg: "#$background", modifiers: "Bold")),
-                    (kind: Text("]"), style: (fg: "#$accent", bg: "#$background", modifiers: "Bold"))
-                ],
-                center: [
-                    (kind: Property(Song(Title)),
-                     style: (fg: "#$accent", bg: "#$background", modifiers: "Bold"),
-                     default: (kind: Text("No Song"), style: (fg: "#$accent", bg: "#$background", modifiers: "Bold")))
-                ],
-                right: [
-                    (kind: Property(Widget(ScanStatus)), style: (fg: "#$success", bg: "#$background", modifiers: "")),
-                    (kind: Property(Widget(Volume)), style: (fg: "#$accent", bg: "#$background", modifiers: "")),
-                ]
-            ),
-            (
-                left: [
-                    (kind: Property(Status(Elapsed)), style: (fg: "#$foreground", bg: "#$background", modifiers: "")),
-                    (kind: Text(" / "), style: (fg: "#$gray4", bg: "#$background", modifiers: "")),
-                    (kind: Property(Status(Duration)), style: (fg: "#$foreground", bg: "#$background", modifiers: "")),
-                    (kind: Text(" ("), style: (fg: "#$info", bg: "#$background", modifiers: "")),
-                    (kind: Property(Status(Bitrate)), style: (fg: "#$info", bg: "#$background", modifiers: "")),
-                    (kind: Text(" kbps)"), style: (fg: "#$info", bg: "#$background", modifiers: "")),
-                ],
-                center: [
-                    (kind: Property(Song(Artist)),
-                     style: (fg: "#$info", bg: "#$background", modifiers: "Bold"),
-                     default: (kind: Text("Unknown"), style: (fg: "#$info", bg: "#$background", modifiers: "Bold"))),
-                    (kind: Text(" - "), style: (fg: "#$gray4", bg: "#$background", modifiers: "")),
-                    (kind: Property(Song(Album)),
-                     style: (fg: "#$info", bg: "#$background", modifiers: ""),
-                     default: (kind: Text("Unknown Album"), style: (fg: "#$info", bg: "#$background", modifiers: ""))),
-                ],
-                right: [
-                    (kind: Text("[ "), style: (fg: "#$accent", bg: "#$background", modifiers: "")),
-                    (kind: Property(Status(RepeatV2(
-                        on_label: "", off_label: "",
-                        on_style: (fg: "#$info", bg: "#$background", modifiers: "Bold"),
-                        off_style: (fg: "#$foreground_dim", bg: "#$background", modifiers: "Bold")
-                    )))),
-                    (kind: Text(" | "), style: (fg: "#$accent", bg: "#$background", modifiers: "")),
-                    (kind: Property(Status(RandomV2(
-                        on_label: "", off_label: "",
-                        on_style: (fg: "#$info", bg: "#$background", modifiers: "Bold"),
-                        off_style: (fg: "#$foreground_dim", bg: "#$background", modifiers: "Bold")
-                    )))),
-                    (kind: Text(" | "), style: (fg: "#$accent", bg: "#$background", modifiers: "")),
-                    (kind: Property(Status(SingleV2(
-                        on_label: "󰎤", off_label: "󰎦", oneshot_label: "󰇊", off_oneshot_label: "󱅊",
-                        on_style: (fg: "#$info", bg: "#$background", modifiers: "Bold"),
-                        off_style: (fg: "#$foreground_dim", bg: "#$background", modifiers: "Bold")
-                    )))),
-                    (kind: Text(" | "), style: (fg: "#$accent", bg: "#$background", modifiers: "")),
-                    (kind: Property(Status(ConsumeV2(
-                        on_label: "󰮯", off_label: "󰮯", oneshot_label: "󰮯󰇊",
-                        on_style: (fg: "#$info", bg: "#$background", modifiers: "Bold"),
-                        off_style: (fg: "#$foreground_dim", bg: "#$background", modifiers: "Bold")
-                    )))),
-                    (kind: Text(" ]"), style: (fg: "#$accent", bg: "#$background", modifiers: "")),
-                ],
-            ),
-        ],
-    ),
-    browser_song_format: [
-        (
-            kind: Group([
-                (kind: Property(Track), style: (fg: "#$accent", bg: "#$background", modifiers: "")),
-                (kind: Text(" "), style: (fg: "#$gray4", bg: "#$background", modifiers: "")),
-            ])
-        ),
-        (
-            kind: Group([
-                (kind: Property(Artist), style: (fg: "#$foreground", bg: "#$background", modifiers: "")),
-                (kind: Text(" - "), style: (fg: "#$gray4", bg: "#$background", modifiers: "")),
-                (kind: Property(Title), style: (fg: "#$accent", bg: "#$background", modifiers: "Bold")),
-            ]),
-            default: (kind: Property(Filename), style: (fg: "#$foreground_dim", bg: "#$background", modifiers: "")),
-        ),
-    ],
-    lyrics: (
-        timestamp: false,
-        current_line_style: (fg: "#$accent", bg: "#$background", modifiers: "Bold"),
-        other_lines_style: (fg: "#$foreground_dim", bg: "#$background", modifiers: ""),
-    ),
-)
 EOF
 }
 
@@ -1209,34 +598,184 @@ prepend_conds = [
 EOF
 }
 
-generate_wifitui_theme() {
-
-  local theme_name=$(basename "$theme_file" .conf)
-
+generate_hyprlock_colors() {
   cat <<EOF
-# wifitui theme generated from $theme_name
 # Auto-generated by theme switcher
 
-# Primary colors (light, dark pairs)
-Primary = ["#$accent", "#$accent"]
-Subtle = ["#$foreground", "#$foreground"]
-Success = ["#$success", "#$success"]
-Error = ["#$error", "#$error"]
-Normal = ["#$foreground", "#$foreground"]
-Disabled = ["#$error", "#$error"]
-Border = ["#$border", "#$border"]
+\$background = rgb($background)
+\$foreground = rgb($foreground)
+\$background_alt = rgb($background_alt)
+\$background_dim = rgb($background_dim)
+\$foreground_dim = rgb($foreground_dim)
+\$cursor = rgb($cursor)
 
-# WiFi-specific colors
-SignalHigh = ["#$success", "#$success"]
-SignalLow = ["#$error", "#$error"]
-Saved = ["#$accent_alt", "#$accent_alt"]
+\$accent = rgb($accent)
+\$accent_alt = rgb($accent_alt)
 
-# Icons
-TitleIcon = "📶 "
-NetworkSecureIcon = "🔒 "
-NetworkOpenIcon = "🔓 "
-NetworkUnknownIcon = "❓ "
-NetworkSavedIcon = "💾 "
+\$error = rgb($error)
+\$warning = rgb($warning)
+\$success = rgb($success)
+\$info = rgb($info)
+\$orange = rgb($orange)
+\$bright_orange = rgb($bright_orange)
+
+\$selection = rgb($selection)
+\$border = rgb($border)
+\$background_highlight = rgb($background_highlight)
+\$overlay = rgb($overlay)
+
+\$black = rgb($black)
+\$red = rgb($red)
+\$green = rgb($green)
+\$yellow = rgb($yellow)
+\$blue = rgb($blue)
+\$magenta = rgb($magenta)
+\$cyan = rgb($cyan)
+\$white = rgb($white)
+
+\$bright_black = rgb($bright_black)
+\$bright_red = rgb($bright_red)
+\$bright_green = rgb($bright_green)
+\$bright_yellow = rgb($bright_yellow)
+\$bright_blue = rgb($bright_blue)
+\$bright_magenta = rgb($bright_magenta)
+\$bright_cyan = rgb($bright_cyan)
+\$bright_white = rgb($bright_white)
+
+\$gray1 = rgb($gray1)
+\$gray2 = rgb($gray2)
+\$gray3 = rgb($gray3)
+\$gray4 = rgb($gray4)
+\$gray5 = rgb($gray5)
+\$gray6 = rgb($gray6)
+\$gray7 = rgb($gray7)
+EOF
+}
+
+generate_sway_colors() {
+
+  cat <<EOF
+# Auto-generated by theme switcher
+
+# Base
+set \$background #$background
+set \$foreground #$foreground
+set \$background_alt #$background_alt
+set \$background_dim #$background_dim
+set \$foreground_dim #$foreground_dim
+set \$cursor #$cursor
+
+# Accent
+set \$accent #$accent
+set \$accent_alt #$accent_alt
+
+# Status
+set \$error #$error
+set \$warning #$warning
+set \$success #$success
+set \$info #$info
+set \$orange #$orange
+set \$bright_orange #$bright_orange
+
+# UI
+set \$selection #$selection
+set \$border #$border
+set \$background_highlight #$background_highlight
+set \$overlay #$overlay
+
+# ANSI colors
+set \$black #$black
+set \$red #$red
+set \$green #$green
+set \$yellow #$yellow
+set \$blue #$blue
+set \$magenta #$magenta
+set \$cyan #$cyan
+set \$white #$white
+
+set \$bright_black #$bright_black
+set \$bright_red #$bright_red
+set \$bright_green #$bright_green
+set \$bright_yellow #$bright_yellow
+set \$bright_blue #$bright_blue
+set \$bright_magenta #$bright_magenta
+set \$bright_cyan #$bright_cyan
+set \$bright_white #$bright_white
+
+# Grays
+set \$gray1 #$gray1
+set \$gray2 #$gray2
+set \$gray3 #$gray3
+set \$gray4 #$gray4
+set \$gray5 #$gray5
+set \$gray6 #$gray6
+set \$gray7 #$gray7
+EOF
+
+}
+
+## Fuzzel
+
+generate_fuzzel_colors() {
+  cat <<EOF
+[colors]
+background=${background}ff
+text=${foreground}ff
+match=${warning}ff
+selection=${accent}ff
+selection-text=${background}ff
+selection-match=${warning}ff
+border=${border}ff
+EOF
+}
+
+# Waybar
+generate_waybar_colors() {
+  cat <<EOF
+/* Auto-generated from $(basename "$theme_file") */
+@define-color background #$background;
+@define-color background_alt #$background_alt;
+@define-color background_dim #$background_dim;
+@define-color foreground #$foreground;
+@define-color foreground_dim #$foreground_dim;
+@define-color cursor #$cursor;
+@define-color accent #$accent;
+@define-color accent_alt #$accent_alt;
+@define-color error #$error;
+@define-color warning #$warning;
+@define-color success #$success;
+@define-color info #$info;
+@define-color orange #$orange;
+@define-color bright_orange #$bright_orange;
+@define-color selection #$selection;
+@define-color border #$border;
+@define-color background_highlight #$background_highlight;
+@define-color overlay #$overlay;
+@define-color black #$black;
+@define-color red #$red;
+@define-color green #$green;
+@define-color yellow #$yellow;
+@define-color orange #$orange;
+@define-color blue #$blue;
+@define-color magenta #$magenta;
+@define-color cyan #$cyan;
+@define-color white #$white;
+@define-color bright_black #$bright_black;
+@define-color bright_red #$bright_red;
+@define-color bright_green #$bright_green;
+@define-color bright_yellow #$bright_yellow;
+@define-color bright_orange #$bright_orange;
+@define-color bright_blue #$bright_blue;
+@define-color bright_magenta #$bright_magenta;
+@define-color bright_cyan #$bright_cyan;
+@define-color bright_white #$bright_white;
+@define-color gray1 #$gray1;
+@define-color gray2 #$gray2;
+@define-color gray3 #$gray3;
+@define-color gray4 #$gray4;
+@define-color gray5 #$gray5;
+@define-color gray6 #$gray6;
+@define-color gray7 #$gray7;
 EOF
 }
 
@@ -1253,8 +792,10 @@ apply_theme() {
   ln -sf "$theme_file" "$CURRENT_THEME"
 
   # Generate color files (REMOVED parameters since we use global variables)
+  generate_sway_colors >~/.config/sway/colors
   generate_lazygit_theme >~/.config/lazygit/config.yml
-  generate_hyprland_colors >~/.config/hypr/colors.lua
+  generate_fuzzel_colors >~/.config/fuzzel/colors.ini
+  generate_hyprlock_colors >~/.config/hypr/colors.conf
   generate_rofi_colors >~/.config/rofi/colors.rasi
   #generate_kitty_colors > ~/.config/kitty/colors.conf
   generate_foot_colors >~/.config/foot/themes/colors.ini
@@ -1265,7 +806,7 @@ apply_theme() {
   generate_btop_colors >~/.config/btop/themes/theme.conf
   #generate_rmpc_theme > ~/.config/rmpc/themes/generatedtheme.ron
   generate_yazi_theme >~/.config/yazi/theme.toml
-  generate_wifitui_theme >~/.config/wifitui/theme.toml
+  # generate_wifitui_theme >~/.config/wifitui/theme.toml
 
   # Reload applications
   sleep 0.2
@@ -1274,18 +815,16 @@ apply_theme() {
   #swaync-client -rs
   makoctl reload
 
-  hyprctl reload
+  swaymsg reload
 
   #Custom Wallpaper setter based on theme
   $HOME/.local/bin/set-theme-wallpaper
 
   #Reload Terminal
   pkill -USR2 foot
-  #pkill -USR1 kitty
 
-  # Restart Waybar
+  #Reload Waybar
   pkill waybar
-  sleep 0.2
   waybar &
 
   notify-send "Theme Changed" "Applied: $theme_name"

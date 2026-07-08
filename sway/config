@@ -1,0 +1,260 @@
+### Imports
+
+include ~/.config/sway/colors
+
+### Fonts
+
+set $font JetBrainsMono Nerd Font 14
+font pango:$font
+
+### Autostart
+
+# if ever switch to uwsm try commenting and checking if variables are imported by it or not
+exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_SESSION_TYPE XDG_CURRENT_DESKTOP XDG_SESSION_DESKTOP
+
+exec mako
+exec wlsunset -t 4000 -T 4000
+exec swaybg
+exec ~/.local/bin/set-theme-wallpaper
+exec waybar
+exec ~/.local/bin/notify-sound
+exec wl-paste --type text --watch cliphist store
+exec wl-paste --type image --watch cliphist store
+exec ~/.local/bin/battery-warning
+
+# Swayidle & Swaylock
+exec swayidle -w \
+    timeout 300 'pidof hyprlock || hyprlock' \
+    timeout 305 'swaymsg "output * dpms off"' \
+    resume 'swaymsg "output * dpms on"' \
+    before-sleep 'pidof hyprlock || hyprlock'
+
+### Variables
+set $mod Mod4
+
+set $term foot
+set $browser firefox
+set $fm thunar
+# set $menu "rofi -show drun -theme-str 'window {width: 30%;}'"
+set $menu wmenu-run \
+    -f "$font" \
+    -N "$background" \
+    -n "$foreground" \
+    -M "$background_dim" \
+    -m "$foreground" \
+    -S "$accent" \
+    -s "$background"
+
+set $scripts ~/.local/bin
+set $screenshots ~/Pictures/Screenshots
+
+### Applications
+
+bindsym $mod+Space exec $term
+bindsym $mod+q kill
+bindsym $mod+m exec $term rmpc
+bindsym $mod+b exec $browser
+bindsym $mod+t exec $term -e ~/.local/bin/tmux-sessionizer
+bindsym $mod+e exec $fm
+bindsym $mod+r exec $menu
+bindsym $mod+p exec ~/.local/bin/powermenu
+
+bindsym $mod+g exec $term --app-id quickedit -e ~/.local/bin/quickedit
+bindsym $mod+i exec $term --app-id cheatsheet -e ~/.local/bin/chsht
+bindsym $mod+w exec $term --app-id nmtui-go -e ~/.local/bin/nmtui-go
+# bindsym $mod+z exec swaymsg bar mode toggle
+bindsym $mod+z exec sh -c 'pgrep waybar && pkill waybar || waybar'
+
+bindsym $mod+Shift+w exec ~/.local/bin/wallpaper-menu
+bindsym $mod+Alt+space exec ~/.local/bin/theme-switcher
+
+bindsym $mod+y exec $term -e yazi
+
+### Modes
+
+bindsym $mod+Shift+r mode "resize"
+mode "resize" {
+    bindsym h resize shrink width 10 px or 10 ppt
+    bindsym j resize grow height 10 px or 10 ppt
+    bindsym k resize shrink height 10 px or 10 ppt
+    bindsym l resize grow width 10 px or 10 ppt
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+### Clipboard
+
+bindsym $mod+c exec sh -c 'cliphist list | rofi -dmenu -p Clipboard | cliphist decode | wl-copy'
+
+### Browser apps
+
+bindsym $mod+Shift+p exec brave --app=https://open.spotify.com
+bindsym $mod+Shift+y exec brave --app=https://youtube.com
+bindsym $mod+Shift+c exec brave --app=https://web.whatsapp.com
+
+### Fullscreen / Floating
+
+bindsym $mod+f fullscreen toggle
+bindsym $mod+v floating toggle
+
+### Split layout
+
+bindsym $mod+o layout toggle split
+
+### Focus
+
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+### Move windows
+
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+### Workspaces
+
+set $ws1 1
+set $ws2 2
+set $ws3 3
+set $ws4 4
+set $ws5 5
+set $ws6 6
+set $ws7 7
+set $ws8 8
+set $ws9 9
+set $ws10 10
+
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+bindsym $mod+0 workspace $ws10
+
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9
+bindsym $mod+Shift+0 move container to workspace $ws10
+
+### Scratchpad (replacement for Hypr special workspace)
+
+bindsym $mod+s scratchpad show
+bindsym $mod+Shift+s move scratchpad
+
+### Previous workspace
+
+workspace_auto_back_and_forth yes
+bindsym $mod+Tab workspace back_and_forth
+
+### Screenshots
+
+# bindsym Print exec grimshot save active $HOME/Pictures/Screenshots
+# bindsym Shift+Print exec grimshot save area $HOME/Pictures/Screenshots
+
+bindsym --release Print exec ~/.local/bin/screenshot active
+bindsym --release Shift+Print exec ~/.local/bin/screenshot area
+bindsym --release $mod+Print exec ~/.local/bin/screenshot screen
+bindsym --release $mod+Shift+Print exec ~/.local/bin/screenshot window
+
+### Brightness
+
+bindsym XF86MonBrightnessUp exec brightnessctl -e4 -n2 set 5%+
+bindsym XF86MonBrightnessDown exec brightnessctl -e4 -n2 set 5%-
+
+bindsym $mod+Alt+k exec brightnessctl -e4 -n2 set 5%+
+bindsym $mod+Alt+j exec brightnessctl -e4 -n2 set 5%-
+
+### Audio
+
+bindsym XF86AudioRaiseVolume exec wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+
+bindsym XF86AudioLowerVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
+bindsym XF86AudioMute exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+bindsym XF86AudioMicMute exec wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
+
+### Media
+
+bindsym XF86AudioNext exec mpc next
+bindsym XF86AudioPrev exec mpc previous
+bindsym XF86AudioPause exec mpc toggle
+bindsym XF86AudioPlay exec mpc toggle
+
+bindsym $mod+bracketleft exec playerctl position 10-
+bindsym $mod+bracketright exec playerctl position 10+
+
+### Mouse
+
+floating_modifier $mod
+
+### Styles
+
+default_orientation horizontal
+default_border none
+default_floating_border none
+hide_edge_borders both
+client.focused          $accent         $accent         $foreground     $accent         $accent
+client.focused_inactive $background_alt $background_alt $foreground     $gray5          $background_alt
+client.unfocused        $background     $background     $foreground_dim $background     $background
+client.urgent           $error          $error          $foreground     $error          $error
+
+### Swaybar
+
+# bar {
+
+    # position top
+    # When the status_command prints a new line to stdout, swaybar updates.
+    # The default just shows the current date and time.
+    # status_command while date +'%Y-%m-%d %X'; do sleep 1; done
+    # colors {
+    #     background $background
+    #     statusline $foreground
+    #     separator $border
+    #
+    #     focused_workspace  $accent $accent $background
+    #     active_workspace   $background_alt $background_alt $foreground
+    #     inactive_workspace $background $background $foreground_dim
+    #     urgent_workspace   $error $error $background
+    # }
+# }
+
+# Window Rules
+
+# Browser on workspace 2
+assign [app_id="firefox"] workspace 2
+
+# Krita
+assign [class="krita"] workspace 3
+
+# Blender
+assign [app_id="blender"] workspace 3
+
+# Dota
+assign [class="dota2"] workspace 5
+
+# Floating utility windows
+
+for_window [app_id="quickedit"] floating enable, resize set 1400 900
+for_window [app_id="cheatsheet"] floating enable, resize set 1400 900
+for_window [app_id="nmtui-go"] floating enable, resize set 1000 800
+for_window [app_id="file_chooser"] floating enable, resize set 1200 800
+
+# Firefox dialogs
+# for_window [app_id="firefox" title=".*Save.*"] floating enable
+# for_window [app_id="firefox" title=".*wants to.*"] floating enable
+
+# Sign
+for_window [class="Sign"] floating enable

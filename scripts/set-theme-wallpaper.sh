@@ -18,18 +18,23 @@ if [[ ! -d "$wallpaper_dir" ]]; then
 fi
 
 # pick wallpaper safely
-new_wall=$(find "$wallpaper_dir" -type f \( -name "*.jpg" -o -name "*.png" -o -name "*.jpeg" -o -name "*.webp" \) | shuf -n1)
+new_wall=$(
+  find "$wallpaper_dir" -type f \
+    \( -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" -o -iname "*.webp" \) |
+    shuf -n1
+)
 
 if [[ -z "$new_wall" ]]; then
   notify-send "No wallpapers found in:" "$wallpaper_dir"
   exit 1
 fi
 
-# monitor=$(hyprctl monitors -j | jq -r '.[0].name')
+# Set wallpaper (swaybg)
+pkill -x swaybg 2>/dev/null
+swaybg -i "$new_wall" -m fill &
 
-# set wallpaper
-# hyprctl hyprpaper wallpaper "$monitor,$new_wall"
-awww img "$new_wall"
+# Uncomment if you switch back to awww/swww
+# awww img "$new_wall"
 
 # notification
-notify-send "wallpaper changed" "$(basename "$new_wall")" -i "$new_wall"
+notify-send "Wallpaper changed" "$(basename "$new_wall")" -i "$new_wall"

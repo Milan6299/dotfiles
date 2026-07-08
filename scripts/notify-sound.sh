@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-# Path to sound file
 SOUND="$HOME/.config/sounds/notify.wav"
 
 # Check if mako DND mode is active

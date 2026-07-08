@@ -17,14 +17,24 @@ choice=$(echo "  Shutdown
 
 # Execute chosen action
 case "$choice" in
-    "  Shutdown") systemctl poweroff ;;
-    "  Reboot") systemctl reboot ;;
-    "  Lock") hyprlock ;;
-    "  Logout") hyprctl dispatch 'hl.dsp.exit()' ;;
+    "  Shutdown")
+        systemctl poweroff
+        ;;
+    "  Reboot")
+        systemctl reboot
+        ;;
+    "  Lock")
+        swaylock
+        ;;
+    "  Logout")
+        swaymsg exit
+        ;;
     "󰤄  Suspend")
-        hyprlock &
+        swaylock &
         sleep 0.5
         systemctl suspend
         ;;
-    *) exit 0 ;;
+    *)
+        exit 0
+        ;;
 esac

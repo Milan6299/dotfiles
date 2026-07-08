@@ -1,6 +1,0 @@
-#!/usr/bin/env bash
-
-if tmux ls 2>&1 | grep -q "^no server"; then
-  read -rp "Launch tmux? (y/n) " resp
-  [[ "$resp" =~ ^[Yy]$ ]] && ~/.local/bin/tmux-sessionizer
-fi

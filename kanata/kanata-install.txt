@@ -28,7 +28,7 @@ sudo modprobe uinput
 
 #below are the list of commands that make kanata a system service and auto run on login
 
-mkdir /etc/kanata
+mkdir -p /etc/kanata
 
 cp my-config-for-kanata.kbd /etc/kanata/kanata.kbd
 

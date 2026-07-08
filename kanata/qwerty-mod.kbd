@@ -58,7 +58,7 @@
 
 (deflayer symnum
   esc   f1   S--  S-=  f4   f5   f6   f7   f8   f9   f10  f11  f12  prtsc nlck f24
-  S-grv S-1  S-2  S-3  S-4  S-5  _    _    _    _    _    _    _    _     ins  home pgup
+  S-grv S-1  S-2  S-3  S-4  S-5  _    _    _    S--  -    S-=  =    _     ins  home pgup
   @escc 1    2    3    4    5    _    _    6    7    8    9    0    S-\   del  end  pgdn
   tab   z    x    S-6  S-7  S-8  _    f2   '    S-'  S-/  _    ret
   _     _    lsft lmet ret  _    _    bspc S-,  S-.  f3   _                    up
