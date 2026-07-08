@@ -52,10 +52,10 @@ precmd() {
 
 zstyle ':vcs_info:*' enable git
 zstyle ':vcs_info:*' check-for-changes false
-zstyle ':vcs_info:git:*' formats ' %b*'
+zstyle ':vcs_info:git:*' formats ' %b'
 zstyle ':vcs_info:git:*' actionformats ' %b*'
 
-PROMPT='%F{cyan}%c%f %F{white}${vcs_info_msg_0_}%f%F{red}❯%f '
+PROMPT='%F{blue}%c%f%F{white}${vcs_info_msg_0_}%f %F{red}❯%f '
 RPROMPT=''
 
 # FZF

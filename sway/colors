@@ -33,7 +33,7 @@ set $green #86a678
 set $yellow #eabf82
 set $blue #7a91a8
 set $magenta #b98e8e
-set $cyan #bacfcf
+set $cyan #d0d09a
 set $white #c8c8c8
 
 set $bright_black #5f606a

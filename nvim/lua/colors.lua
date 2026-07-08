@@ -33,7 +33,7 @@ return {
     yellow            = "#eabf82",
     blue              = "#7a91a8",
     magenta           = "#b98e8e",
-    cyan              = "#bacfcf",
+    cyan              = "#d0d09a",
     white             = "#c8c8c8",
 
     bright_black      = "#5f606a",
