@@ -54,10 +54,11 @@ list_workspaces() {
 #####################################
 hard_coded_list() {
   local entries=(
-    "1 work"
-    "2 study"
-    "3 music"
-    "4 phone"
+    "1 basic"
+    "2 work"
+    "3 study"
+    "4 music"
+    "5 phone"
   )
 
   printf '%s\n' "${entries[@]}"

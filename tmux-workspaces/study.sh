@@ -1,7 +1,7 @@
 # ~/.config/tmux-workspaces/study.sh
 
 SESSION="study"
-ROOT="$HOME/Personal/Study/SQL"
+ROOT="$HOME/personal/Study/SQL"
 
 start() {
   tmux new-session -d -s "$SESSION" -c "$ROOT" -n "editor"
@@ -11,13 +11,13 @@ start() {
   tmux new-window -t "$SESSION" -n "postgres" -c "$ROOT"
 
   tmux send-keys -t "$SESSION:postgres" \
-    "psql -U modisarkar MyDatabase" C-m
+    "psql -U modisarkar -d MyDatabase" C-m
 
   tmux new-window -t "$SESSION" -n "materials" -c "$ROOT"
 
   tmux new-window -t "$SESSION" -n "note" -c "$ROOT"
 
-  tmux send-keys -t "$SESSION:note" "systemctl --user start opentabletdriver.service && krita" C-m
+  tmux send-keys -t "$SESSION:note" "systemctl --user start opentabletdriver.service && rnote" C-m
 
   tmux select-window -t "$SESSION:editor"
 

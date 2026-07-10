@@ -24,7 +24,7 @@ case "$choice" in
         systemctl reboot
         ;;
     "  Lock")
-        swaylock
+        hyprlock
         ;;
     "  Logout")
         swaymsg exit

@@ -306,99 +306,6 @@ return {
 EOF
 }
 
-generate_btop_colors() {
-
-  cat <<EOF
-# Auto-generated from $(basename "$theme_file")
-# Main background
-theme[main_bg]="#$background"
-
-# Main text color
-theme[main_fg]="#$foreground"
-
-# Title color for boxes
-theme[title]="#$accent"
-
-# Highlight color for keyboard shortcuts
-theme[hi_fg]="#$orange"
-
-# Background color of selected items
-theme[selected_bg]="#$selection"
-
-# Foreground color of selected items
-theme[selected_fg]="#$foreground"
-
-# Color of inactive/disabled text
-theme[inactive_fg]="#$foreground_dim"
-
-# Color of text appearing on top of graphs
-theme[graph_text]="#$foreground"
-
-# Misc colors for processes box
-theme[proc_misc]="#$foreground"
-
-# Cpu box outline color
-theme[cpu_box]="#$accent"
-
-# Memory/disks box outline color
-theme[mem_box]="#$accent"
-
-# Net up/down box outline color
-theme[net_box]="#$accent"
-
-# Processes box outline color
-theme[proc_box]="#$accent"
-
-# Box divider line and small boxes line color
-theme[div_line]="#$accent"
-
-# Temperature graph colors
-theme[temp_start]="#$green"
-theme[temp_mid]="#$yellow"
-theme[temp_end]="#$orange"
-
-# CPU graph colors
-theme[cpu_start]="#$cyan"
-theme[cpu_mid]="#$blue"
-theme[cpu_end]="#$accent"
-
-# Mem/Disk free meter
-theme[free_start]="#$cyan"
-theme[free_mid]="#$blue"
-theme[free_end]="#$accent"
-
-# Mem/Disk cached meter
-theme[cached_start]="#$cyan"
-theme[cached_mid]="#$blue"
-theme[cached_end]="#$accent"
-
-# Mem/Disk available meter
-theme[available_start]="#$cyan"
-theme[available_mid]="#$blue"
-theme[available_end]="#$accent"
-
-# Mem/Disk used meter
-theme[used_start]="#$cyan"
-theme[used_mid]="#$blue"
-theme[used_end]="#$accent"
-
-# Download graph colors
-theme[download_start]="#$bright_blue"
-theme[download_mid]="#$blue"
-theme[download_end]="#$bright_cyan"
-
-# Upload graph colors
-theme[upload_start]="#$bright_cyan"
-theme[upload_mid]="#$green"
-theme[upload_end]="#$bright_green"
-
-# Process box color gradient for threads, mem and cpu usage
-theme[process_start]="#$bright_green"
-theme[process_mid]="#$bright_yellow"
-theme[process_end]="#$bright_red"
-EOF
-}
-
 generate_yazi_theme() {
 
   cat <<EOF
@@ -714,21 +621,6 @@ EOF
 
 }
 
-## Fuzzel
-
-generate_fuzzel_colors() {
-  cat <<EOF
-[colors]
-background=${background}ff
-text=${foreground}ff
-match=${warning}ff
-selection=${accent}ff
-selection-text=${background}ff
-selection-match=${warning}ff
-border=${border}ff
-EOF
-}
-
 # Waybar
 generate_waybar_colors() {
   cat <<EOF
@@ -781,7 +673,7 @@ EOF
 
 # Apply theme
 apply_theme() {
-  local theme_file="$1" # ADDED: Accept the theme file as parameter
+  local theme_file="$1"
   local theme_name=$(basename "$theme_file" .conf)
 
   echo "Applying theme: $theme_name"
@@ -791,39 +683,30 @@ apply_theme() {
 
   ln -sf "$theme_file" "$CURRENT_THEME"
 
-  # Generate color files (REMOVED parameters since we use global variables)
   generate_sway_colors >~/.config/sway/colors
   generate_lazygit_theme >~/.config/lazygit/config.yml
-  generate_fuzzel_colors >~/.config/fuzzel/colors.ini
   generate_hyprlock_colors >~/.config/hypr/colors.conf
   generate_rofi_colors >~/.config/rofi/colors.rasi
   #generate_kitty_colors > ~/.config/kitty/colors.conf
   generate_foot_colors >~/.config/foot/themes/colors.ini
   generate_waybar_colors >~/.config/waybar/colors.css
   generate_mako_colors >~/.config/mako/colors
-  #generate_swaync_css > ~/.config/swaync/style.css
   generate_nvim_colors >~/.config/nvim/lua/colors.lua
-  generate_btop_colors >~/.config/btop/themes/theme.conf
-  #generate_rmpc_theme > ~/.config/rmpc/themes/generatedtheme.ron
   generate_yazi_theme >~/.config/yazi/theme.toml
-  # generate_wifitui_theme >~/.config/wifitui/theme.toml
 
   # Reload applications
   sleep 0.2
   echo "Reloading..."
 
-  #swaync-client -rs
   makoctl reload
 
   swaymsg reload
 
-  #Custom Wallpaper setter based on theme
   $HOME/.local/bin/set-theme-wallpaper
 
   #Reload Terminal
   pkill -USR2 foot
 
-  #Reload Waybar
   pkill waybar
   waybar &
 

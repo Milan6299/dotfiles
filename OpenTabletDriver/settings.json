@@ -80,10 +80,37 @@
           }
         ],
         "AuxButtons": [
+          {
+            "Path": "OpenTabletDriver.Desktop.Binding.MultiKeyBinding",
+            "Settings": [
+              {
+                "Property": "Keys",
+                "Value": "Control+Z"
+              }
+            ],
+            "Enable": true
+          },
+          {
+            "Path": "OpenTabletDriver.Desktop.Binding.MultiKeyBinding",
+            "Settings": [
+              {
+                "Property": "Keys",
+                "Value": "Alt+LeftShift"
+              }
+            ],
+            "Enable": true
+          },
           null,
-          null,
-          null,
-          null
+          {
+            "Path": "OpenTabletDriver.Desktop.Binding.MultiKeyBinding",
+            "Settings": [
+              {
+                "Property": "Keys",
+                "Value": "Shift+Alt+Z"
+              }
+            ],
+            "Enable": true
+          }
         ],
         "MouseButtons": [],
         "MouseScrollUp": null,

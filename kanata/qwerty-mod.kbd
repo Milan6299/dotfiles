@@ -28,7 +28,7 @@
   grv   q    w    e     r    t   y    _      y         u    i    o    p     bspc  ins  home pgup
   @escc @a   @s   @d    @f   g   _    _      h         @j   @k   @l   @;    \     del  end  pgdn
   tab   @zun @cut @cp   @pst b   _    f2     n         m    /    _    ret
-  _    +  @symnum lmet ret  _    _    bspc   @symnum  @brpa f3   _                    up
+  _     _  @symnum lmet ret  _    _    bspc   @symnum  @brpa f3   _                    up
   lctl  lmet lalt            spc                      ralt rmeta   menu rctl       lft  down  rght
 )
 (defalias

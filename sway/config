@@ -13,7 +13,6 @@ font pango:$font
 exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_SESSION_TYPE XDG_CURRENT_DESKTOP XDG_SESSION_DESKTOP
 
 exec mako
-exec wlsunset -t 4000 -T 4000
 exec swaybg
 exec ~/.local/bin/set-theme-wallpaper
 exec waybar
@@ -21,13 +20,12 @@ exec ~/.local/bin/notify-sound
 exec wl-paste --type text --watch cliphist store
 exec wl-paste --type image --watch cliphist store
 exec ~/.local/bin/battery-warning
-
+exec wlsunset -t 4000 -T 4001
 # Swayidle & Swaylock
-exec swayidle -w \
+exec swayidle \
     timeout 300 'pidof hyprlock || hyprlock' \
-    timeout 305 'swaymsg "output * dpms off"' \
-    resume 'swaymsg "output * dpms on"' \
-    before-sleep 'pidof hyprlock || hyprlock'
+    timeout 310 'swaymsg output eDP-1 power off' \
+    resume 'swaymsg output eDP-1 power on'
 
 ### Variables
 set $mod Mod4
@@ -238,12 +236,10 @@ assign [app_id="firefox"] workspace 2
 
 # Krita
 assign [class="krita"] workspace 3
-
+# Rnote
+assign [app_id="^com.github.flxzt.rnote"] workspace 3
 # Blender
 assign [app_id="blender"] workspace 3
-
-# Dota
-assign [class="dota2"] workspace 5
 
 # Floating utility windows
 
@@ -255,6 +251,3 @@ for_window [app_id="file_chooser"] floating enable, resize set 1200 800
 # Firefox dialogs
 # for_window [app_id="firefox" title=".*Save.*"] floating enable
 # for_window [app_id="firefox" title=".*wants to.*"] floating enable
-
-# Sign
-for_window [class="Sign"] floating enable

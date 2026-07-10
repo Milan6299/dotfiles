@@ -18,11 +18,15 @@ cat <<'EOF'
 =========================================================
 EOF
 
-if [ "$#" -eq 1 ]; then
-  mpv --no-video --demuxer-max-bytes=100M --input-ipc-server=/tmp/mpv-socket "$1"
-else
-  mpv --no-video --demuxer-max-bytes="${2}M" --input-ipc-server=/tmp/mpv-socket "$1"
+if echo "$1" | grep -q 'playlist'; then
+  playlist="inf"
 fi
+
+# if [ "$#" -eq 1 ]; then
+mpv --no-video --no-resume-playback --loop-playlist="${playlist:-no}" --demuxer-max-bytes=50M --input-ipc-server=/tmp/mpv-socket "$1"
+# else
+#   mpv --no-video --no-resume-playback --loop-playlist="${playlist:-no}"  --demuxer-max-bytes=50M --input-ipc-server=/tmp/mpv-socket "$1"
+# fi
 
 code=$?
 
