@@ -4,9 +4,9 @@
 * {
     border: none;
     border-radius: 0;
-    font-family: "JetBrains Mono Nerd Font";
-    font-weight: bold;
-    font-size: 16px;
+    font-family: "Iosevka Nerd Font";
+    font-weight: 600;
+    font-size: 24px;
     min-height: 0;
 }
 
@@ -63,12 +63,29 @@ window#waybar {
     /* border: 1px solid @gray4; */
 }
 
+#clock {
+  color: @foreground;
+}
+
+#custom-sprtr {
+  color: @foreground;
+}
+
 #pulseaudio {
-    color: @info;
+    color: @success;
+}
+#pulseaudio.muted {
+  color: @error;
+}
+#temperature {
+  color: @accent;
+}
+#temperature.critical{
+  color: @error;
 }
 
 #battery {
-    color: @magenta;
+    color: @info;
 }
 
 #battery.charging,
@@ -86,7 +103,7 @@ window#waybar {
 }
 
 #network {
-    color: @success;
+    color: @foreground;
 }
 
 #custom-virtualkb {

@@ -22,4 +22,4 @@ declare -A msg=(
 
 grimshot save "$mode" "$file"
 wl-copy --type image/png <"$file"
-notify-send -i "$file" "Screenshot Captured!" "${msg[$mode]} saved in $dir and copied to clipboard."
+notify-send "Screenshot Captured!" "${msg[$mode]} saved in $dir and copied to clipboard."

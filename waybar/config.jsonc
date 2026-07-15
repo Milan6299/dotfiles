@@ -1,5 +1,5 @@
 {
-  // "margin-top": 5,
+  "position": "bottom",
   "margin-top": 0,
   "margin-left": 0,
   "margin-right": 0,
@@ -8,94 +8,94 @@
   ],
   "modules-center": [],
   "modules-right": [
-    "custom/virtualkb",
+    // "custom/virtualkb",
+    "temperature",
+    "custom/sprtr",
     "pulseaudio",
+    "custom/sprtr",
     "network",
-    "tray",
+    "custom/sprtr",
     "battery",
-    // "temperature",
+    "custom/sprtr",
     "clock",
   ],
-  // "hyprland/window": {
-  //   "format": "{}",
-  //   "max-length": 45,
-  //   "rewrite": {
-  //     "": ""
-  //   },
-  //   "separate-outputs": true,
-  // },
-"sway/workspaces": {
-  "format": "{icon}",
-  "on-click": "activate",
-  "format-icons": {
-    "urgent": " "
+  "custom/sprtr": {
+    "format": " | "
   },
-  "sort-by-number": true
-},
-"clock": {
-    "tooltip": false,
-    "format-alt": "{:%Y-%m-%d}",
-},
-  // "cpu": {
-  //   "format": "  {usage}%",
-  //   "tooltip": false
-  // },
-  // "memory": {
-  //   "format": "{}%  "
-  // },
-  // "temperature": {
-  //   "critical-threshold": 80,
-  //   "format": "{icon} {temperatureC}°C",
-  //   "format-icons": ["❅", "◌", "☼"]
-  // },
+  "sway/workspaces": {
+    "format": "{icon}",
+    "on-click": "activate",
+    "format-icons": {
+      "urgent": " "
+    },
+    "sort-by-number": true
+  },
+  "clock": {
+      "tooltip": false,
+      "format": "{:%H:%M} ",
+      // "format-alt": "{:%Y-%m-%d}",
+  },
+  "temperature": {
+    // "thermal-zone": 5,
+    "hwmon-path-abs": "/sys/devices/platform/coretemp.0/hwmon",
+    "input-filename": "temp1_input",
+    // "hwmon-path": ["/sys/class/hwmon/hwmon5/temp1_input","/sys/class/thermal/thermal_zone5/temp"],
+    "critical-threshold": 80,
+    // "format-critical": "{temperatureC}°C ",
+    "interval": 5,
+    "format": "TEMP {temperatureC}°C",
+    "format-critical": "HOT {temperatureC}°C",
+    "on-click": "pidof btop || foot -e btop"
+  },
   "battery": {
     "states": {
       "warning": 30,
       "critical": 15
     },
-    "format": "{icon}  {capacity}%",
-    "format-full": "{icon}  {capacity}%",
-    "format-charging": " {capacity}%",
-    "format-plugged": "  {capacity}%",
-    "format-alt": "{time} {icon}",
-    "format-icons": [
-      "",
-      "",
-      "",
-      "",
-      ""
-    ],
+    // "format": "{icon}  BAT {capacity}%",
+    "format": "BAT {capacity}%",
+    "format-full": "BAT {capacity}%",
+    "format-charging": "BAT {capacity}%", //
+    "format-plugged": "BAT {capacity}%",//
+    // "format-alt": "{time} {icon}",
+    // "format-icons": [
+    //   "",
+    //   "",
+    //   "",
+    //   "",
+    //   ""
+    // ],
     "interval": 10,
   },
   "network": {
-    "format": "{ifname}",
-    "format-wifi": "  {signalStrength}% ",
-    "format-ethernet": "   {bandwidthDownBytes}  {bandwidthUpBytes} ",
-    "format-disconnected": "Not connected",
-    "tooltip-format": "  {ifname} via {gwaddr}",
-    "tooltip-format-wifi": "   {essid}  {bandwidthDownBytes}  {bandwidthUpBytes} ",
-    "tooltip-format-ethernet": "  {ifname} ({ipaddr}/{cidr})",
+    "format": "{ifname} via {gwaddr}",
+    "format-wifi": "{ipaddr} {essid} {signalStrength}%",//
+    "format-ethernet": "{ifname} ↓ {bandwidthDownBytes} ↑ {bandwidthUpBytes}",//
+    "format-disconnected": "Disconnected",
+    "tooltip-format": "{ifname} via {gwaddr}",//
+    "tooltip-format-wifi": "{ifname} ↓ {bandwidthDownBytes} ↑ {bandwidthUpBytes}",//
+    "tooltip-format-ethernet": "{ifname} ({ipaddr}/{cidr})",//
     "tooltip-format-disconnected": "Disconnected",
     "max-length": 50,
-    "interval": 1,
-    "on-click": "foot -e --app-id nmtui-go ~/.local/bin/nmtui-go"
+    "interval": 2,
+    "on-click": "pidof nmtui-go || foot -e --app-id nmtui-go ~/.local/bin/nmtui-go"
   },
-"custom/virtualkb": {
+  "custom/virtualkb": {
     "format": "󰌌 ",
     "tooltip": true,
     "tooltip-format": "Virtual Keyboard",
     "on-click": "python3 ~/vboard.py",
     "on-click-right": "pkill vboard.py"
-},
+  },
   "pulseaudio": {
-    "format": "{icon}  {volume}%",
-    "format-bluetooth": "{volume}% {icon} {format_source}",
-    "format-bluetooth-muted": " {icon} {format_source}",
-    "format-muted": "",
+    "format": "VOL {volume}%",//{icon}
+    "format-bluetooth": "VOL {volume}% {icon} {format_source}",
+    "format-bluetooth-muted": "MUTE {icon} {format_source}",
+    "format-muted": "AUDIO MUTED",
     "format-icons": {
       "headphone": "",
       "hands-free": "",
-      "headset": "",
+      "headset": "",
       "phone": "",
       "portable": "",
       "car": "",

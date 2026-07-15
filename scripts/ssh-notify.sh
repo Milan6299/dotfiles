@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-ssh "$@"
+/usr/bin/ssh "$@"
 code=$?
 
 if ((code != 0)); then
@@ -8,3 +8,5 @@ if ((code != 0)); then
 else
   notify-send "SSH connection terminated"
 fi
+
+exit $code

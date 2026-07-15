@@ -58,7 +58,7 @@ return {
       providers = {
         snippets = {
           opts = {
-            friendly_snippets = false,
+            -- friendly_snippets = false,
           },
         },
         --   path = { score_offset = 2 }, -- Paths will have high priority

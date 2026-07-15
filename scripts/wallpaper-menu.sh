@@ -96,26 +96,18 @@ SELECTED=$(echo -e "$ROFI_MENU" | rofi -dmenu -p "🎨 Select Wallpaper" -show-i
     }')
 
 if [[ -n "$SELECTED" ]]; then
-  # Extract filename (remove emoji and spaces)
-  SELECTED_NAME=$(echo "$SELECTED" | sed 's/^[^ ]* //')
-
   # Find the full path
-  SELECTED_PATH=$(find "$WALLPAPER_DIR" -name "$SELECTED_NAME" | head -1)
+  SELECTED_PATH=$(find "$WALLPAPER_DIR" -name "$SELECTED" | head -1)
 
   if [[ -n "$SELECTED_PATH" ]]; then
     echo "Setting wallpaper: $SELECTED_PATH"
 
-    # Set wallpaper with hyprpaper
-    pkill hyprpaper
-    sleep 0.2
-    hyprpaper &
-    sleep 0.3
-    hyprctl hyprpaper preload "$SELECTED_PATH"
-    hyprctl hyprpaper wallpaper ",$SELECTED_PATH"
+    pkill -x swaybg
+    swaybg -i "$SELECTED_PATH" -m fill &
 
     # Update cache
     echo "$SELECTED_PATH" >"$CURRENT_WALLPAPER_FILE"
 
-    notify-send "Wallpaper Changed" "$SELECTED_NAME" -i "$SELECTED_PATH"
+    notify-send "Wallpaper Changed" "$SELECTED"
   fi
 fi

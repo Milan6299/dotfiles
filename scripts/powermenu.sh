@@ -30,7 +30,7 @@ case "$choice" in
         swaymsg exit
         ;;
     "󰤄  Suspend")
-        swaylock &
+        hyprlock &
         sleep 0.5
         systemctl suspend
         ;;

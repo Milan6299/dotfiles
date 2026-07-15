@@ -17,10 +17,12 @@ start() {
 
   tmux new-window -t "$SESSION" -n "note" -c "$ROOT"
 
-  tmux send-keys -t "$SESSION:note" "systemctl --user start opentabletdriver.service && rnote" C-m
+  tmux send-keys -t "$SESSION:note" "systemctl --user start opentabletdriver.service && rnote; systemctl --user stop opentabletdriver.service" C-m
 
   tmux select-window -t "$SESSION:editor"
 
-  firefox "https://www.youtube.com/watch?v=SSKVgrwhzus&t=5012s&pp=0gcJCT8LAY5ybzv" &
-  disown
+  swaymsg "workspace 2; exec mpv '$ROOT/sql-full-course.mp4'"
+  # swaymsg mpv "$SESSION/sql-full-course.mp4", workspace 4
+
+  # firefox "https://www.youtube.com/watch?v=SSKVgrwhzus" & disown
 }

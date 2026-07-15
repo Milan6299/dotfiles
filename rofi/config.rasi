@@ -1,7 +1,7 @@
 /* ROFI STYLING */
 
 configuration {
-    font:				"JetBrainsMono Nerd Font Regular 14";
+    font:				"Iosevka Nerd Font Regular 16";
     show-icons:				true;
     icon-theme:				"";
     display-drun:			"";

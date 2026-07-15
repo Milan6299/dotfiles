@@ -37,4 +37,4 @@ swaybg -i "$new_wall" -m fill &
 # awww img "$new_wall"
 
 # notification
-notify-send "Wallpaper changed" "$(basename "$new_wall")" -i "$new_wall"
+notify-send "Wallpaper changed" "$(basename "$new_wall")"

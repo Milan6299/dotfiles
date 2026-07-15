@@ -4,7 +4,7 @@ include ~/.config/sway/colors
 
 ### Fonts
 
-set $font JetBrainsMono Nerd Font 14
+set $font Iosevka Nerd Font Mono Regular 20
 font pango:$font
 
 ### Autostart
@@ -35,6 +35,7 @@ set $browser firefox
 set $fm thunar
 # set $menu "rofi -show drun -theme-str 'window {width: 30%;}'"
 set $menu wmenu-run \
+    -bi\
     -f "$font" \
     -N "$background" \
     -n "$foreground" \
@@ -45,6 +46,15 @@ set $menu wmenu-run \
 
 set $scripts ~/.local/bin
 set $screenshots ~/Pictures/Screenshots
+
+### Inputs
+input type:touchpad {
+    tap enabled
+    natural_scroll enabled
+    # dwt enabled            # Disable while typing
+    middle_emulation enabled
+    click_method clickfinger
+}
 
 ### Applications
 
@@ -60,6 +70,7 @@ bindsym $mod+p exec ~/.local/bin/powermenu
 bindsym $mod+g exec $term --app-id quickedit -e ~/.local/bin/quickedit
 bindsym $mod+i exec $term --app-id cheatsheet -e ~/.local/bin/chsht
 bindsym $mod+w exec $term --app-id nmtui-go -e ~/.local/bin/nmtui-go
+bindsym $mod+d exec $term --app-id viewdocs -e ~/.local/bin/viewdocs
 # bindsym $mod+z exec swaymsg bar mode toggle
 bindsym $mod+z exec sh -c 'pgrep waybar && pkill waybar || waybar'
 
@@ -204,10 +215,11 @@ default_orientation horizontal
 default_border none
 default_floating_border none
 hide_edge_borders both
-client.focused          $accent         $accent         $foreground     $accent         $accent
-client.focused_inactive $background_alt $background_alt $foreground     $gray5          $background_alt
-client.unfocused        $background     $background     $foreground_dim $background     $background
-client.urgent           $error          $error          $foreground     $error          $error
+
+client.focused          $accent         $accent         $background     $accent         $accent
+client.focused_inactive $background_alt $background_alt $background     $gray5          $background_alt
+client.unfocused        $background     $background     $accent $background     $background
+client.urgent           $error          $error          $background     $error          $error
 
 ### Swaybar
 
@@ -246,7 +258,8 @@ assign [app_id="blender"] workspace 3
 for_window [app_id="quickedit"] floating enable, resize set 1400 900
 for_window [app_id="cheatsheet"] floating enable, resize set 1400 900
 for_window [app_id="nmtui-go"] floating enable, resize set 1000 800
-for_window [app_id="file_chooser"] floating enable, resize set 1200 800
+for_window [app_id="viewdocs"] floating enable, resize set 1200 800
+# for_window [app_id="file_chooser"] floating enable, resize set 1200 800
 
 # Firefox dialogs
 # for_window [app_id="firefox" title=".*Save.*"] floating enable

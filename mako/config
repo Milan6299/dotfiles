@@ -7,8 +7,8 @@ layer=top
 anchor=top-right
 
 # Styling
-font=JetBrainsMonoNLNerdFont 16
-width=400
+font=Iosevka Nerd Font Mono Regular 18
+width=500
 height=1000
 margin=10
 padding=15,15
@@ -24,4 +24,3 @@ include=~/.config/mako/colors
 
 [mode=dnd]
 invisible=1
-
