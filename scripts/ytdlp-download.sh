@@ -24,7 +24,7 @@ fi
 
 location="${2:-$PWD}"
 
-notify-send "Video Download Started!" "Downloading in background! URL - $1"
+notify-send "Video Download Started!" "Downloading in background! URL - $1 at $location"
 
 /usr/bin/yt-dlp -P "$location" "$1" -f "bestvideo[height<=1080][ext=mp4]+(bestaudio[ext=m4a]/bestaudio)/best[height<=1080][ext=mp4]/best" --merge-output-format mp4
 

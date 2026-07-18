@@ -101,7 +101,13 @@ prompt() {
 #####################################
 
 parse_name() {
-  echo "$1" | sed -E 's/^[0-9]+ //; s/^  //'
+  local line="$1"
+
+  if [[ "$line" =~ ^[0-9]+[[:space:]]+ ]]; then
+    printf '%s\n' "${line#* }"
+  else
+    printf '%s\n' "${line#"  "}"
+  fi
 }
 
 #####################################
