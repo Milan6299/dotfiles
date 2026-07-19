@@ -30,7 +30,7 @@ exec swayidle \
 ### Variables
 set $mod Mod4
 
-set $term foot
+set $term footclient
 set $browser firefox
 set $fm thunar
 # set $menu "rofi -show drun -theme-str 'window {width: 30%;}'"
