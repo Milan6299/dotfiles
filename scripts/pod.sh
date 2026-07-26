@@ -31,7 +31,7 @@ mpv --no-video --no-resume-playback --loop-playlist="${playlist:-no}" --demuxer-
 code=$?
 
 if [ "$code" -eq 0 ]; then
-  notify-send "Audio Terminated Successfully"
+  notify-send "Audio Terminated Successfully!"
 else
   notify-send -u critical "Abnormal Termination" "Audio terminated with exit code - $code"
 fi

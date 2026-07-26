@@ -4,7 +4,7 @@ include ~/.config/sway/colors
 
 ### Fonts
 
-set $font Iosevka Nerd Font Mono Regular 20
+set $font Iosevka Nerd Font Mono Regular 19
 font pango:$font
 
 ### Autostart
