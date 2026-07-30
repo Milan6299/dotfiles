@@ -1,4 +1,4 @@
-print("BrowserSync config loaded")
+-- print("BrowserSync config loaded")
 local bs_job = nil
 
 local function toggle_browsersync()

@@ -258,7 +258,7 @@ assign [app_id="blender"] workspace 3
 for_window [app_id="quickedit"] floating enable, resize set 1400 900
 for_window [app_id="cheatsheet"] floating enable, resize set 1400 900
 for_window [app_id="nmtui-go"] floating enable, resize set 1000 800
-for_window [app_id="viewdocs"] floating enable, resize set 1200 800
+for_window [app_id="viewdocs"] floating enable, resize set 1400 900
 # for_window [app_id="file_chooser"] floating enable, resize set 1200 800
 
 # Firefox dialogs

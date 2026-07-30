@@ -5,7 +5,7 @@
 vim.keymap.set(
   "n",
   "<leader>bi",
-  "o```{python}<CR><CR><CR><CR>```<Esc>kk",
+  "o```{python}<CR><CR><CR><CR>```<Esc>kki",
   { silent = true, desc = "Insert Python Block" }
 )
 

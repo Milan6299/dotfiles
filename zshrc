@@ -83,6 +83,7 @@ alias ssh='~/.local/bin/ssh-notify'
 alias updots='~/.local/bin/update-dots'
 alias pod='noglob ~/.local/bin/pod'
 alias dwn='noglob dwn_func'
+alias lg='lazygit'
 
 # FUNCTIONS
 dwn_func() {
