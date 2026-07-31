@@ -1,48 +1,67 @@
 local job_id = nil
 local terminal_buf = nil
+local height = 7
+
+local function open_terminal(opts)
+  opts = opts or {}
+  if not opts.terminal_buf then
+    Snacks.notifier.notify("No buffer found!")
+    return
+  end
+  -- Snacks.notifier.notify("Found buffer id " .. tostring(opts.terminal_buf))
+  vim.cmd.vnew()
+  -- when vnew starts it creates a empty buffer, store that buffer id
+  local empty_buf = vim.api.nvim_get_current_buf()
+  -- attach window to terminals buffer id
+  vim.api.nvim_win_set_buf(0, opts.terminal_buf)
+  -- delete the empty buffer with a paranoid sanity check
+  if empty_buf ~= opts.terminal_buf then
+    vim.api.nvim_buf_delete(empty_buf, {
+      force = true,
+    })
+  end
+  vim.cmd.wincmd("J")
+  vim.api.nvim_win_set_height(0, opts.height or height)
+end
 
 local function create_terminal(opts)
   opts = opts or {}
 
-  local height = opts.height or 5
-  local buf = opts.terminal_buf
-
+  -- creates a v-split window then renders a terminal inside, shift window to bottom, sets window height
   vim.cmd.vnew()
-
-  if buf and vim.api.nvim_buf_is_valid(buf) then
-    -- Reuse an existing terminal buffer.
-    vim.api.nvim_win_set_buf(0, buf)
-  else
-    -- Create a new terminal in this window.
-    vim.cmd.term()
-    buf = vim.api.nvim_get_current_buf()
-  end
-
+  vim.cmd.term()
   vim.cmd.wincmd("J")
-  vim.api.nvim_win_set_height(0, height or 5)
+  vim.api.nvim_win_set_height(0, opts.height or height)
 
-  return buf
+  return vim.api.nvim_get_current_buf()
 end
 
-local function floating_terminal(opts)
+local function custom_terminal(opts)
   opts = opts or {}
 
   if terminal_buf and vim.api.nvim_buf_is_valid(terminal_buf) then
-    Snacks.notifier.notify("Found buffer id " .. tostring(terminal_buf))
-    create_terminal({
+    -- if terminal window is open do not redraw
+    if vim.fn.bufwinid(terminal_buf) ~= -1 then
+      -- Snacks.notifier.notify("Window visible!")
+      return
+    end
+    open_terminal({
       terminal_buf = terminal_buf,
       height = opts.height,
     })
     return
   end
 
-  Snacks.notifier.notify("Creating buffer!")
+  Snacks.notifier.notify("Creating Terminal!")
+  -- creates a new terminal window and returns the buffer id of that window
   terminal_buf = create_terminal({
     height = opts.height,
   })
 
+  -- Store the terminals channel id
   job_id = vim.bo.channel
 
+  -- keymaps only applicable to this terminal buffer
   vim.keymap.set("n", "q", "<cmd>hide<CR>", {
     buffer = terminal_buf,
     silent = true,
@@ -50,15 +69,20 @@ local function floating_terminal(opts)
 end
 
 vim.keymap.set("n", "<leader>tt", function()
-  floating_terminal({ height = 5 })
+  custom_terminal()
 end, { desc = "Open custom Terminal" })
 
+-- terminal mode to normal mode
 vim.keymap.set("t", "<esc><esc>", "<c-\\><c-n>")
 
 vim.keymap.set("n", "<leader>rp", function()
-  local file = vim.fn.expand("%")
+  local file = vim.fn.expand("%:p")
 
-  floating_terminal()
+  if not job_id then
+    Snacks.notifier.notify("Create a terminal first!", "warn")
+    return
+  end
+  custom_terminal()
   -- Snacks.notifier.notify(file)
 
   vim.fn.chansend(job_id, "python " .. vim.fn.shellescape(file) .. "\n")
