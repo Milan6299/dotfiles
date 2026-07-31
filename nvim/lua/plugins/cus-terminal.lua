@@ -27,7 +27,6 @@ end
 local function create_terminal(opts)
   opts = opts or {}
 
-  -- creates a v-split window then renders a terminal inside, shift window to bottom, sets window height
   vim.cmd.vnew()
   vim.cmd.term()
   vim.cmd.wincmd("J")
@@ -52,8 +51,7 @@ local function custom_terminal(opts)
     return
   end
 
-  Snacks.notifier.notify("Creating Terminal!")
-  -- creates a new terminal window and returns the buffer id of that window
+  -- Snacks.notifier.notify("Launching Terminal!")
   terminal_buf = create_terminal({
     height = opts.height,
   })
@@ -61,7 +59,6 @@ local function custom_terminal(opts)
   -- Store the terminals channel id
   job_id = vim.bo.channel
 
-  -- keymaps only applicable to this terminal buffer
   vim.keymap.set("n", "q", "<cmd>hide<CR>", {
     buffer = terminal_buf,
     silent = true,
