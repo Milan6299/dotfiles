@@ -4,7 +4,7 @@ include ~/.config/sway/colors
 
 ### Fonts
 
-set $font Iosevka Nerd Font Mono Regular 19
+set $font Iosevka Nerd Font Mono Regular 17
 font pango:$font
 
 ### Autostart
@@ -21,13 +21,16 @@ exec wl-paste --type text --watch cliphist store
 exec wl-paste --type image --watch cliphist store
 exec ~/.local/bin/battery-warning
 exec wlsunset -t 4000 -T 4001
+
 # Swayidle & Swaylock
+
 exec swayidle \
     timeout 300 'pidof hyprlock || hyprlock' \
     timeout 310 'swaymsg output eDP-1 power off' \
     resume 'swaymsg output eDP-1 power on'
 
 ### Variables
+
 set $mod Mod4
 
 set $term foot
@@ -48,6 +51,7 @@ set $scripts ~/.local/bin
 set $screenshots ~/Pictures/Screenshots
 
 ### Inputs
+
 input type:touchpad {
     tap enabled
     natural_scroll enabled
@@ -60,24 +64,23 @@ input type:touchpad {
 
 bindsym $mod+Space exec $term
 bindsym $mod+q kill
-bindsym $mod+m exec $term rmpc
 bindsym $mod+b exec $browser
-bindsym $mod+t exec $term -e ~/.local/bin/tmux-sessionizer
 bindsym $mod+e exec $fm
 bindsym $mod+r exec $menu
 bindsym $mod+p exec ~/.local/bin/powermenu
 
+bindsym $mod+y exec $term -e yazi
+bindsym $mod+m exec $term rmpc
+bindsym $mod+t exec $term -e ~/.local/bin/tmux-sessionizer
 bindsym $mod+g exec $term --app-id quickedit -e ~/.local/bin/quickedit
 bindsym $mod+i exec $term --app-id cheatsheet -e ~/.local/bin/chsht
 bindsym $mod+w exec $term --app-id nmtui-go -e ~/.local/bin/nmtui-go
 bindsym $mod+d exec $term --app-id viewdocs -e ~/.local/bin/viewdocs
-# bindsym $mod+z exec swaymsg bar mode toggle
 bindsym $mod+z exec sh -c 'pgrep waybar && pkill waybar || waybar'
 
 bindsym $mod+Shift+w exec ~/.local/bin/wallpaper-menu
 bindsym $mod+Alt+space exec ~/.local/bin/theme-switcher
 
-bindsym $mod+y exec $term -e yazi
 
 ### Modes
 
@@ -98,9 +101,9 @@ bindsym $mod+c exec sh -c 'cliphist list | rofi -dmenu -p Clipboard | cliphist d
 
 ### Browser apps
 
-bindsym $mod+Shift+p exec brave --app=https://open.spotify.com
-bindsym $mod+Shift+y exec brave --app=https://youtube.com
-bindsym $mod+Shift+c exec brave --app=https://web.whatsapp.com
+bindsym $mod+Shift+p exec firefox --app=https://open.spotify.com
+bindsym $mod+Shift+y exec firefox --app=https://youtube.com
+bindsym $mod+Shift+c exec firefox --app=https://web.whatsapp.com
 
 ### Fullscreen / Floating
 
@@ -212,8 +215,8 @@ floating_modifier $mod
 ### Styles
 
 default_orientation horizontal
-default_border none
-default_floating_border none
+default_border pixel 2
+default_floating_border pixel 2
 hide_edge_borders both
 
 client.focused          $accent         $accent         $background     $accent         $accent
@@ -257,7 +260,7 @@ assign [app_id="blender"] workspace 3
 
 for_window [app_id="quickedit"] floating enable, resize set 1400 900
 for_window [app_id="cheatsheet"] floating enable, resize set 1400 900
-for_window [app_id="nmtui-go"] floating enable, resize set 1000 800
+for_window [app_id="nmtui-go"] floating enable, resize set 1400 900
 for_window [app_id="viewdocs"] floating enable, resize set 1400 900
 # for_window [app_id="file_chooser"] floating enable, resize set 1200 800
 

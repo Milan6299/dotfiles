@@ -21,7 +21,7 @@ local function toggle_browsersync()
   end
 end
 
-vim.keymap.set("n", "<leader>fx", toggle_browsersync, {
+vim.keymap.set("n", "<leader>gx", toggle_browsersync, {
   silent = true,
   desc = "Toggle BrowserSync",
 })
