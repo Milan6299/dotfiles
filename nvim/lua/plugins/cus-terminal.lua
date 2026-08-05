@@ -1,14 +1,20 @@
 local job_id = nil
 local terminal_buf = nil
 local height = 7
+local function term_notify(msg, level, opts)
+  opts = opts or {}
+  vim.notify(msg or "No message found!", level or vim.log.levels.INFO, {
+    title = opts.title or "Terminal",
+    hide_from_history = opts.hide_from_history ~= false,
+  })
+end
 
 local function open_terminal(opts)
   opts = opts or {}
   if not opts.terminal_buf then
-    Snacks.notifier.notify("No buffer found!")
+    term_notify("No buffer found!", "warn")
     return
   end
-  -- Snacks.notifier.notify("Found buffer id " .. tostring(opts.terminal_buf))
   vim.cmd.vnew()
   -- when vnew starts it creates a empty buffer, store that buffer id
   local empty_buf = vim.api.nvim_get_current_buf()
@@ -41,7 +47,7 @@ local function custom_terminal(opts)
   if terminal_buf and vim.api.nvim_buf_is_valid(terminal_buf) then
     -- if terminal window is open do not redraw
     if vim.fn.bufwinid(terminal_buf) ~= -1 then
-      -- Snacks.notifier.notify("Window visible!")
+      -- term_notify("Window visible!", "warn")
       return
     end
     open_terminal({
@@ -51,7 +57,7 @@ local function custom_terminal(opts)
     return
   end
 
-  -- Snacks.notifier.notify("Launching Terminal!")
+  term_notify("Launching Terminal!")
   terminal_buf = create_terminal({
     height = opts.height,
   })
@@ -76,11 +82,11 @@ vim.keymap.set("n", "<leader>pr", function()
   local file = vim.fn.expand("%:p")
 
   if not job_id then
-    Snacks.notifier.notify("Create a terminal first!", "warn")
+    term_notify("Create a terminal first!", "warn")
     return
   end
   custom_terminal({ height = 10 })
-  -- Snacks.notifier.notify(file)
+  -- term_notify(file)
 
   vim.fn.chansend(job_id, "uv run " .. vim.fn.shellescape(file) .. "\n")
 end, { desc = "uv run file" })
@@ -89,11 +95,11 @@ vim.keymap.set("n", "<leader>rp", function()
   local file = vim.fn.expand("%:p")
 
   if not job_id then
-    Snacks.notifier.notify("Create a terminal first!", "warn")
+    term_notify("Create a terminal first!", "warn")
     return
   end
   custom_terminal()
-  -- Snacks.notifier.notify(file)
+  -- term_notify(file)
 
   vim.fn.chansend(job_id, "python " .. vim.fn.shellescape(file) .. "\n")
 end, { desc = "Run Python file" })
