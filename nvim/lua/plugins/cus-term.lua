@@ -1,6 +1,7 @@
 local job_id = nil
 local terminal_buf = nil
-local height = 7
+local HEIGHT = 7
+
 local function term_notify(msg, level, opts)
   opts = opts or {}
   vim.notify(msg or "No message found!", level or vim.log.levels.INFO, {
@@ -9,12 +10,46 @@ local function term_notify(msg, level, opts)
   })
 end
 
+local function floatingterm(opts)
+  opts = opts or {}
+  if not opts.terminal_buf then
+    term_notify("No existing buffer found", "warn")
+    return
+  end
+  local width = opts.width or math.floor(vim.o.columns * 0.8)
+  local height = opts.height or math.floor(vim.o.lines * 0.8)
+
+  local posx = math.floor((vim.o.columns - width) / 2)
+  local posy = math.floor((vim.o.lines - height) / 2)
+  -- print(posx, posy)
+
+  -- scratch buffer
+
+  local win_config = {
+    relative = "editor",
+    width = width,
+    height = height,
+    col = posx,
+    row = posy,
+    style = "minimal",
+    border = "rounded",
+  }
+
+  -- vim.cmd.term()
+  vim.api.nvim_open_win(opts.terminal_buf, true, win_config)
+end
+
 local function open_terminal(opts)
   opts = opts or {}
   if not opts.terminal_buf then
     term_notify("No buffer found!", "warn")
     return
   end
+  if opts.float then
+    floatingterm({ terminal_buf = opts.terminal_buf })
+    return
+  end
+
   vim.cmd.vnew()
   -- when vnew starts it creates a empty buffer, store that buffer id
   local empty_buf = vim.api.nvim_get_current_buf()
@@ -27,7 +62,7 @@ local function open_terminal(opts)
     })
   end
   vim.cmd.wincmd("J")
-  vim.api.nvim_win_set_height(0, opts.height or height)
+  vim.api.nvim_win_set_height(0, opts.height or HEIGHT)
 end
 
 local function create_terminal(opts)
@@ -36,7 +71,7 @@ local function create_terminal(opts)
   vim.cmd.vnew()
   vim.cmd.term()
   vim.cmd.wincmd("J")
-  vim.api.nvim_win_set_height(0, opts.height or height)
+  vim.api.nvim_win_set_height(0, opts.height or HEIGHT)
 
   return vim.api.nvim_get_current_buf()
 end
@@ -51,6 +86,7 @@ local function custom_terminal(opts)
       return
     end
     open_terminal({
+      float = opts.float,
       terminal_buf = terminal_buf,
       height = opts.height,
     })
@@ -85,8 +121,7 @@ vim.keymap.set("n", "<leader>pr", function()
     term_notify("Create a terminal first!", "warn")
     return
   end
-  custom_terminal({ height = 10 })
-  -- term_notify(file)
+  custom_terminal({ float = true })
 
   vim.fn.chansend(job_id, "uv run " .. vim.fn.shellescape(file) .. "\n")
 end, { desc = "uv run file" })
@@ -98,8 +133,7 @@ vim.keymap.set("n", "<leader>rp", function()
     term_notify("Create a terminal first!", "warn")
     return
   end
-  custom_terminal()
-  -- term_notify(file)
+  custom_terminal({ float = true })
 
   vim.fn.chansend(job_id, "python " .. vim.fn.shellescape(file) .. "\n")
 end, { desc = "Run Python file" })
