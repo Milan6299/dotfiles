@@ -23,8 +23,6 @@ local function floatingterm(opts)
   local posy = math.floor((vim.o.lines - height) / 2)
   -- print(posx, posy)
 
-  -- scratch buffer
-
   local win_config = {
     relative = "editor",
     width = width,
