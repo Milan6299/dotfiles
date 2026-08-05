@@ -72,6 +72,19 @@ end, { desc = "Open custom Terminal" })
 -- terminal mode to normal mode
 vim.keymap.set("t", "<esc><esc>", "<c-\\><c-n>")
 
+vim.keymap.set("n", "<leader>pr", function()
+  local file = vim.fn.expand("%:p")
+
+  if not job_id then
+    Snacks.notifier.notify("Create a terminal first!", "warn")
+    return
+  end
+  custom_terminal({ height = 10 })
+  -- Snacks.notifier.notify(file)
+
+  vim.fn.chansend(job_id, "uv run " .. vim.fn.shellescape(file) .. "\n")
+end, { desc = "uv run file" })
+
 vim.keymap.set("n", "<leader>rp", function()
   local file = vim.fn.expand("%:p")
 
