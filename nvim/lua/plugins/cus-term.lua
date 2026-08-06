@@ -1,6 +1,8 @@
 local job_id = nil
 local terminal_buf = nil
-local HEIGHT = 7
+local config = {
+  height = 7,
+}
 
 local function term_notify(msg, level, opts)
   opts = opts or {}
@@ -10,12 +12,15 @@ local function term_notify(msg, level, opts)
   })
 end
 
+local function terminal_window_defaults(win)
+  vim.api.nvim_set_option_value("number", false, { win = win })
+  vim.api.nvim_set_option_value("relativenumber", false, { win = win })
+  vim.api.nvim_set_option_value("signcolumn", "no", { win = win })
+end
+
 local function floatingterm(opts)
   opts = opts or {}
-  if not opts.terminal_buf then
-    term_notify("No existing buffer found", "warn")
-    return
-  end
+
   local width = opts.width or math.floor(vim.o.columns * 0.8)
   local height = opts.height or math.floor(vim.o.lines * 0.8)
 
@@ -30,11 +35,23 @@ local function floatingterm(opts)
     col = posx,
     row = posy,
     style = "minimal",
-    border = "rounded",
+    border = "single",
   }
 
-  -- vim.cmd.term()
-  vim.api.nvim_open_win(opts.terminal_buf, true, win_config)
+  local buf = opts.terminal_buf
+  if buf then
+    local win = vim.api.nvim_open_win(buf, true, win_config)
+    terminal_window_defaults(win)
+    -- term_notify("using existing")
+    return
+  end
+
+  buf = vim.api.nvim_create_buf(false, true)
+  local win = vim.api.nvim_open_win(buf, true, win_config)
+  terminal_window_defaults(win)
+  vim.cmd.term()
+
+  return buf
 end
 
 local function open_terminal(opts)
@@ -53,23 +70,34 @@ local function open_terminal(opts)
   local empty_buf = vim.api.nvim_get_current_buf()
   -- attach window to terminals buffer id
   vim.api.nvim_win_set_buf(0, opts.terminal_buf)
+  terminal_window_defaults(vim.api.nvim_get_current_win())
   -- delete the empty buffer with a paranoid sanity check
+  -- term_notify("empty " .. empty_buf .. " terminal " .. opts.terminal_buf)
   if empty_buf ~= opts.terminal_buf then
     vim.api.nvim_buf_delete(empty_buf, {
       force = true,
     })
   end
   vim.cmd.wincmd("J")
-  vim.api.nvim_win_set_height(0, opts.height or HEIGHT)
+  vim.api.nvim_win_set_height(0, opts.height or config.height)
 end
 
 local function create_terminal(opts)
   opts = opts or {}
 
+  if opts.float then
+    return floatingterm({ terminal_buf = terminal_buf })
+  end
+
   vim.cmd.vnew()
   vim.cmd.term()
+
+  -- grab current window and set the terminal defaults
+  local win = vim.api.nvim_get_current_win()
+  terminal_window_defaults(win)
+
   vim.cmd.wincmd("J")
-  vim.api.nvim_win_set_height(0, opts.height or HEIGHT)
+  vim.api.nvim_win_set_height(win, opts.height or config.height)
 
   return vim.api.nvim_get_current_buf()
 end
@@ -83,6 +111,7 @@ local function custom_terminal(opts)
       -- term_notify("Window visible!", "warn")
       return
     end
+    -- term_notify("opening existing " .. terminal_buf)
     open_terminal({
       float = opts.float,
       terminal_buf = terminal_buf,
@@ -94,6 +123,7 @@ local function custom_terminal(opts)
   term_notify("Launching Terminal!")
   terminal_buf = create_terminal({
     height = opts.height,
+    float = opts.float,
   })
 
   -- Store the terminals channel id
@@ -115,11 +145,11 @@ vim.keymap.set("t", "<esc><esc>", "<c-\\><c-n>")
 vim.keymap.set("n", "<leader>pr", function()
   local file = vim.fn.expand("%:p")
 
+  custom_terminal({ float = true })
   if not job_id then
-    term_notify("Create a terminal first!", "warn")
+    term_notify("No job id found!", "warn")
     return
   end
-  custom_terminal({ float = true })
 
   vim.fn.chansend(job_id, "uv run " .. vim.fn.shellescape(file) .. "\n")
 end, { desc = "uv run file" })
@@ -127,12 +157,12 @@ end, { desc = "uv run file" })
 vim.keymap.set("n", "<leader>rp", function()
   local file = vim.fn.expand("%:p")
 
-  if not job_id then
-    term_notify("Create a terminal first!", "warn")
-    return
-  end
   custom_terminal({ float = true })
 
+  if not job_id then
+    term_notify("No job id found!", "warn")
+    return
+  end
   vim.fn.chansend(job_id, "python " .. vim.fn.shellescape(file) .. "\n")
 end, { desc = "Run Python file" })
 
