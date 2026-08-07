@@ -5,6 +5,12 @@
 -- For cursor to not skip wrapped texts
 vim.keymap.set("n", "j", "gj")
 vim.keymap.set("n", "k", "gk")
+
+-- Center screen after performing scroll
+vim.keymap.set("n", "<C-d>", "<C-d>zz")
+vim.keymap.set("n", "<C-u>", "<C-u>zz")
+vim.keymap.set("n", "G", "<Cmd>normal! Gzz<CR>")
+
 vim.keymap.set("n", "<leader>dd", function()
   vim.diagnostic.open_float()
 end, { desc = "Diagnostics" })

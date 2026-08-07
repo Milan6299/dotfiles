@@ -13,6 +13,7 @@ return {
       css = { "biome" },
       html = { "biome" },
       markdown = { "biome" },
+      python = { "ruff_format" },
     },
   },
 }
