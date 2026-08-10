@@ -9,28 +9,10 @@ vim.opt.breakindent = true
 vim.opt.showtabline = 0
 vim.o.updatetime = 300
 
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = { "markdown", "text", "gitcommit" },
-  callback = function()
-    vim.opt_local.wrap = true
-    vim.opt_local.linebreak = true
-  end,
-})
 vim.diagnostic.config({
   underline = true,
   signs = true,
   virtual_text = false,
   update_in_insert = false,
   severity_sort = false,
-})
-vim.api.nvim_create_autocmd("CursorHold", {
-  callback = function()
-    vim.diagnostic.open_float(nil, {
-      show_header = true,
-      focusable = false,
-      scope = "line",
-      border = "rounded",
-      source = "if_many",
-    })
-  end,
 })
