@@ -139,6 +139,7 @@ local function apply_theme()
   vim.api.nvim_set_hl(0, "@string.escape", { fg = colors.accent_alt })
   vim.api.nvim_set_hl(0, "@character", { fg = colors.success })
   vim.api.nvim_set_hl(0, "@number", { fg = colors.error })
+  vim.api.nvim_set_hl(0, "@number.float", { fg = colors.error })
   vim.api.nvim_set_hl(0, "@boolean", { fg = colors.error })
   vim.api.nvim_set_hl(0, "@float", { fg = colors.error })
   vim.api.nvim_set_hl(0, "@function", { fg = colors.accent })
@@ -161,11 +162,15 @@ local function apply_theme()
   vim.api.nvim_set_hl(0, "@include", { fg = colors.info })
   vim.api.nvim_set_hl(0, "@annotation", { fg = colors.info }) -- Blue for decorators
   vim.api.nvim_set_hl(0, "@attribute", { fg = colors.warning }) -- Yellow for HTML attributes
+  vim.api.nvim_set_hl(0, "@attribute.builtin", { fg = colors.warning }) -- Yellow for HTML attributes
   vim.api.nvim_set_hl(0, "@property", { fg = colors.fg_dim }) -- Purple for object properties
   vim.api.nvim_set_hl(0, "@field", { fg = colors.success }) -- Green for struct fields
   vim.api.nvim_set_hl(0, "@namespace", { fg = colors.fg_dim })
   vim.api.nvim_set_hl(0, "@punctuation.delimiter", { fg = colors.warning })
   vim.api.nvim_set_hl(0, "@punctuation.bracket", { fg = colors.warning })
+  vim.api.nvim_set_hl(0, "@diff.plus", { fg = colors.info })
+  vim.api.nvim_set_hl(0, "@diff.minus", { fg = colors.error })
+  vim.api.nvim_set_hl(0, "@diff.delta", { fg = colors.warning })
 
   -- ============ LSP ============
   vim.api.nvim_set_hl(0, "DiagnosticError", { fg = colors.error })
