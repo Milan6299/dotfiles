@@ -139,6 +139,10 @@ vim.keymap.set("n", "<leader>tt", function()
   custom_terminal()
 end, { desc = "Open custom Terminal" })
 
+vim.keymap.set("n", "<leader>tf", function()
+  custom_terminal({ float = true })
+end, { desc = "Open custom Terminal" })
+
 -- terminal mode to normal mode
 vim.keymap.set("t", "<esc><esc>", "<c-\\><c-n>")
 
