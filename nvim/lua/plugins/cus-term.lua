@@ -154,7 +154,6 @@ vim.keymap.set("n", "<leader>pr", function()
     term_notify("No job id found!", "warn")
     return
   end
-
   vim.fn.chansend(job_id, "uv run " .. vim.fn.shellescape(file) .. "\n")
 end, { desc = "uv run file" })
 
