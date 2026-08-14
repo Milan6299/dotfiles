@@ -136,11 +136,11 @@ local function custom_terminal(opts)
 end
 
 vim.keymap.set("n", "<leader>tt", function()
-  custom_terminal()
+  custom_terminal({ float = true })
 end, { desc = "Open custom Terminal" })
 
-vim.keymap.set("n", "<leader>tf", function()
-  custom_terminal({ float = true })
+vim.keymap.set("n", "<leader>tv", function()
+  custom_terminal()
 end, { desc = "Open custom Terminal" })
 
 -- terminal mode to normal mode
