@@ -9,7 +9,7 @@ progress-color=#d0d09a
 # --- Urgency Levels ---
 
 [urgency=low]
-border-color=#8ba1d7
+border-color=#73858a
 
 [urgency=normal]
 border-color=#6c6c78

@@ -16,7 +16,7 @@ set $accent_alt #6e7f80
 set $error #cd6b7a
 set $warning #eabf82
 set $success #86a678
-set $info #8ba1d7
+set $info #73858a
 set $orange #d39c6a
 set $bright_orange #d39c6a
 

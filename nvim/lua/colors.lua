@@ -1,4 +1,4 @@
--- Auto-generated from Vague.conf
+-- Auto-generated from Myelow.conf
 return {
     -- Base / Core tones
     bg        = "#212121",
@@ -16,7 +16,7 @@ return {
     error             = "#cd6b7a",
     warning           = "#eabf82",
     success           = "#86a678",
-    info              = "#8ba1d7",
+    info              = "#73858a",
     orange            = "#d39c6a",
     bright_orange     = "#d39c6a",
 
