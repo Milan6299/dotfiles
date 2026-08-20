@@ -130,7 +130,9 @@ local function apply_theme()
 
   -- ============ TREESITTER ============
   vim.api.nvim_set_hl(0, "@variable", { fg = colors.fg })
+  vim.api.nvim_set_hl(0, "@variable.parameter", { fg = colors.fg })
   vim.api.nvim_set_hl(0, "@variable.builtin", { fg = colors.fg })
+  vim.api.nvim_set_hl(0, "@variable.parameter.builtin", { fg = colors.fg })
   vim.api.nvim_set_hl(0, "@constant", { fg = colors.warning })
   vim.api.nvim_set_hl(0, "@constant.builtin", { fg = colors.warning })
   vim.api.nvim_set_hl(0, "@constant.macro", { fg = colors.info })

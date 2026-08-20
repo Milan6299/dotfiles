@@ -1,24 +1,30 @@
--- print("BrowserSync config loaded")
 local bs_job = nil
 
 local function toggle_browsersync()
   if bs_job then
     vim.fn.jobstop(bs_job)
-    print("BrowserSync stopped")
     bs_job = nil
-  else
-    bs_job = vim.fn.jobstart({
-      "browser-sync",
-      "start",
-      "--server",
-      "--files",
-      "**/*",
-    }, {
-      cwd = vim.fn.getcwd(),
-      detach = true,
-    })
-    print("BrowserSync started")
+    print("BrowserSync stopped")
+    return
   end
+
+  bs_job = vim.fn.jobstart({
+    "browser-sync",
+    "start",
+    "--server",
+    "--files",
+    "**/*",
+  }, {
+    cwd = vim.fn.getcwd(),
+  })
+
+  if bs_job <= 0 then
+    bs_job = nil
+    print("Failed to start BrowserSync")
+    return
+  end
+
+  print("BrowserSync started")
 end
 
 vim.keymap.set("n", "<leader>gx", toggle_browsersync, {
