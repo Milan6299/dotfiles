@@ -3,6 +3,7 @@
 SESSION="work"
 ROOT="$HOME/projects/cflow/"
 BACKEND="$ROOT/backend"
+CLI="$ROOT/cli"
 
 start() {
   # tmux new-session -d -s "$SESSION" -c "$ROOT" -n "editor"
@@ -18,9 +19,9 @@ start() {
   tmux send-keys -t "$SESSION:server" \
     "uv run uvicorn cflow.api.main:app --reload" C-m
 
-  # backend
-  tmux new-window -t "$SESSION" -n "backend" -c "$BACKEND"
-  tmux send-keys -t "$SESSION:backend" "ls" C-m
+  # cli
+  tmux new-window -t "$SESSION" -n "cli" -c "$CLI"
+  tmux send-keys -t "$SESSION:cli" "nvim ." C-m
 
   # logs
   # tmux new-window -t "$SESSION" -n "logs" -c "$ROOT"
