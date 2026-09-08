@@ -96,6 +96,33 @@ zm() {
     dir="$(zoxide query --interactive "$@")" || return
     [[ -n "$dir" ]] && cd "$dir"
 }
+set-api-key() {
+    local key_name="${1:-GEMINI_API_KEY}"
+    local key entry
+
+    # grab the latest entry
+    key="$(cliphist list | head -n 1 | cliphist decode)"
+
+    if [[ -z "$key" ]]; then
+        echo "Clipboard is empty."
+        return 1
+    fi
+
+    export "$key_name=$key"
+
+    entry="$(cliphist list | grep -F -- "$key" | head -n 1)"
+
+    if [[ -n "$entry" ]]; then
+        printf '%s\n' "$entry" | cliphist delete
+    fi
+
+    wl-copy --clear
+
+    unset key entry
+
+    echo "$key_name set; clipboard entry cleared."
+    echo "Check with: cliphist list"
+}
 
 # KEYBINDINGS
 bindkey -v
