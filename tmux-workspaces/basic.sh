@@ -1,3 +1,5 @@
+# basically scratch tmux session
+
 SESSION="basic"
 ROOT="$(pwd)"
 

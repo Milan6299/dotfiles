@@ -2,11 +2,15 @@
 set -euo pipefail
 
 WORKSPACE_DIR="${TMUX_WORKSPACES_DIR:-$HOME/.config/tmux-workspaces}"
-CACHE_FILE="$HOME/.cache/tmux-sessionizer/sessions.db"
+CACHE_DIR="/tmp/tmux-sessionizer/"
+CACHE_FILE="/tmp/tmux-sessionizer/sessions.db"
 
 #####################################
 # tmux helpers
 #####################################
+get_running_sessions() {
+  tmux list-sessions -F "#{session_name}" 2>/dev/null || true
+}
 
 tmux_has_session() {
   tmux has-session -t "$1" 2>/dev/null
@@ -26,12 +30,12 @@ tmux_switch() {
 # cache
 #####################################
 
-get_sessions() {
+get_sessions_from_cache() {
   [[ -f "$CACHE_FILE" ]] && cat "$CACHE_FILE" || true
 }
 
 get_session_by_index() {
-  get_sessions | sed -n "${1}p" | cut -d'|' -f2
+  get_sessions_from_cache | sed -n "${1}p" | cut -d'|' -f2
 }
 
 #####################################
@@ -86,14 +90,14 @@ build_list() {
 
 prompt() {
 
-  hard_coded_list | fzf \
-    --border \
-    --prompt="tmux > " \
-    --bind 'one:accept'
-  # build_list | fzf \
+  # hard_coded_list | fzf \
   #   --border \
   #   --prompt="tmux > " \
   #   --bind 'one:accept'
+  build_list | fzf \
+    --border \
+    --prompt="tmux > " \
+    --bind 'one:accept'
 }
 
 #####################################
@@ -195,9 +199,9 @@ dispatch() {
   ###################################
   # plain session fallback
   ###################################
-  if tmux_has_session "$name"; then
-    tmux_switch "$name"
-  fi
+  # if tmux_has_session "$name"; then
+  #   tmux_switch "$name"
+  # fi
 
   exec tmux new-session -A -s "$name"
 }
@@ -207,7 +211,16 @@ dispatch() {
 #####################################
 
 main() {
+
   local input="${1:-}"
+
+  # Regenerate cache with current sessions
+  mkdir -p "$CACHE_DIR"
+  touch "$CACHE_FILE"
+
+  get_running_sessions |
+    sort |
+    awk '{print NR "|" $0}' >"$CACHE_FILE"
 
   if [[ -z "$input" ]]; then
     input="$(prompt)"
