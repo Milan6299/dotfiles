@@ -5,6 +5,11 @@ export XDG_MUSIC_DIR="$HOME/music"
 export EDITOR="nvim"
 export LS_COLORS="$LS_COLORS:ow=32"
 
+# Tuxedo
+export TODO_DIR="$HOME/Documents/todo"
+export TODO_FILE="$TODO_DIR/todo.txt"
+export DONE_FILE="$TODO_DIR/done.txt"
+
 # HISTORY
 HISTSIZE=5000
 HISTFILE="$HOME/.zsh_history"
