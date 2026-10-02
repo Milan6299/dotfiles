@@ -69,7 +69,7 @@
   },
   "network": {
     "format": "{ifname} via {gwaddr}",
-    "format-wifi": "{ipaddr} {essid} {signalStrength}%",//
+    "format-wifi": "{essid} {signalStrength}%",//
     "format-ethernet": "{ifname} ↓ {bandwidthDownBytes} ↑ {bandwidthUpBytes}",//
     "format-disconnected": "Disconnected",
     "tooltip-format": "{ifname} via {gwaddr}",//

@@ -1,6 +1,6 @@
 max-visible=5
 sort=-time
-default-timeout=3000
+default-timeout=5000
 
 # Positioning
 layer=top

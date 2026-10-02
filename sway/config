@@ -255,6 +255,11 @@ assign [class="krita"] workspace 3
 assign [app_id="^com.github.flxzt.rnote"] workspace 3
 # Blender
 assign [app_id="blender"] workspace 3
+# Steam
+assign [app_id="Steam"] workspace 3
+# Dota2
+assign [app_id="^dota"] workspace 5
+assign [app_id="^Dota"] workspace 5
 
 # Floating utility windows
 

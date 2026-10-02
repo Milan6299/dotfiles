@@ -14,7 +14,7 @@ start() {
 
   tmux send-keys \
     -t "$SESSION:editor" \
-    "cd \"\$(fd --type d --max-depth=2 | fzf --prompt='->')\" && nvim ." C-m
+    "cd \"\$(fd --type d --max-depth=2 | fzf --prompt='->')\" && clear && nvim ." C-m
 
   tmux select-window -t "$SESSION:editor"
 }

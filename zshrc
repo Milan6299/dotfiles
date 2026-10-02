@@ -147,3 +147,6 @@ bindkey -M menuselect 'l' vi-forward-char
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 # ~/.local/bin/checktmux
+
+# opencode
+export PATH=/home/modisarkar69/.opencode/bin:$PATH
