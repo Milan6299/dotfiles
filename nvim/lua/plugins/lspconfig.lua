@@ -10,6 +10,9 @@ return {
             client.server_capabilities.documentRangeFormattingProvider = false
           end,
         },
+        postgres_lsp = {
+          cmd = { "postgres-language-server", "lsp-proxy" },
+        },
       },
       diagnostics = {
         virtual_text = false,

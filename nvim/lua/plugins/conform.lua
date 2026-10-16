@@ -11,9 +11,10 @@ return {
       typescriptreact = { "biome" },
       json = { "biome" },
       css = { "biome" },
-      -- html = { "biome" },
+      html = { "biome" },
       markdown = { "biome" },
       python = { "ruff_format" },
+      sql = { "pg_format" },
     },
   },
 }
