@@ -16,5 +16,10 @@ return {
       python = { "ruff_format" },
       sql = { "pg_format" },
     },
+    formatters = {
+      pg_format = {
+        prepend_args = { "-g" }, -- for no grouping of statements
+      },
+    },
   },
 }

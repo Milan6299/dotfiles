@@ -28,9 +28,6 @@ end
 return {
   {
     "tpope/vim-dotenv",
-    dependencies = {
-      "tpope/vim-dadbod",
-    },
     keys = {
       {
         "<leader>rd",

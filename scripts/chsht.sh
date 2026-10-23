@@ -2,9 +2,9 @@
 
 tmuxcht() {
   if [[ -n "$TMUX" ]]; then
-    tmux new-window bash -c "curl cheat.sh/$1$2 | less -R"
+    tmux new-window bash -c "curl -s cheat.sh/$1$2 | less -R"
   else
-    bash -c "curl cheat.sh/$1$2 | less -R"
+    bash -c "curl -s cheat.sh/$1$2 | less -R"
   fi
 }
 
